@@ -11,7 +11,7 @@ See <project_dir>/doc/install.md for installation instructions
 You can find a presentation by Prof. van der Schaar describing AutoPrognosis here:
 https://www.youtube.com/watch?v=d1uEATa0qIo
 
-## [Slides Autoprognosis](doc/AP_summary.pdf)
+## [Slides Autoprognosis](alg/autoprognosis/doc/AP_summary.pdf)
 
 ## Usage
 
