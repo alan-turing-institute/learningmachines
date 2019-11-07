@@ -43,13 +43,20 @@ The research question posed by the Learning Machine project is:
 
 Examples of issues that Learning Machines can address are: 
 
-1. How do we measure model changes
-2. What are the warning signs which flag model change?
-3. What guidance will we provide users when they are confronted with new model behaviours?
+1. Can we update the model using a reward system, in order to miximise for a measurable, prespecified outcome?
+2. How do we measure model changes
+3. What are the warning signs which flag model change?
+4. What guidance will we provide users when they are confronted with new model behaviours?
 
 ## Challenges
 
 We propose to address these issues from three perspectives:
+
+### Uncertainty
+
+Uncertainty information is usually provided as part of a decision or classification outcome. It is typically in the form of a probabilistic, or paired upper and lower bound value. During initial development process, uncertainty values are expected to be large. After a number of training epochs, a model which has been trained with sufficient information, and without too much noise is expected to produce decreasing uncertainty values. Uncertainty is not a measure of the trained models' capabilities, although it is often intepreted as such.
+
+This project (note: unsure about this) will address the issue to uncertainty values changing over time.
 
 ### Intepretability 
 
@@ -59,17 +66,12 @@ When a machine is updated iteratively over a period of years, it is inevitable t
 
 This project will address a specific aspect of intepretability, that is, the challenge of intepreting model behaviour change. 
 
-### Heterogeneous high dimensional longitudinal data 
+### Heterogeneous and/or high dimensional longitudinal data 
 
 The study of heterogeneous, high dimensional data for training machine learning algorithms is well established. As mentioned above, data must contain sufficient information and this includes variables that may confound outcomes. Typically, a fix set of datatypes is used to train a model, but in real life, more diverse data types are being collected than before, with the purpose of addressing any information from possibly confounding variables. For example, in the medical domain there may be more lab results, imaging reports, 'omic'-type profiles and quality of life questionnaires.
 
 This project will address the challenge of introducing new data types into an existing system. There is a further challenge here because while a completely new model may be developed to incorporate new data types, the impression communicated to users should be one that the system is being extended, rather than completely rehauled. 
 
-### Uncertainty
-
-Uncertainty information is usually provided as part of a decision or classification outcome. It is typically in the form of a probabilistic, or paired upper and lower bound value. During initial development process, uncertainty values are expected to be large. After a number of training epochs, a model which has been trained with sufficient information, and without too much noise is expected to produce decreasing uncertainty values. Uncertainty is not a measure of the trained models' capabilities, although it is often intepreted as such.
-
-A 
 
 
 
