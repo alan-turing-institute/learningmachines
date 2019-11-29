@@ -7,6 +7,7 @@ A demonstration of a machine/model that:
 * meets the interpretability, safety and ethical requirements of sensitive
 domain areas.
 * is a usable tool rather than a research paper(?)
+* automated updating of system
 
 # Example problems/datasets
 
@@ -29,6 +30,9 @@ tumour grade, Estrogen-receptor status.
   - (AutoPrognosis paper) Comorbidities - predict cardiac deaths in patients
   diagnosed with breast (SEER-I), colorectal (SEER-II), Leukemia (SEER-III),
   respiratory (SEER-IV), digestive (SEER-V), urinary (SEER-VI) cancers.
+
+* MIMIC critical care database
+  - deidentified health data associated with ~60,000 intensive care unit admissions. It includes demographics, vital signs, laboratory tests, medications, and more
 
 # Interpretability
 
