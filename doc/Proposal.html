@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="learning-machines">Learning Machines</h1>
+<h1 id="introduction">Introduction</h1>
+<p>This document is a proposal for the Learning Machines project. The project is funded by the Turing Health programme, and the Turing Criminal Justice programme.</p>
+<p>The first part of this document contains our understanding of the project background. The second part defines the research challenges to be addressed by this project. The third part outlines possible approaches and risks to addressing the research challenges.</p>
+<h2 id="context">1. Context</h2>
+<p>Humans make decisions based upon past experiences. These experiences are gained from personal, social and professional interactions.</p>
+<p>In a professional setting, a human expert such as a clinician decides on treatment regimens while considering patient socioeconomic profiles, medical histories and current disease and comorbidities states. In another example, a judge decides if a prisoner can be released on parole based on criminal histories, current behaviours and psychological profiles.</p>
+<p>In both examples, clinicians and judges build, retain and update their experiences of disease and criminal behaviours. These experiences are referred to as domain knowledge or domain models. Experts update their models from interactions' outcomes; clinicians update their models when they receive updates about treatment outcomes. Judges update their models when they encounter (possibly again) prisoners in court.</p>
+<p>Domain knowledge/models contain complex representations of patients (or prisoners), which must include sufficient information such as variables which may confound predicted or desired outcomes.</p>
+<p>There are good reasons for formalising domain knowledge/model, which has traditionally been referred to as an expert system. Access to a shared model has the capacity to enable objective decisions because it is trained with a diverse range of interactions. A formal representation of a model when built with particular ML techniques to maximise transparency also allows identification of biases.</p>
+<p>Machine learning techniques are good at finding patterns from large datasets. Data collection is expensive. In the real world (such as in the medical or criminal justice domain as in the examples above), data collecting and labelling under real world circumstances specifically for the application of machine learning is rare.</p>
+<p>Clinicians and judges are generating relevant data every time they interact with the medical or criminal system. When data is stored and labelled over a period of time, they can be used to develop and iteratively update a model. For example, the diversity of patients treated by multiple clinicians over time generates heterogeneous patient profiles which is not experienced by a single clinician.</p>
+<p>When a machine is retrained or iteratively updately with new data, its performance and parameters may change to reflect the new variations contained in the new data.</p>
+<h2 id="the-problem">2. The Problem</h2>
+<p>Changes in model behaviours are inevitable as models are updated (or retrained) with newly labelled diverse cases. This is true during initial model development, but in this project we are particularly interested in changes in model behaviour as a result of iterative updates over the long term.</p>
+<p>For one example patient demographics may change. In the case of cystic fibrosis, new treatments mean that patients can survive longer without the need for a lung transplant; this means that an algorithm that predicts when a patient requires a transplant will be gradually dealing with older patients. Another example is when new treatments are introduced or new data such as genomic profiles become more accessible.</p>
+<p>For another example, an uprise in anti-immigrant sentiments has lead to an increase in reported harrassment and convicted cases. An algorithm that predicts the probabilities of reoffending will need to take into account different criminal profiles.</p>
+<p>The research question posed by the Learning Machine project is:</p>
+<p><strong><em>What issues will arise when models are retrained iteratively over a period of years? How should these issues be addressed to provide users with both new information and a sense of consistency?</em></strong></p>
+<p>Examples of issues that Learning Machines can address are:</p>
+<ol style="list-style-type: decimal">
+<li>How do we measure model changes</li>
+<li>What can examination of the model change tell us about new data?</li>
+<li>What guidance will we provide users when they are confronted with new model behaviours?</li>
+</ol>
+<p>We propose to address these issues from three perspectives:</p>
+<h3 id="uncertainty">2.1 Uncertainty</h3>
+<p>Uncertainty information is usually provided as part of a decision or classification outcome. It is typically in the form of a probabilistic, or paired upper and lower bound value. During initial development process, uncertainty values are expected to be large. After a number of training epochs, a model which has been trained with sufficient information, and without too much noise is expected to produce decreasing uncertainty values. Uncertainty is not a measure of the trained models' capabilities, although it is often intepreted as such.</p>
+<p>Uncertainty about outcome is an important piece of information to be provided to users such as clinicians. A measure of uncertainty enables clinicians to exercise professional judgement about accepting or declining an algorithm's recommended outcome. Measures of uncertainty also enables a form of ranking in regards to algorithm outcome options.</p>
+<p>This project will survey how uncertainty values, as well as confidence intervals change over time, for a number of different datasets.</p>
+<h3 id="intepretability">2.2 Intepretability</h3>
+<p>Intepretability or explainability is an important topic in machine learning. A system built for the medical or criminal justice domain has to be transparent. This means that users receive justifications or explainations on how decisions are reached, in order to be able to decide if they will accept or reject the recommended outcome. The ease of intepretation and the closeness to which model parameters map to real-life features are essential components for tools built to augment an expert's decision making process.</p>
+<p>When a machine is updated iteratively over a period of years, it is inevitable that its behaviour will change. This can be due to changes in the data. Changes in data can be due to many things, such as gradual shifting of patient demographic or they can be due to new data collection practices. When this occurs, capabilities such as transparency and explainability becomes foremost in deciding if a machine is valid in producing different results over time.</p>
+<p>This project will address a two aspects of intepretability or explainability; that is 1) how to provide explainations for new algorithms and 2) develop measurements that would provide information about algorithm parameter change over time.</p>
+<h3 id="heterogeneous-andor-high-dimensional-longitudinal-data">2.3 Heterogeneous and/or high dimensional longitudinal data</h3>
+<p>The study of heterogeneous, high dimensional data for training machine learning algorithms is well established. As mentioned above, data must contain sufficient information and this includes variables that may confound outcomes. Typically, a fix set of datatypes is used to train a model, but in real life, more diverse data types are being collected than before, with the purpose of addressing any information from possibly confounding variables. For example, in the medical domain there may be more lab results, imaging reports, 'omic'-type profiles and quality of life questionnaires.</p>
+<p>This project will address the challenge of introducing new data types into an existing system. There is a further challenge here because while a completely new model may be developed to incorporate new data types, the impression communicated to users should be one that the system is being extended, rather than completely rebuilt.</p>
+<p>This project will also research the concept of a 'recency bias' (i.e. should new data be weighted more heavily than older data) so that old data will not have to be discarded completely.</p>
+<h2 id="goal">3. Goal</h2>
+<p>A demonstration of a machine/model that: * predicts outcomes / recommends actions or treatments * automated updated or retrained over time with new data * meets the interpretability, safety and ethical requirements of sensitive domain areas</p>
+<h2 id="example-datasets">4. Example datasets</h2>
+<ul>
+<li>UK Cancer registry</li>
+<li><p>(Symbolic metamodelling paper) Predict 5 year mortality risk of breast cancer patients using age, number of nodes, tumour size, tumour grade, Estrogen-receptor status.</p></li>
+<li>Meta-analysis Global Group in Chronic heart failure database (MAGGIC)</li>
+<li><p>Reference work (AutoPrognosis paper)</p></li>
+<li>Cystic Fibrosis Trust</li>
+<li><p>Reference work (AutoPrognosis paper)</p></li>
+<li>United Network for Organ Sharing (UNOS) database</li>
+<li>Reference work (AutoPrognosis paper)</li>
+<li><p>UNOS-I: pre-transplant, UNOS-II post-transplant</p></li>
+<li>Surveillance, Epidemiology, and End Results (SEER) cancer registries</li>
+<li>Reference work (AutoPrognosis paper)</li>
+<li><p>Comorbidities - predict cardiac deaths in patients diagnosed with breast (SEER-I), colorectal (SEER-II), Leukemia (SEER-III), respiratory (SEER-IV), digestive (SEER-V), urinary (SEER-VI)cancers.</p></li>
+<li>MIMIC critical care database</li>
+<li><p>deidentified health data associated with ~60,000 intensive care unit admissions. It includes demographics, vital signs, laboratory tests, medications, and more</p></li>
+</ul>
+<h2 id="risks">5. Risks</h2>
+<p>The risks around this project are centered around the issue of datasets. There are a number of requirements for the datasets which can be used for this project. These are:</p>
+<ul>
+<li>Datasets must be collected over a long period of time, in order to show how algorithms' outputs can change over time.</li>
+<li>Use cases must show that some actions can be taken in response to the machines' outputs, in order for this system to be useful</li>
+<li>Some evidence that the data has changed over time (eg. patient demographic), in order to show the value of retraining/redevelopment.</li>
+</ul>
+<h2 id="work-breakdown">6. Work breakdown</h2>
+<p>We anticipate undertaking the following activities. It is not possible to say with certainty which activities will take more or less time. For example, more time may be required to format data into the appropriate structures. Therefore some activities may be removed or changed, and other added if it would be appropriate for the project to do so.</p>
+<h3 id="data-management">6.1 Data management</h3>
+<ul>
+<li>We anticipate working within &quot;Safe Haven&quot; environments in order to reproduce some existing publications.</li>
+</ul>
+<h3 id="scoping-for-use-cases">6.2 Scoping for use cases</h3>
+<ul>
+<li>Work with domain experts to identify use cases within datasets which would meet the requirements of this project. ### 6.3 Automated Evaluation Platform</li>
+<li>Develop automated pipelines for re-evaluating updated models</li>
+<li>Develop measures and visualizations of model parameter changes over time</li>
+<li>Develop an interactive system to enable users to assess model outcome with different inputs</li>
+</ul>
+<h6 id="tags-learning-machines-documentation">tags: <code>Learning Machines</code> <code>Documentation</code></h6>
+</body>
+</html>
