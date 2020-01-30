@@ -52,15 +52,39 @@ human  error  is  possible  in  recording  and  entering  medical  data.   We  m
 
 ## Tools for monitoring model performance/behaviour change
 
-One concept which is of interest in this project is intepretibility (Mahed and Mihaela's work). It would be of research interest to be able to explain what has changed. Can we build intepretibility in a predictive model or in a drift-detection model to explain why things have changed? This is important because 1) retraining is expensive, 2) seen as risky and 3) can generate new knowledge about the trends within the domain in which predictive model operates.
+May: One concept which is of interest in this project is intepretibility (Mahed and Mihaela's work). It would be of research interest to be able to explain what has changed. Can we build intepretibility in a predictive model or in a drift-detection model to explain why things have changed? This is important because 1) retraining is expensive, 2) seen as risky and 3) can generate new knowledge about the trends within the domain in which predictive model operates.
 
 Taken from Mahed's notes: the  black  box  model  that  produce  predictions/recommendations  is  not  veryuseful for healthcare applications, since the medical staff should know why such a decision wasrecommended.  Explainability  also  can  be  used  in  potentially  observing  new  relations  amongvariables that leads to scientific discovery.  In learning machine project, it is also important to explain the possible changes in the model with time e.g.  why a recommendations has changedfor a patient when we updated the model with new data.
 
 ## Example datasets
-### Dataset 1
+
+Taken from Mahed's notes: 
+
+### Heart disease
 ***Description of dataset***
-### Dataset 2
+Resources 
+1. https://archive.ics.uci.edu/ml/datasets/Heart+Disease
+
+### Breast cancer 1
 ***Description of dataset***
+Resources
+1. https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Prognostic%29 
+
+### Breast cancer 2
+***Description of dataset***
+Resources
+1. https://ieeexplore.ieee.org/abstract/document/7482682/
+
+### Diabetes 1
+***Simulator for diabetes data***
+Resources
+1. https://github.com/jxx123/simglucose
+
+### Diabetes 2
+***Description of dataset***
+Resources
+1. http://smarthealth.cs.ohio.edu/bglp/OhioT1DM-dataset-paper.pdf
+
 
 ## Changes in datasets over time
 
@@ -68,7 +92,9 @@ Here we have have a summary of the types of changes we found in the datasets
 
 | Dataset/Changes | Data drift | Concept drift | Covariate drift | Erroneous data |
 |-----------------|------------|---------------|-----------------|----------------|
-| Dataset 1       | x          |               |                 |                |
-| Dataset 2       |            | x             |                 |                |
-| Dataset 3       |            |               | x               | x              |
+| Heart disease   | x          |               |                 |                |
+| Breast cancer 1 |            | x             |                 |                |
+| Breast cancer 2 |            |               | x               | x              |
+| Diabetes 1      |            |               | x               | x              |
+| Diabetes 2      |            |               | x               | x              |
 
