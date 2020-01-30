@@ -17,6 +17,9 @@ Maintenance of predictive models is crucial for long term use. A model developed
 
 Retraining a model is expensive, and can be a source of stress for users of systems for high impact decisions.
 
+From Jack: * If considering different possible models: Why has a certain model been
+selected? - Accuracy vs interpretability trade off - False positives vs. false negatives etc. Ease of updating might be one factors to model selection
+
 ## Types of drift
 
 As I can see there are various ways in which data can change. We should add them here:
