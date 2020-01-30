@@ -50,8 +50,9 @@ human  error  is  possible  in  recording  and  entering  medical  data.   We  m
 3) Estimating predictive performance / cross-validation error / goodness-of-fit etc. One measure of when it is necessary to re-train the might be when the model performance drifts substantially. - Peter Foster
 4) Uncertainty values in order to trust to a ML model prediction we need to know how certain the model is about the result. We are in particular interested to know how uncertainty changes with time as we get new samples. Also, preferably we need an individualized uncertainty report, i.e., the average accuracy of the method is not enough to justify prescriptions for individuals in sensitive applications like healthcare and criminal justice - Mahed 
 5) Look out for gaps between distributions of training and newly labelled datasets.
+6) Uncertainty intervals change - What's the probability that a treatment plan is optimal/will be successful for a given patient? What's the uncertainty on that probability? - Jack R
 
-## Tools for monitoring model performance/behaviour change
+## Methods for explaining model performance change
 
 May: One concept which is of interest in this project is intepretibility (Mahed and Mihaela's work). It would be of research interest to be able to explain what has changed. Can we build intepretibility in a predictive model or in a drift-detection model to explain why things have changed? This is important because 1) retraining is expensive, 2) seen as risky and 3) can generate new knowledge about the trends within the domain in which predictive model operates.
 
