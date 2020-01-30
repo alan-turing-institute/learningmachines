@@ -49,6 +49,7 @@ human  error  is  possible  in  recording  and  entering  medical  data.   We  m
 2) Changepoint detection - Gerritt
 3) Estimating predictive performance / cross-validation error / goodness-of-fit etc. One measure of when it is necessary to re-train the might be when the model performance drifts substantially. - Peter Foster
 4) Uncertainty values in order to trust to a ML model prediction we need to know how certain the model is about the result. We are in particular interested to know how uncertainty changes with time as we get new samples. Also, preferably we need an individualized uncertainty report, i.e., the average accuracy of the method is not enough to justify prescriptions for individuals in sensitive applications like healthcare and criminal justice - Mahed 
+5) Look out for gaps between distributions of training and newly labelled datasets.
 
 ## Tools for monitoring model performance/behaviour change
 
@@ -58,7 +59,7 @@ Taken from Mahed's notes: the  black  box  model  that  produce  predictions/rec
 
 ## Example datasets
 
-Taken from Mahed's notes: 
+Taken from Jack and Mahed's notes: 
 
 ### Heart disease
 ***Description of dataset***
@@ -72,19 +73,45 @@ Resources
 
 ### Breast cancer 2
 ***Description of dataset***
+
 Resources
 1. https://ieeexplore.ieee.org/abstract/document/7482682/
 
 ### Diabetes 1
 ***Simulator for diabetes data***
+
 Resources
 1. https://github.com/jxx123/simglucose
 
 ### Diabetes 2
 ***Description of dataset***
+
 Resources
 1. http://smarthealth.cs.ohio.edu/bglp/OhioT1DM-dataset-paper.pdf
 
+### UK Cancer registry
+(Symbolic metamodelling paper) Predict 5 year mortality risk of breast cancer patients using age, number of nodes, tumour size, tumour grade, Estrogen-receptor status.
+
+### Meta-analysis Global Group in Chronic heart failure database (MAGGIC)
+AutoPrognosis paper
+
+### UK Biobank
+AutoPrognosis paper
+
+### United Network for Organ Sharing (UNOS) database
+AutoPrognosis paper, UNOS-I: pre-transplant, UNOS-II post-transplant
+
+### Surveillance, Epidemiology, and End Results (SEER) cancer registries
+AutoPrognosis paper) Comorbidities - predict cardiac deaths in patients diagnosed with breast (SEER-I), colorectal (SEER-II), Leukemia (SEER-III), respiratory (SEER-IV), digestive (SEER-V), urinary (SEER-VI) cancers
+
+Resources
+1) Put URL here
+
+### MIMIC critical care database
+deidentified health data associated with ~60,000 intensive care unit admissions. It includes demographics, vital signs, laboratory tests, medications, and more
+
+Resources
+1) Put URL here
 
 ## Changes in datasets over time
 
