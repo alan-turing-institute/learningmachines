@@ -33,17 +33,21 @@ From Jack: * If considering different possible models: Why has a certain model b
 
 ## Project Roadmap
 
-The Learning Machines project will provide a framework for researchers to engage with problem of keeping models current, when new data become available.
+The Learning Machines project will define a framework for researchers to engage with problem of keeping models current, when new data become available.
 
 To achieve this goal, the project will first define the ways data can change. We are specifically looking to define changes which should trigger a model retrain if the model is to be kept current.
 
 We will then find a number of open datasets from the health and criminal justice domains, and enumerate the types of changes found. This serves as examples in which real life data changes.
 
-We should then select a data set (preferably one, no more than three if trivial). Each dataset should be segmented by recency of collected data and we will train a model on older data, to answer a non trivial question. We will then compare two scenarios. Scenario A should test the model on recent data. Scenario B should retrain the model on a subsection of recent data, and test on remaining of recent data, keeping in mind distributions of data.
+The next two steps should run in parallel: 
 
-## Types of drift
+A) We should then select a data set (preferably one, no more than three if trivial). Each dataset should be segmented by recency of collected data and we will train a model on older data, to answer a non trivial question. We will then compare two scenarios. Scenario A should test the model on recent data. Scenario B should retrain the model on a subsection of recent data, and test on remaining of recent data, keeping in mind distributions of data.
 
-As I can see there are various ways in which data can change. We should add them here:
+B) We should survey and run existing Turing research tools to detect changes in datasets
+
+We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets. 
+
+## Types of data changes to trigger model retraining
 
 ### 1. What is data drift - Jannetta to summarise
 Taken from Mahed's notes: this is expected to happen in healthcare. One clear reason is that because of that better care that patients receive the distribution of their age is changing. However, this may or may not affect the model we are using. For example, if we are using a Bayesian model, this will supposedly affect the model, while it wont if we are using a decision tree. %This can have consequences like worse confidence bounds (higher uncertainty)
