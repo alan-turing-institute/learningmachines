@@ -69,6 +69,9 @@ From Mahed: human  error  is  possible  in  recording  and  entering  medical  d
 #### 4.1 What erroneous data is not
 #### 4.2 Relevant resources
 
+### 5. Changes in the availability of data features
+e.g. column disappears from data, or new column appears.
+
 ## Methods for detecting drift
 
 1) Prequential analysis - James Smith
