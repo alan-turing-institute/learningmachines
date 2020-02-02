@@ -55,9 +55,16 @@ Taken from Mahed's notes: this is expected to happen in healthcare. One clear re
 #### 1.2 Relevant resources
 
 ### 2. What is concept drift - Mahed to summarise
-Taken from Mahed's notes: this is usually defined as the changes in the function that maps inputs to the outputs which the machine learning attempts to learn. It is possible in medical domain mostly because of changes that are possible in the practice of medicine. For instance, the reward we associate with a treatment may change because we may find out about a side effect, etc.
+This is usually defined as the changes in the function that maps inputs to the outputs which the machine learning attempts to learn. It is possible in medical domain mostly because of changes that are possible in the practice of medicine. For instance, the reward we associate with a treatment may change because we may find out about a side effect, etc.
 #### 2.1 What concept drift is not
+It is not data drift (changes in the distribution of test data)!
 #### 2.2 Relevant resources
+https://arxiv.org/abs/1704.00362
+https://link.springer.com/chapter/10.1007/978-3-642-16438-5_17
+https://ieeexplore.ieee.org/document/6042653/metrics#metrics
+https://arxiv.org/abs/1010.4784
+https://www.win.tue.nl/~mpechen/publications/pubs/CD_applications15.pdf
+
 
 ### 3. What is covariate drift drift - Jack to summarise
 Nobody knows!!
