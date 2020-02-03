@@ -49,6 +49,8 @@ We will work with researchers to develop two different sets of tools. The first 
 
 ## Types of data changes to trigger model retraining
 
+Draw out summary chart of drifts like the one Jack put on board
+
 ### 1. What is data drift - Jannetta to summarise
 Microsoft defines "data drift" as the change in the model input data that leads to model performance degradation (https://docs.microsoft.com/en-us/azure/machine-learning/how-to-monitor-data-drift). A search, on Google and Google scholar, seems to suggest that there is not a clear distinction between data drift. 
 
@@ -60,6 +62,7 @@ Links with references to the term "data drift":
 Taken from Mahed's notes: this is expected to happen in healthcare. One clear reason is that because of that better care that patients receive the distribution of their age is changing. However, this may or may not affect the model we are using. For example, if we are using a Bayesian model, this will supposedly affect the model, while it wont if we are using a decision tree. %This can have consequences like worse confidence bounds (higher uncertainty)
 #### 1.1 What data drift is not
 #### 1.2 Relevant resources
+#### 1.3 Examples cases (in English)
 
 ### 2. What is concept drift - Mahed to summarise
 This is usually defined as the changes in the function that maps inputs to the outputs which the machine learning attempts to learn. It is possible in medical domain mostly because of changes that are possible in the practice of medicine. For instance, the reward we associate with a treatment may change because we may find out about a side effect, etc.
@@ -71,17 +74,19 @@ https://link.springer.com/chapter/10.1007/978-3-642-16438-5_17
 https://ieeexplore.ieee.org/document/6042653/metrics#metrics
 https://arxiv.org/abs/1010.4784
 https://www.win.tue.nl/~mpechen/publications/pubs/CD_applications15.pdf
-
+#### 2.3 Examples cases (in English)
 
 ### 3. What is covariate drift drift - Jack to summarise
 Nobody knows!!
 #### 3.1 What covariate drift is not
 #### 3.2 Relevant resources
+#### 3.3 Examples cases (in English)
 
 ### 4. Increase in erroneous data
 From Mahed: human  error  is  possible  in  recording  and  entering  medical  data.   We  may want to account for this in the project.  This can be considered under the uncertainty topic.
 #### 4.1 What erroneous data is not
 #### 4.2 Relevant resources
+#### 4.3 Relevant resources
 
 ### 5. Changes in the availability of data features
 e.g. column disappears from data, or new column appears.
