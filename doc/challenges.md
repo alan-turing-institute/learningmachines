@@ -1,16 +1,16 @@
-Learning Machines 
+Learning Machines
 ===
 
-This project is funded by the Turing Health programme, and the Turing Criminal Justice programme. Data and use cases from both domains will be specifically addressed during this project. 
+This project is funded by the Turing Health programme, and the Turing Criminal Justice programme. Data and use cases from both domains will be specifically addressed during this project.
 
 Machine learning techniques are effective for building predictive models because they are good at identifying patterns in large datasets. However, the development of a model for complex real life problems often stops at the point of publication or proof of concept. At the Turing we are interested in developing best practices for maintaining prediction models built using machine learning techniques. In particular, this Turing ASG project addresses the issue of keeping models updated, in order to reflect trends and changes in the current environment.
 
 In the medical and criminal justice domain, data collecting and labelling under real world circumstances specifically for the application of machine learning is rare. The ability to store data to generate newly labelled data enables models to be updated when data changes to reflect trends over time. One core component of this project is to develop a generalised infrastructure for versioning new labelled data, so that they can be used to train and retrain models, developing the models as well as keeping them updated with changes over time.
 
-Turing researchers engage with the Learning Machines project by addressing these questions: 
+Turing researchers engage with the Learning Machines project by addressing these questions:
 
-*** 
-1. What are the common ways in which newly labelled data can change over time? 
+***
+1. What are the common ways in which newly labelled data can change over time?
 2. How do we automate detection of these changes, so that models can be retrained, and therefore kept updated?
 3. How do we communicate the reasons for retraining the model to users tasked with maintenance?
 ***
@@ -39,20 +39,20 @@ To achieve this goal, the project will first define the ways data can change. We
 
 We will then find a number of open datasets from the health and criminal justice domains, and enumerate the types of changes found. This serves as examples in which real life data changes.
 
-The next two steps should run in parallel: 
+The next two steps should run in parallel:
 
 A) We should then select a data set (preferably one, no more than three if trivial). Each dataset should be segmented by recency of collected data and we will train a model on older data, to answer a non trivial question. We will then compare two scenarios. Scenario A should test the model on recent data. Scenario B should retrain the model on a subsection of recent data, and test on remaining of recent data, keeping in mind distributions of data.
 
 B) We should survey and run existing Turing research tools to detect changes in datasets
 
-We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets. 
+We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets.
 
 ## Types of data changes to trigger model retraining
 
-Draw out summary chart of drifts like the one Jack put on board
+![datadrift_diagram](datadrift_diagram.png)
 
 ### 1. What is data drift - Jannetta to summarise
-Microsoft defines "data drift" as the change in the model input data that leads to model performance degradation (https://docs.microsoft.com/en-us/azure/machine-learning/how-to-monitor-data-drift). A search, on Google and Google scholar, seems to suggest that there is not a clear distinction between data drift. 
+Microsoft defines "data drift" as the change in the model input data that leads to model performance degradation (https://docs.microsoft.com/en-us/azure/machine-learning/how-to-monitor-data-drift). A search, on Google and Google scholar, seems to suggest that there is not a clear distinction between data drift.
 
 Links with references to the term "data drift":
 * https://www.datanami.com/2016/02/03/keeping-on-top-of-data-drift/
@@ -108,17 +108,17 @@ Taken from Mahed's notes: the  black  box  model  that  produce  predictions/rec
 
 ## Example datasets
 
-Taken from Jack and Mahed's notes: 
+Taken from Jack and Mahed's notes:
 
 ### Heart disease
 ***Description of dataset***
-Resources 
+Resources
 1. https://archive.ics.uci.edu/ml/datasets/Heart+Disease
 
 ### Breast cancer 1
 ***Description of dataset***
 Resources
-1. https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Prognostic%29 
+1. https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Prognostic%29
 
 ### Breast cancer 2
 ***Description of dataset***
@@ -173,4 +173,3 @@ Here we have have a summary of the types of changes we found in the datasets
 | Breast cancer 2 |            |               | x               | x              |
 | Diabetes 1      |            |               | x               | x              |
 | Diabetes 2      |            |               | x               | x              |
-
