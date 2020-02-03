@@ -50,6 +50,13 @@ We will work with researchers to develop two different sets of tools. The first 
 ## Types of data changes to trigger model retraining
 
 ### 1. What is data drift - Jannetta to summarise
+Microsoft defines "data drift" as the change in the model input data that leads to model performance degradation (https://docs.microsoft.com/en-us/azure/machine-learning/how-to-monitor-data-drift). A search, on Google and Google scholar, seems to suggest that there is not a clear distinction between data drift. 
+
+Links with references to the term "data drift":
+* https://www.datanami.com/2016/02/03/keeping-on-top-of-data-drift/
+* https://www.cmswire.com/digital-experience/data-drift-what-it-is-and-how-to-avoid-it/
+* https://www.cmswire.com/big-data/big-datas-hidden-scourge-data-drift/
+
 Taken from Mahed's notes: this is expected to happen in healthcare. One clear reason is that because of that better care that patients receive the distribution of their age is changing. However, this may or may not affect the model we are using. For example, if we are using a Bayesian model, this will supposedly affect the model, while it wont if we are using a decision tree. %This can have consequences like worse confidence bounds (higher uncertainty)
 #### 1.1 What data drift is not
 #### 1.2 Relevant resources
