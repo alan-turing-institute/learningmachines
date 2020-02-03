@@ -1,16 +1,16 @@
-Learning Machines 
+Learning Machines
 ===
 
-This project is funded by the Turing Health programme, and the Turing Criminal Justice programme. Data and use cases from both domains will be specifically addressed during this project. 
+This project is funded by the Turing Health programme, and the Turing Criminal Justice programme. Data and use cases from both domains will be specifically addressed during this project.
 
 Machine learning techniques are effective for building predictive models because they are good at identifying patterns in large datasets. However, the development of a model for complex real life problems often stops at the point of publication or proof of concept. At the Turing we are interested in developing best practices for maintaining prediction models built using machine learning techniques. In particular, this Turing ASG project addresses the issue of keeping models updated, in order to reflect trends and changes in the current environment.
 
 In the medical and criminal justice domain, data collecting and labelling under real world circumstances specifically for the application of machine learning is rare. The ability to store data to generate newly labelled data enables models to be updated when data changes to reflect trends over time. One core component of this project is to develop a generalised infrastructure for versioning new labelled data, so that they can be used to train and retrain models, developing the models as well as keeping them updated with changes over time.
 
-Turing researchers engage with the Learning Machines project by addressing these questions: 
+Turing researchers engage with the Learning Machines project by addressing these questions:
 
-*** 
-1. What are the common ways in which newly labelled data can change over time? 
+***
+1. What are the common ways in which newly labelled data can change over time?
 2. How do we automate detection of these changes, so that models can be retrained, and therefore kept updated?
 3. How do we communicate the reasons for retraining the model to users tasked with maintenance?
 ***
@@ -39,23 +39,38 @@ To achieve this goal, the project will first define the ways data can change. We
 
 We will then find a number of open datasets from the health and criminal justice domains, and enumerate the types of changes found. This serves as examples in which real life data changes.
 
-The next two steps should run in parallel: 
+The next two steps should run in parallel:
 
 A) We should then select a data set (preferably one, no more than three if trivial). Each dataset should be segmented by recency of collected data and we will train a model on older data, to answer a non trivial question. We will then compare two scenarios. Scenario A should test the model on recent data. Scenario B should retrain the model on a subsection of recent data, and test on remaining of recent data, keeping in mind distributions of data.
 
 B) We should survey and run existing Turing research tools to detect changes in datasets
 
-We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets. 
+We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets.
 
 ## Types of data changes to trigger model retraining
 
 ### 1. What is data drift - Jannetta to summarise
 Taken from Mahed's notes: this is expected to happen in healthcare. One clear reason is that because of that better care that patients receive the distribution of their age is changing. However, this may or may not affect the model we are using. For example, if we are using a Bayesian model, this will supposedly affect the model, while it wont if we are using a decision tree. %This can have consequences like worse confidence bounds (higher uncertainty)
+
+
+Dataset shift appears when training and test joint distributions are different:
+```
+P_train(y, x) != P_test(y, x)
+```
+
 #### 1.1 What data drift is not
 #### 1.2 Relevant resources
 
 ### 2. What is concept drift - Mahed to summarise
 This is usually defined as the changes in the function that maps inputs to the outputs which the machine learning attempts to learn. It is possible in medical domain mostly because of changes that are possible in the practice of medicine. For instance, the reward we associate with a treatment may change because we may find out about a side effect, etc.
+
+
+```
+X -> Y problems (given X, predict Y?)
+P_train(y|x) != P_test(y|x)
+P_train(x) = P_test(x)
+```
+
 #### 2.1 What concept drift is not
 It is not data drift (changes in the distribution of test data)!
 #### 2.2 Relevant resources
@@ -66,17 +81,62 @@ https://arxiv.org/abs/1010.4784
 https://www.win.tue.nl/~mpechen/publications/pubs/CD_applications15.pdf
 
 
-### 3. What is covariate drift drift - Jack to summarise
-Nobody knows!!
+### 3. What is covariate drift - Jack to summarise
+
+Changes in the distribution of the input variables x
+
+Distribution of the independent variables (the covariates) has changed, but the
+relationship between the independent variables and the independent (input)
+variables and the target (output) variable is unchanged.
+
+If a model was fit on a training dataset and is used to make predictions on a
+test dataset, covariate drift is present if:
+```
+X -> Y problems (Given X, predict Y?)
+P_train(x) != P_test(x)
+P_train(y|x) = P_test(y|x)
+```
+
+For example, predicting life expectancy with a model trained on a sample with
+very few smokers, but the test dataset has many smokers.
+
+Although the underlying relationship is not changed, part of the relationship is
+misrepresented (or sparsely represented) in the training dataset.
+
+Causes bias in cross-validation.
+
+
+
 #### 3.1 What covariate drift is not
+
+Anything where the underlying relationship between the covariates and the target
+variable has changed.
+
 #### 3.2 Relevant resources
 
-### 4. Increase in erroneous data
-From Mahed: human  error  is  possible  in  recording  and  entering  medical  data.   We  may want to account for this in the project.  This can be considered under the uncertainty topic.
-#### 4.1 What erroneous data is not
+### 4. What is prior probability shift
+
+Changes in the distribution of the target variable y
+```
+Y -> X problems (Given Y, predict X?)
+P_train(y) != P_test(y)
+P_train(x|y) = P_test(x|y)
+```
+
+E.g. spam classifier where 50% of training data is spam, but 90% of test data is
+spam.
+
+#### 4.1 What covariate drift is not
+
+
 #### 4.2 Relevant resources
 
-### 5. Changes in the availability of data features
+### 5. Increase in erroneous data
+From Mahed: human  error  is  possible  in  recording  and  entering  medical  data.   We  may want to account for this in the project.  This can be considered under the uncertainty topic.
+#### 5.1 What erroneous data is not
+#### 5.2 Relevant resources
+
+### 6. Changes in the availability of data features
 e.g. column disappears from data, or new column appears.
 
 ## Methods for detecting drift
@@ -96,17 +156,17 @@ Taken from Mahed's notes: the  black  box  model  that  produce  predictions/rec
 
 ## Example datasets
 
-Taken from Jack and Mahed's notes: 
+Taken from Jack and Mahed's notes:
 
 ### Heart disease
 ***Description of dataset***
-Resources 
+Resources
 1. https://archive.ics.uci.edu/ml/datasets/Heart+Disease
 
 ### Breast cancer 1
 ***Description of dataset***
 Resources
-1. https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Prognostic%29 
+1. https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Prognostic%29
 
 ### Breast cancer 2
 ***Description of dataset***
@@ -161,4 +221,3 @@ Here we have have a summary of the types of changes we found in the datasets
 | Breast cancer 2 |            |               | x               | x              |
 | Diabetes 1      |            |               | x               | x              |
 | Diabetes 2      |            |               | x               | x              |
-
