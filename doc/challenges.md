@@ -76,7 +76,6 @@ This is usually defined as the changes in the function that maps inputs to the o
 
 
 ```
-X -> Y problems (given X, predict Y?)
 P_train(y|x) != P_test(y|x)
 P_train(x) = P_test(x)
 ```
@@ -93,55 +92,106 @@ https://www.win.tue.nl/~mpechen/publications/pubs/CD_applications15.pdf
 
 ### 3. What is covariate drift - Jack to summarise
 
-Changes in the distribution of the input variables x
+Covariates are the independent variables used as features in the model to
+predict the value of the target variable. Covariate drift (or shift) refers to
+cases where the distribution of these covariates is different in the training
+data (the data used to train the model) and the test data (new data the model is
+being used to make predictions for).
 
-Distribution of the independent variables (the covariates) has changed, but the
-relationship between the independent variables and the independent (input)
-variables and the target (output) variable is unchanged.
+Specifically, it refers to cases where the distribution of the covariates has
+changed, but the underlying relationship between the covariates and the target
+variable has not changed. If a model was fit on a training dataset and is used to
+make predictions on a test dataset, covariate drift is present if:
+- `P_train(x) != P_test(x)`
+- `P_train(y|x) = P_test(y|x)`
 
-If a model was fit on a training dataset and is used to make predictions on a
-test dataset, covariate drift is present if:
-```
-X -> Y problems (Given X, predict Y?)
-P_train(x) != P_test(x)
-P_train(y|x) = P_test(y|x)
-```
+Although the true underlying relationship between the features and the target
+variable (`P(y|x)`) is not changed, part of the relationship may be
+misrepresented (or sparsely represented) in the training data and therefore
+in the resulting fitted model. In simple terms, a model is unlikely (or less
+likely) to perform well on examples that are different to those it has been
+trained on. This is demonstrated in the figure below, where the learned function
+(model) is a poor approximation of the true function for new test samples with a
+different distribution.
 
-For example, predicting life expectancy with a model trained on a sample with
-very few smokers, but the test dataset has many smokers.
+![covariate-shift](covariate-shift.png)
 
-Although the underlying relationship is not changed, part of the relationship is
-misrepresented (or sparsely represented) in the training dataset.
+*Source: http://iwann.ugr.es/2011/pdf/InvitedTalk-FHerrera-IWANN11.pdf*
 
-Causes bias in cross-validation.
-
-
+Covariate shift can also cause bias in models trained with cross validation,
+as different train/test folds of the dataset may have different
+covariate distributions.
 
 #### 3.1 What covariate drift is not
 
-Anything where the underlying relationship between the covariates and the target
-variable has changed.
+- If the underlying relationship between the covariates and the target
+variable has changed (i.e. the function that maps the input features to the
+output), that is concept drift not covariate drift.
+
+- If the causal change is to the distribution of the target variables (e.g. the
+  labels), not the distribution of the covariates, this is prior probability
+  shift.
+
 
 #### 3.2 Relevant resources
+
+- Dataset Shift in Machine Learning, J. Quinonero-Candela et al.:
+http://www.acad.bg/ebook/ml/The.MIT.Press.Dataset.Shift.in.Machine.Learning.Feb.2009.eBook-DDU.pdf
+
 #### 3.3 Examples cases (in English)
+
+- A model to predict the number of users of a bicycle sharing scheme trained on a
+dataset including only the summer months is unlikely to make accurate predictions if
+deployed and used during the winter months (due to different daylight hours and
+extreme weather conditions, for example).
 
 ### 4. What is prior probability shift
 
+Prior probability shift is similar to covariance drift but refers to differences
+in the distribution of the target variable, as opposed to in the covariates,
+and applies in the case of tasks modelled as "Y->X" problems.
+[1] defines Y->X problems as:
+>Where the class label causally determines the
+values of the covariates. Medical diagnosis usually falls in this
+category, where the disease, which is modeled as the class
+label Y, determines the symptoms, represented in the machine
+learning task as covariates X .
+
+Prior probability shift is present if the distribution of labels (or target
+variable values) in the training dataset is different to the distribution in the
+test dataset
 Changes in the distribution of the target variable y
+
+Prior probability shift refers to cases where the distribution of the labels
+(or target variable values) has changed, but the underlying relationship between
+the target variable and the covariates has not changed.
+If a model was fit on a training dataset and is used to
+make predictions on a test dataset, prior probability shift is present if:
 ```
-Y -> X problems (Given Y, predict X?)
 P_train(y) != P_test(y)
 P_train(x|y) = P_test(x|y)
 ```
 
-E.g. spam classifier where 50% of training data is spam, but 90% of test data is
-spam.
+#### 4.1 What prior probability shift is not
 
-#### 4.1 What covariate drift is not
+- Changes in the distribution of the covariates, and X->Y problems, are
+covariate shift, not prior probability shift.
+
+- Changes in the underlying relationship between the target variable and the
+covariates are concept shift, not prior probability shift.
 
 
 #### 4.2 Relevant resources
-#### 4.3 Relevant resources
+
+- [1] **A unifying view on dataset shift in classification**,
+_Jose G. Moreno-Torres, Troy Raeder, Rocio Alaiz-Rodriguez et al._,
+Pattern Recognition 45, 2012,
+https://rtg.cis.upenn.edu/cis700-2019/papers/dataset-shift/dataset-shift-terminology.pdf
+
+#### 4.3 Example cases (in English)
+
+- A spam email classifier where the training dataset has a much higher fraction
+of spam emails than the test dataset.
 
 ### 5. Increase in erroneous data
 From Mahed: human  error  is  possible  in  recording  and  entering  medical  data.   We  may want to account for this in the project.  This can be considered under the uncertainty topic.
