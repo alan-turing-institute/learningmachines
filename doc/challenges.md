@@ -49,6 +49,24 @@ We will work with researchers to develop two different sets of tools. The first 
 
 ## Types of data changes to trigger model retraining
 
+There are many ways the source data used for a model can change during its
+deployment, and sometimes a lot of overlap in the terms used to describe them.
+We borrow some definitions used in probabilistic modelling and define the
+following four main categories of data changes that may impact the performance
+of a model (where we use drift or shift interchangeably as a generic way to
+describe a data change):
+
+- **Data drift:** Any change to the joint distribution of covariates and
+the target variable.
+- **Covariate drift:** Changes to the distribution of the covariates.
+- **Prior probability shift:** Changes to the distribution of the target
+variable.
+- **Concept drift:** Changes to the relationship between the covariates and the
+target variable.
+
+These are also summarised in the diagram below, and described in more detail in
+the following sections.
+
 ![datadrift_diagram](datadrift_diagram.png)
 
 ### 1. What is data drift - Jannetta to summarise
@@ -167,10 +185,8 @@ Prior probability shift refers to cases where the distribution of the labels
 the target variable and the covariates has not changed.
 If a model was fit on a training dataset and is used to
 make predictions on a test dataset, prior probability shift is present if:
-```
-P_train(y) != P_test(y)
-P_train(x|y) = P_test(x|y)
-```
+- `P_train(y) != P_test(y)`
+- `P_train(x|y) = P_test(x|y)`
 
 #### 4.1 What prior probability shift is not
 
@@ -199,15 +215,29 @@ From Mahed: human  error  is  possible  in  recording  and  entering  medical  d
 #### 5.2 Relevant resources
 
 ### 6. Changes in the availability of data features
-e.g. column disappears from data, or new column appears.
+
+As described in the previous sections there are many subtle ways the covariates
+or target variable used for a model can change during deployment.
+However, if a model is deployed over an extended period of time it's also likely
+to experience more abrupt changes. For example, a change in reporting policy at
+a hospital could remove a field from patient records, which may have unforeseen
+consequences for the performance of a model using that field as a covariate.
+Alternatively, a new feature may become available, for example a new diagnostic
+test, which is not used in the model but could potentially improve its
+performance significantly.
 
 ## Methods for detecting drift
 
 1) Prequential analysis - James Smith
+
 2) Changepoint detection - Gerritt
+
 3) Estimating predictive performance / cross-validation error / goodness-of-fit etc - Peter Foster
+
 4) Uncertainty values in order to trust to a ML model prediction we need to know how certain the model is about the result. We are in particular interested to know how uncertainty changes with time as we get new samples. Also, preferably we need an individualized uncertainty report, i.e., the average accuracy of the method is not enough to justify prescriptions for individuals in sensitive applications like healthcare and criminal justice - Mahed
+
 5) Uncertainty intervals change - What's the probability that a treatment plan is optimal/will be successful for a given patient? What's the uncertainty on that probability? - Jack R NOTES: Is Jack's point == Mahed's point?
+
 6) Look out for gaps between distributions of training and newly labelled datasets.
 
 ## Methods for explaining model performance change
