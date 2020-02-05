@@ -13,6 +13,12 @@ Turing researchers engage with the Learning Machines project by addressing these
 1. What are the common ways in which newly labelled data can change over time?
 2. How do we automate detection of these changes, so that models can be retrained, and therefore kept updated?
 3. How do we communicate the reasons for retraining the model to users tasked with maintenance?
+
+Given that we want to use the machine learning model for sensitive tasks (i.e., healthcare and criminal justice), we are not only interested in the predictive power of the model, we also need to be able to evaluate its trustworthyness. In general there are three broad categoriez that we need to consider:
+
+1. Uncertainty and confidence bounds for the model.
+2. Explainability of predictions to human expert (medical or criminal justice staff).
+3. Roboustness to error.
 ***
 
 ## Background
@@ -102,9 +108,13 @@ P_train(x) = P_test(x)
 It is not data drift (changes in the distribution of test data)!
 #### 2.2 Relevant resources
 https://arxiv.org/abs/1704.00362
+
 https://link.springer.com/chapter/10.1007/978-3-642-16438-5_17
+
 https://ieeexplore.ieee.org/document/6042653/metrics#metrics
+
 https://arxiv.org/abs/1010.4784
+
 https://www.win.tue.nl/~mpechen/publications/pubs/CD_applications15.pdf
 #### 2.3 Examples cases (in English)
 
