@@ -228,6 +228,10 @@ performance significantly.
 
 ## Methods for detecting drift
 
+Jack: Some drifts may not hurt model performance. Maybe step 1 is being able to
+identify any kind of drift, and step 2 is determining when/which of those drifts
+are likely to degrade the the model performance?
+
 1) Prequential analysis - James Smith
 
 2) Changepoint detection - Gerritt
