@@ -47,7 +47,7 @@ B) We should survey and run existing Turing research tools to detect changes in 
 
 We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets.
 
-## Types of data changes to trigger model retraining
+## Types of data changes
 
 There are many ways the source data used for a model can change during its
 deployment, and sometimes a lot of overlap in the terms used to describe them.
@@ -228,10 +228,6 @@ performance significantly.
 
 ## Methods for detecting drift
 
-Jack: Some drifts may not hurt model performance. Maybe step 1 is being able to
-identify any kind of drift, and step 2 is determining when/which of those drifts
-are likely to degrade the the model performance?
-
 1) Prequential analysis - James Smith
 
 2) Changepoint detection - Gerritt
@@ -243,6 +239,14 @@ are likely to degrade the the model performance?
 5) Uncertainty intervals change - What's the probability that a treatment plan is optimal/will be successful for a given patient? What's the uncertainty on that probability? - Jack R NOTES: Is Jack's point == Mahed's point?
 
 6) Look out for gaps between distributions of training and newly labelled datasets.
+
+## Methods for determining when a model should be retrained
+
+Jack: Some drifts may not hurt model performance. Maybe step 1 is being able to
+identify any kind of drift, and step 2 is determining when/which of those drifts
+are likely to degrade the the model performance? Some of the methods we
+currently have listed above may fall into this category rather than the generic
+"detect a drift" category.
 
 ## Methods for explaining model performance change
 
