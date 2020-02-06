@@ -1,26 +1,28 @@
-Learning Machines
+Learning Machines - Best Practices for Models in Production
 ===
 
 This project is funded by the Turing Health programme, and the Turing Criminal Justice programme. Data and use cases from both domains will be specifically addressed during this project.
 
-Machine learning techniques are effective for building predictive models because they are good at identifying patterns in large datasets. However, the development of a model for complex real life problems often stops at the point of publication or proof of concept. At the Turing we are interested in developing best practices for maintaining prediction models built using machine learning techniques. In particular, this Turing ASG project addresses the issue of keeping models updated, in order to reflect trends and changes in the current environment.
+Machine learning techniques are effective for building predictive models because they are good at identifying patterns in large datasets. However, the development of a model for complex real life problems often stops at the point of publication or proof of concept. At the Turing we are interested in developing best practices for maintaining prediction models built using machine learning techniques. In particular, 'Learning Machines - Best Practices for Models in Production' addresses the issues about keeping models updated, in order to reflect trends and changes in the current environment.
 
 In the medical and criminal justice domain, data collecting and labelling under real world circumstances specifically for the application of machine learning is rare. The ability to store data to generate newly labelled data enables models to be updated when data changes to reflect trends over time. One core component of this project is to develop a generalised infrastructure for versioning new labelled data, so that they can be used to train and retrain models, developing the models as well as keeping them updated with changes over time.
 
 Turing researchers engage with the Learning Machines project by addressing these questions:
 
-Note: We are working on making 'uncertainty and explicability' into these goals
 ***
-1. What are the common ways in which newly labelled data can change over time?
+1. What are the common ways in which newly labelled data can change over time, which would impact model performance?
 2. How do we automate detection of these changes, so that models can be retrained, and therefore kept updated?
 3. How do we communicate the reasons for retraining the model to users tasked with maintenance?
 
-Given that we want to use the machine learning model for sensitive tasks (i.e., healthcare and criminal justice), we are not only interested in the predictive power of the model, we also need to be able to evaluate its trustworthyness. In general there are three broad categoriez that we need to consider:
+***
+
+*Note: We are working on combining 'uncertainty and explicability' into these goals*
+
+Given that we want to use the machine learning model for sensitive tasks (i.e., healthcare and criminal justice), we are not only interested in the predictive power of the model, we also need to be able to evaluate its trustworthiness. In general there are three broad categories that we need to consider:
 
 1. Uncertainty and confidence bounds for the model.
 2. Explainability of predictions to human expert (medical or criminal justice staff).
-3. Roboustness to error.
-***
+3. Robustness to error.
 
 ## Background
 
@@ -28,19 +30,13 @@ Maintenance of predictive models is crucial for effective long term use. A model
 
 Retraining a single model can be computationally expensive. Retraining a model which comprises of an ensemble of dependent models is both expensive and complex. This is especially true if models provide absolute class decisions instead of probabilistic values, because absolute class decisions are based on carefully selected thresholds. Thresholds are selected to maximise metrics such as sensitivity or specificity, according to purposes of applications. Reselection of multiple thresholds to rebalance system performance is both complex and brittle.
 
-For all these reasons, retraining models are difficult decisions. In addition resulting changes in model behaviour can be a source of uncertainty for users making high impact or high risk decisions. If reasons for making changes are not communicated clearly, this can result in user distrust and resistance.
+For all these reasons, decisions to retrain models are difficult decisions. In addition resulting changes in model behaviour can be a source of uncertainty for users making high impact or high risk decisions. If reasons for making changes are not available or communicated clearly, this can result in user distrust and resistance.
 
-(Put in something here about explainability black boxes unconvincing etc)
-
-From Jack: How to create a machine that can seamlessly deal with changes in the availability of different data sources over time? How to determine when the model should be retrained?
-
-From Jack: How to add a recency bias (i.e. should new data be weighted more heavily than older data)?
-
-From Jack: * If considering different possible models: Why has a certain model been selected? - Accuracy vs interpretability trade off - False positives vs. false negatives etc. Ease of updating might be one factors to model selection
+*Notes: (Put in something here about explainability black boxes unconvincing etc)From Jack: How to create a machine that can seamlessly deal with changes in the availability of different data sources over time? How to determine when the model should be retrained?From Jack: How to add a recency bias (i.e. should new data be weighted more heavily than older data)?From Jack: If considering different possible models: Why has a certain model been selected? - Accuracy vs interpretability trade off - False positives vs. false negatives etc. Ease of updating might be one factors to model selection*
 
 ## Project Roadmap
 
-The Learning Machines project will define a framework for researchers to engage with problem of keeping models current, when new data become available.
+The Learning Machines project will define a framework for researchers to engage with problem of detecting changes in new data, as new data become available. These changes are specifically of the type which impacts the model's faithfulness to real world; detection of these changes should trigger a discussion about whther the model could be retrained.
 
 To achieve this goal, the project will first define the ways data can change. We are specifically looking to define changes which should trigger a model retrain if the model is to be kept current.
 
@@ -48,11 +44,13 @@ We will then find a number of open datasets from the health and criminal justice
 
 The next two steps should run in parallel:
 
-A) We should then select a data set (preferably one, no more than three if trivial). Each dataset should be segmented by recency of collected data and we will train a model on older data, to answer a non trivial question. We will then compare two scenarios. Scenario A should test the model on recent data. Scenario B should retrain the model on a subsection of recent data, and test on remaining of recent data, keeping in mind distributions of data.
+A) We should then select a data set (preferably one, no more than three if trivial). *Note: Can the Cystic Fibrosis dataset be one of thse?* Each dataset should be segmented by recency of collected data and we will train a model on older data, to answer a non trivial question. We will then compare two scenarios. Scenario A should test the model on recent data. Scenario B should retrain the model on a subsection of recent data, and test on remaining of recent data, keeping in mind distributions of data.
 
 B) We should survey and run existing Turing research tools to detect changes in datasets
 
-We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets.
+We will work with researchers to develop two different sets of tools. The first set are change-detection tools, the second are change-reporting tools. We will work with researchers to deploy these tools on health and criminal justice datasets. 
+
+Pilot cases can be made accessible via a framework like the Wrattler so that researchers can benchmark their tools against Turing algorithms on the datasets provided by this project.
 
 ## Types of data changes
 
@@ -328,7 +326,7 @@ Resources
 
 ## Changes in datasets over time
 
-Here we have have a summary of the types of changes we found in the datasets
+**Proposed** table to summarise how the types of drifts contained in each of the datasets. 
 
 | Dataset/Changes | Data drift | Concept drift | Covariate drift | Erroneous data |
 |-----------------|------------|---------------|-----------------|----------------|
