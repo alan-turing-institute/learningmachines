@@ -216,6 +216,11 @@ https://rtg.cis.upenn.edu/cis700-2019/papers/dataset-shift/dataset-shift-termino
 
 #### 4.3 Example cases (in English)
 
+- Two diseases which have identical symptoms but disease E is much more prevalent
+in Europe and disease A in Asia. A model trained to classify diseases on European
+data will perform poorly if applied to Asian patients, as it will incorrectly
+work on the assumption that disease E is more likely.
+
 - A spam email classifier where the training dataset has a much higher fraction
 of spam emails than the test dataset.
 
