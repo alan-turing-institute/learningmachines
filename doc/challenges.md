@@ -268,6 +268,21 @@ May: One concept which is of interest in this project is intepretibility (Mahed 
 
 Taken from Mahed's notes: the  black  box  model  that  produce  predictions/recommendations  is  not  veryuseful for healthcare applications, since the medical staff should know why such a decision wasrecommended.  Explainability  also  can  be  used  in  potentially  observing  new  relations  amongvariables that leads to scientific discovery.  In learning machine project, it is also important to explain the possible changes in the model with time e.g.  why a recommendations has changedfor a patient when we updated the model with new data.
 
+## Changes in datasets over time
+
+**Proposed** table to summarise how the types of drifts contained in each of the datasets. 
+
+| Dataset/Changes | Data drift | Concept drift | Covariate drift | Erroneous data |
+|-----------------|------------|---------------|-----------------|----------------|
+| Heart disease   | x          |               |                 |                |
+| Breast cancer 1 |            | x             |                 |                |
+| Breast cancer 2 |            |               | x               | x              |
+| Diabetes 1      |            |               | x               | x              |
+| Diabetes 2      |            |               | x               | x              |
+
+
+## Appendices
+
 ## Example datasets
 
 Taken from Jack and Mahed's notes:
@@ -323,15 +338,3 @@ deidentified health data associated with ~60,000 intensive care unit admissions.
 
 Resources
 1) Put URL here
-
-## Changes in datasets over time
-
-**Proposed** table to summarise how the types of drifts contained in each of the datasets. 
-
-| Dataset/Changes | Data drift | Concept drift | Covariate drift | Erroneous data |
-|-----------------|------------|---------------|-----------------|----------------|
-| Heart disease   | x          |               |                 |                |
-| Breast cancer 1 |            | x             |                 |                |
-| Breast cancer 2 |            |               | x               | x              |
-| Diabetes 1      |            |               | x               | x              |
-| Diabetes 2      |            |               | x               | x              |
