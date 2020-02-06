@@ -9,6 +9,7 @@ In the medical and criminal justice domain, data collecting and labelling under 
 
 Turing researchers engage with the Learning Machines project by addressing these questions:
 
+Note: We are working on making 'uncertainty and explicability' into these goals
 ***
 1. What are the common ways in which newly labelled data can change over time?
 2. How do we automate detection of these changes, so that models can be retrained, and therefore kept updated?
