@@ -34,5 +34,6 @@
 1. dpkg -i r-base-core_3.5.3-1bionic_amd64.deb
 1. wget https://cloud.r-project.org/bin/linux/ubuntu/bionic-cran35/r-base-dev_3.5.3-1bionic_all.deb
 1. dpkg -i r-base-dev_3.5.3-1bionic_all.deb
-1. The install_packages script does not work. Manually install packages:
+1. The install_packages script does not work. Remove the repository on line 3 of the install_packages.r script. Thus changing the line to: if(length(new.packages)) install.packages(new.packages)
+Now it seems to work.
 
