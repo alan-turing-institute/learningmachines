@@ -96,8 +96,59 @@ It all happens within the git repo so changes are commits etc., dvc used to brin
 in/manage data files in a nice way?
 
 ## Pachyderm
-_Open source, containerised data science platform._\
-https://www.pachyderm.com/
+- _Open source, containerised data science platform._
+- https://www.pachyderm.com/
+
+Two main components:
+  - Pachyderm file system (PFS)
+  - Pachyderm pipelines
+
+Built on Docker and Kubernetes
+
+Paid-for enterprise version provides:
+  - admin/security features
+  - dashboard/additional visualisations
+  - additional job/data statistics
+
+Instructions to deploy to Azure Kubernetes Service
+
+### Versioned Data
+
+"Git-like" operations
+
+Each dataset is a repository - only have centralised repository not local copies
+  - specifically each repo meant to be single data source, e.g. a single table?
+
+Write data to an explicit commit (commit adds, updates or removes files)
+
+Data can be continuously updated in "master" branch
+
+Data repo stored in e.g. cloud repo
+ - in pfs format, so can only view/interact with it via pachyderm?
+
+Experiment with data at specific commits on separate branches
+
+### Pipelines
+
+Job spawner that waits for certain conditions to be met (e.g. wait for new data)
+
+Specify an input (data) repo - created as /pfs/images in the pipeline container,
+and outputs saved to /pfs/out is saved afterwards as an output repo with same name
+as pipeline.
+
+When pipeline created it's run on current master branch of input repo + on all future commits.
+
+Pipelines triggered and run on new data only
+  - example is new images being added
+    - What if it's all in one file?
+    - What if you want to use a database?
+      - think you need to ingest the database into pachyderm, i.e. into a repo/pfs format first
+
+Pipelines can have input from multiple repos, which can be combined and trigger the pipeline in different ways.
+
+Can have many workers
+
+
 
 ## neptune.ai
 _Experiment management workflow_\
