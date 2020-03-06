@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@elastic/datemath": "^5.0.2",
+    "@elastic/eui": "^20.1.0",
+    "moment": "^2.24.0"
+  }
+}
