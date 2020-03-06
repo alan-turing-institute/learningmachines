@@ -48,3 +48,20 @@ In addition: Warning messages:
 
 ```
 1. `install.packages("ranger")`
+1. Failed with: 
+```
+/usr/lib/R/etc/Makeconf:177: recipe for target 'fastLm.o' failed
+make: *** [fastLm.o] Error 4
+ERROR: compilation failed for package 'RcppEigen'
+* removing '/usr/local/lib/R/site-library/RcppEigen'
+ERROR: dependency 'RcppEigen' is not available for package 'ranger'
+* removing '/usr/local/lib/R/site-library/ranger'
+
+The downloaded source packages are in
+        '/tmp/RtmpG8GPfY/downloaded_packages'
+Warning messages:
+1: In install.packages("ranger") :
+  installation of package 'RcppEigen' had non-zero exit status
+2: In install.packages("ranger") :
+  installation of package 'ranger' had non-zero exit status
+```
