@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PatientComponent } from './perspectives/patient/patient.component';
 import { ClinicianComponent } from './perspectives/clinician/clinician.component';
 import { EngineerComponent } from './perspectives/engineer/engineer.component';
+import { MapComponent } from './vis/map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientComponent,
     ClinicianComponent,
-    EngineerComponent
+    EngineerComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

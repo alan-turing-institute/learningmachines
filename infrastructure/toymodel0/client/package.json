@@ -50,5 +50,22 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
+  },
+  "workspaces": {
+    "packages": ["app", "api", "shared"],
+    "nohoist": [
+        "**/@angular/*",
+        "**/@angular/*/**",
+        "**/@ngrx/*",
+        "**/@ngrx/*/**",
+        "**/@ionic/*",
+        "**/@ionic/*/**",
+        "**/@ionic-native/*",
+        "**/@ionic-native/*/**",
+        "**/@angular-builders/*",
+        "**/@angular-builders/*/**",
+        "**/@angular-devkit/*",
+        "**/@angular-devkit/*/**"
+    ]
   }
 }
