@@ -18,7 +18,7 @@
 
 ### Installing Tensorflow
 1. `pip3 install -U virtualenv`
-1. `pip3 install --upgrade tensorflow
+1. `pip3 install --upgrade tensorflow`
 1. `pip3 install --upgrade keras`
 
 ### Other stuff
@@ -65,4 +65,4 @@ Warning messages:
 2: In install.packages("ranger") :
   installation of package 'ranger' had non-zero exit status
 ```
-1. `install.packages("RcppEigen")
+1. `install.packages("RcppEigen")`
