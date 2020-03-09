@@ -65,3 +65,4 @@ Warning messages:
 2: In install.packages("ranger") :
   installation of package 'ranger' had non-zero exit status
 ```
+1. `install.packages("RcppEigen")
