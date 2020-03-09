@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { ClarityModule } from "@clr/angular";
+import { ClarityModule } from "@clr/angular";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PatientComponent } from './perspectives/patient/patient.component';
@@ -16,7 +16,8 @@ import { EngineerComponent } from './perspectives/engineer/engineer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ClarityModule
   ],
   providers: [],
   bootstrap: [AppComponent]
