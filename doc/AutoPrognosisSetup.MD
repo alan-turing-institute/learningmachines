@@ -66,3 +66,21 @@ Warning messages:
   installation of package 'ranger' had non-zero exit status
 ```
 1. `install.packages("RcppEigen")`
+1. Failed with:
+```
+../inst/include/Eigen/src/Core/CoreEvaluators.h:960:8: warning: ignoring attributes on template argument 'Eigen::internal::packet_traits<double>::type {aka __vector(2) double}' [-Wignored-attributes]
+g++: internal compiler error: Killed (program cc1plus)
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <file:///usr/share/doc/gcc-7/README.Bugs> for instructions.
+/usr/lib/R/etc/Makeconf:177: recipe for target 'fastLm.o' failed
+make: *** [fastLm.o] Error 4
+ERROR: compilation failed for package 'RcppEigen'
+* removing '/usr/local/lib/R/site-library/RcppEigen'
+
+The downloaded source packages are in
+        '/tmp/Rtmp3K7uyK/downloaded_packages'
+Warning message:
+In install.packages("RcppEigen") :
+  installation of package 'RcppEigen' had non-zero exit status
+```
