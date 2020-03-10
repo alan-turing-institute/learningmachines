@@ -1,7 +1,8 @@
 .vis {
-  height: 30%;
+  height: 49%;
+  overflow: scroll;
 }
 
 .perspectives {
-  height: 70%;
+  height: 50%;
 }
