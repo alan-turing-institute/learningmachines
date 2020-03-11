@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-patient',
@@ -9,7 +9,12 @@ export class PatientComponent implements OnInit {
 
   constructor() { }
 
+  patientID:string = "#1234567"
+  patientAge: number = 36
+  patientName: string = "John Doe"
+
   ngOnInit(): void {
+
   }
 
 }

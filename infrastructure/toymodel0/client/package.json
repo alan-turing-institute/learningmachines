@@ -23,8 +23,10 @@
     "@clr/core": "^3.0.0",
     "@clr/icons": "^3.0.0",
     "@clr/ui": "^3.0.0",
+    "@types/vega": "^3.2.0",
     "@webcomponents/webcomponentsjs": "^2.4.2",
     "bootstrap": "^4.4.1",
+    "d3": "^5.15.0",
     "jquery": "^3.4.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
@@ -35,9 +37,10 @@
     "@angular/cli": "~9.0.4",
     "@angular/compiler-cli": "~9.0.3",
     "@angular/language-service": "~9.0.3",
-    "@types/node": "^12.11.1",
+    "@types/d3": "^5.7.2",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -52,20 +55,24 @@
     "typescript": "~3.7.5"
   },
   "workspaces": {
-    "packages": ["app", "api", "shared"],
+    "packages": [
+      "app",
+      "api",
+      "shared"
+    ],
     "nohoist": [
-        "**/@angular/*",
-        "**/@angular/*/**",
-        "**/@ngrx/*",
-        "**/@ngrx/*/**",
-        "**/@ionic/*",
-        "**/@ionic/*/**",
-        "**/@ionic-native/*",
-        "**/@ionic-native/*/**",
-        "**/@angular-builders/*",
-        "**/@angular-builders/*/**",
-        "**/@angular-devkit/*",
-        "**/@angular-devkit/*/**"
+      "**/@angular/*",
+      "**/@angular/*/**",
+      "**/@ngrx/*",
+      "**/@ngrx/*/**",
+      "**/@ionic/*",
+      "**/@ionic/*/**",
+      "**/@ionic-native/*",
+      "**/@ionic-native/*/**",
+      "**/@angular-builders/*",
+      "**/@angular-builders/*/**",
+      "**/@angular-devkit/*",
+      "**/@angular-devkit/*/**"
     ]
   }
 }

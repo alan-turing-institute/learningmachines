@@ -7,6 +7,8 @@ import { PatientComponent } from './perspectives/patient/patient.component';
 import { ClinicianComponent } from './perspectives/clinician/clinician.component';
 import { EngineerComponent } from './perspectives/engineer/engineer.component';
 import { MapComponent } from './vis/map/map.component';
+import { EdssComponent } from './vis/edss/edss.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,12 +16,14 @@ import { MapComponent } from './vis/map/map.component';
     PatientComponent,
     ClinicianComponent,
     EngineerComponent,
-    MapComponent
+    MapComponent,
+    EdssComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ClarityModule
+    ClarityModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

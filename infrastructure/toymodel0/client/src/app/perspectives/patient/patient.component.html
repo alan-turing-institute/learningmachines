@@ -1,34 +1,27 @@
 <div class="card">
   <div class="card-header">
-      Patient
+      Patient [Patient Icon here to match above vis]
   </div>
   <div class="card-block">
-      <div class="card-title">
-          ID: 
-      </div>
+      <!-- <div class="card-title">
+          ID: {{patientID}}
+      </div> -->
       <div class="card-text">
         <form clrForm>
           <clr-input-container>
-              <label>Field 1 label</label>
-              <input clrInput type="text" [(ngModel)]="model" name="example" />
-          </clr-input-container>
-          <clr-input-container>
-              <label>Field 2 label</label>
-              <input clrInput type="text" [(ngModel)]="model" name="example" />
-          </clr-input-container>
-          <clr-input-container>
-            <label>Field 2 label</label>
-            <input clrInput type="text" [(ngModel)]="model" name="example" />
+            <label>ID</label>
+            <input clrInput type="text" [(ngModel)]="patientID" name="id" />
         </clr-input-container>
-        <clr-input-container>
-          <label>Field 2 label</label>
-          <input clrInput type="text" [(ngModel)]="model" name="example" />
-      </clr-input-container>
-      <clr-input-container>
-        <label>Field 2 label</label>
-        <input clrInput type="text" [(ngModel)]="model" name="example" />
-    </clr-input-container>
-      </form>
+          <clr-input-container>
+              <label>Name</label>
+              <input clrInput type="text" [(ngModel)]="patientName" name="name" />
+          </clr-input-container>
+          <clr-input-container>
+              <label>Age</label>
+              <input clrInput type="text" [(ngModel)]="patientAge" name="age" />
+          </clr-input-container>
+        </form>
+        <app-edss></app-edss>
       </div>
   </div>
 </div>
