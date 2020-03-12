@@ -1,11 +1,12 @@
 .visControl {
+  /* display: block ; */
   float: right;
-  padding: 1%;
+  padding-top: 5%;
 }
 
 img {
   display: block;
-  width: auto;
-  height: auto;
+  max-height: auto;
   max-width: 100%;
+  overflow: scroll;
 }

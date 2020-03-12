@@ -1,9 +1,9 @@
 .vis {
-  height: 50%;
-  overflow: scroll;
+  height: 40%;
+  overflow: hidden;
 }
 
 .perspectives {
-  height: 50%;
+  height: 60%;
   overflow: scroll;
 }
