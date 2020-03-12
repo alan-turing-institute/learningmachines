@@ -84,3 +84,13 @@ Warning message:
 In install.packages("RcppEigen") :
   installation of package 'RcppEigen' had non-zero exit status
 ```
+1. Increased VM memory to 8GBpip3 install -r cfg/requirements.txt
+1.`install.packages("RcppEigen")`
+1.`cd ~\AutoPrognosis`
+1.`R`
+1.`install.packages("cfg/install_packages.r")`
+1. SUCCESS!! (I think)
+1. `quit()`
+1. `pip3 install -r cfg/requirements.txt`
+
+
