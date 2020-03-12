@@ -10,13 +10,13 @@ import * as d3 from 'd3';
 })
 
 export class EdssComponent {
-  @ViewChild('chart')
+  @ViewChild('edss')
   private chartContainer: ElementRef;
   margin = {top: 20, right: 20, bottom: 30, left: 40};
   constructor() { }
 
   createChart() {
-    d3.select('svg').remove();
+    d3.select('edss').remove();
 
     const element = this.chartContainer.nativeElement;
     const data = [
@@ -57,8 +57,8 @@ export class EdssComponent {
     g.append('g')
       .attr('class', 'axis axis--x')
       .attr('transform', 'translate(0,' + contentHeight + ')')
-      .call(d3.axisBottom(x));
-
+      .call(d3.axisBottom(x))
+        
     g.append('g')
       .attr('class', 'axis axis--y')
       .call(d3.axisLeft(y).ticks(5, ''))
@@ -66,8 +66,15 @@ export class EdssComponent {
         .attr('transform', 'rotate(-90)')
         .attr('y', 10)
         .attr('dy', '0.71em')
-        .attr('text-anchor', 'end')
-        .text('Score');
+        .attr('text-anchor', 'end');
+
+    g.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y",0 - (contentHeight/4))
+        .attr("x",0 - (contentWidth / 2))
+        // .attr("dy", "10em")
+        .style("text-anchor", "middle")
+        .text("EDSS");     
 
     g.selectAll('.bar')
       .data(data)

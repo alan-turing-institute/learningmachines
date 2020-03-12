@@ -9,6 +9,7 @@ import { EngineerComponent } from './perspectives/engineer/engineer.component';
 import { MapComponent } from './vis/map/map.component';
 import { EdssComponent } from './vis/edss/edss.component';
 import { FormsModule } from '@angular/forms';
+import { PredictionComponent } from './vis/prediction/prediction.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     ClinicianComponent,
     EngineerComponent,
     MapComponent,
-    EdssComponent
+    EdssComponent,
+    PredictionComponent
   ],
   imports: [
     BrowserModule,

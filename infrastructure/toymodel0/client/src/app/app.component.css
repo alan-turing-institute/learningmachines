@@ -1,6 +1,6 @@
 .vis {
   height: 40%;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .perspectives {
