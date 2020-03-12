@@ -50,9 +50,9 @@ export class PredictionComponent implements OnInit {
     var y = d3
       .scaleLinear()
       .rangeRound([contentHeight, 0])
-      .range([0, 100]);
+      .range([contentHeight, 0]);
 
-    x.domain(d3.extent(data, function(d) { return d.time; }));
+    // x.domain(d3.extent(data, function(d) { return d.time; }));
     y.domain([0, d3.max(data, function(d) { return 100; })]);
 
     svg.append("g")
