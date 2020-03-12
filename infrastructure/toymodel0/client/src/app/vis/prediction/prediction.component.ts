@@ -19,18 +19,18 @@ export class PredictionComponent implements OnInit {
   createChart() {
     d3.select('prediction').remove();
     const element = this.chartContainer.nativeElement;
-    const bins = [
+    const data = [
       {
         "time": "baseline",
-        "score": 2
+        "prediction": 20
       },
       {
         "time": "3 months",
-        "score": 5
+        "prediction": 30
       },
       {
         "time": "6 months",
-        "score": 6
+        "prediction": 20
       }];
 
     const svg = d3.select(element).append('svg')
@@ -40,28 +40,49 @@ export class PredictionComponent implements OnInit {
     const contentWidth = element.offsetWidth - this.margin.left - this.margin.right;
     const contentHeight = element.offsetHeight - this.margin.top - this.margin.bottom;
 
+    
+    var x = d3
+      .scaleBand()
+      .rangeRound([0, contentWidth])
+      .padding(0.1)
+      .domain(data.map(d => d.time));
+
+    var y = d3
+      .scaleLinear()
+      .rangeRound([contentHeight, 0])
+      .range([0, 100]);
+
+    x.domain(d3.extent(data, function(d) { return d.time; }));
+    y.domain([0, d3.max(data, function(d) { return 100; })]);
+
+    svg.append("g")
+      .attr("transform", "translate(0," + contentHeight + ")")
+      .call(d3.axisBottom(x));
+
     svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + contentHeight + ")")
-      // .call(xAxis)
     .append("text")
       .attr("class", "label")
       .attr("x", contentWidth)
-      .attr("y", -56)
+      .attr("y", -6)
       .style("text-anchor", "end")
       .text("Time");
+
+      // Add the y Axis
+    svg.append("g")
+      .call(d3.axisLeft(y));
 
     // y-axis
     svg.append("g")
       .attr("class", "y axis")
-      // .call(yAxis)
-    .append("text")
-      .attr("class", "label")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Probability");
+      .append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Probability");
 
 
     // const x = d3
