@@ -10,6 +10,7 @@ import { MapComponent } from './vis/map/map.component';
 import { EdssComponent } from './vis/edss/edss.component';
 import { FormsModule } from '@angular/forms';
 import { PredictionComponent } from './vis/prediction/prediction.component';
+import { RelapseComponent } from './vis/relapse/relapse.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PredictionComponent } from './vis/prediction/prediction.component';
     EngineerComponent,
     MapComponent,
     EdssComponent,
-    PredictionComponent
+    PredictionComponent,
+    RelapseComponent
   ],
   imports: [
     BrowserModule,

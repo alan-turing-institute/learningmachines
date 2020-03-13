@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation} from '@angular/core';
-import * as d3 from 'd3';
+import { Chart } from 'chart.js';
+import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js";
 
 @Component({
   selector: 'app-prediction',
@@ -7,124 +8,62 @@ import * as d3 from 'd3';
   styleUrls: ['./prediction.component.css']
 })
 export class PredictionComponent implements OnInit {
-  @ViewChild('prediction')
-  private chartContainer: ElementRef;
-
-  margin = {top: 20, right: 20, bottom: 30, left: 40};
+  chart:Chart = [];
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
   createChart() {
-    d3.select('prediction').remove();
-    const element = this.chartContainer.nativeElement;
-    const data = [
-      {
-        "time": "baseline",
-        "prediction": 20
-      },
-      {
-        "time": "3 months",
-        "prediction": 30
-      },
-      {
-        "time": "6 months",
-        "prediction": 20
-      }];
-
-    const svg = d3.select(element).append('svg')
-        .attr('width', element.offsetWidth)
-        .attr('height', element.offsetHeight);
-
-    const contentWidth = element.offsetWidth - this.margin.left - this.margin.right;
-    const contentHeight = element.offsetHeight - this.margin.top - this.margin.bottom;
-
     
-    var x = d3
-      .scaleBand()
-      .rangeRound([0, contentWidth])
-      .padding(0.1)
-      .domain(data.map(d => d.time));
-
-    var y = d3
-      .scaleLinear()
-      .rangeRound([contentHeight, 0])
-      .range([contentHeight, 0]);
-
-    // x.domain(d3.extent(data, function(d) { return d.time; }));
-    y.domain([0, d3.max(data, function(d) { return 100; })]);
-
-    svg.append("g")
-      .attr("transform", "translate(0," + contentHeight + ")")
-      .call(d3.axisBottom(x));
-
-    svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + contentHeight + ")")
-    .append("text")
-      .attr("class", "label")
-      .attr("x", contentWidth)
-      .attr("y", -6)
-      .style("text-anchor", "end")
-      .text("Time");
-
-      // Add the y Axis
-    svg.append("g")
-      .call(d3.axisLeft(y));
-
-    // y-axis
-    svg.append("g")
-      .attr("class", "y axis")
-      .append("text")
-        .attr("class", "label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Probability");
-
-
-    // const x = d3
-    //   .scaleBand()
-    //   .rangeRound([0, contentWidth])
-    //   .padding(0.1)
-    //   .domain(data.map(d => d.time));
-
-    // const y = d3
-    //   .scaleLinear()
-    //   .rangeRound([contentHeight, 0])
-    //   .domain([0, d3.max(data, d => d.score)]);
-
-    // const g = svg.append('g')
-    //   .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
-
-    // g.append('g')
-    //   .attr('class', 'axis axis--x')
-    //   .attr('transform', 'translate(0,' + contentHeight + ')')
-    //   .call(d3.axisBottom(x));
-
-    // g.append('g')
-    //   .attr('class', 'axis axis--y')
-    //   .call(d3.axisLeft(y).ticks(5, ''))
-    //   .append('text')
-    //     .attr('transform', 'rotate(-90)')
-    //     .attr('y', 10)
-    //     .attr('dy', '0.71em')
-    //     .attr('text-anchor', 'end')
-    //     .text('Score');
-
-    // g.selectAll('.bar')
-    //   .data(data)
-    //   .enter().append('rect')
-    //     .attr('class', 'bar')
-    //     .attr('x', d => x(d.time))
-    //     .attr('y', d => y(d.score))
-    //     .attr('width', x.bandwidth())
-    //     .attr('height', d => contentHeight - y(d.score));
+    function randomValues(count, min, max) {
+      const delta = max - min;
+      let result = Array.from({length: count}).map(() => Math.random() * delta + min);
+      console.log(result)
+      return result
     }
 
-    ngAfterViewInit():void {
-      this.createChart()
-    }
+    let predictionData = {
+      labels: ['3 months', '6 months', '9 Months'],
+      datasets: [{
+        label: 'Prediction',
+        backgroundColor: 'rgba(255,0,0,0.5)',
+        borderColor: 'red',
+        borderWidth: 1,
+        outlierColor: '#999999',
+        padding: 10,
+        itemRadius: 0,
+        data: [
+          randomValues(10,20,80),
+          randomValues(10,0,50),
+        ]
+      }]
+    };
+    
+    this.chart = new Chart('prediction', {
+      type: 'boxplot',
+      data: predictionData,
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Probability of Relapse'},
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Probability'},
+            ticks: {
+              beginAtZero: true,
+              suggestedMax: 100,
+              stepSize:20 }
+          }]
+        }
+      }
+    });
+  }
+
+  ngAfterViewInit():void {
+    this.createChart()
+  }
 }

@@ -1,1 +1,4 @@
-<div #prediction id="prediction"></div>
+
+<div *ngIf="chart">
+    <canvas id="prediction">{{ chart }}</canvas>
+</div>
