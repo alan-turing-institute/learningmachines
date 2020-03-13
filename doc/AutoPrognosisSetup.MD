@@ -11,7 +11,7 @@
 1. `docker start -a -i modest_pascal`
 1. `apt update`
 1. `apt upgrade`
-1. `sudo apt install software-properties-common (haven't done this before ... will see what it does)`
+1. `apt install software-properties-common (haven't done this before ... will see what it does)`
 1. `apt install python3.6-dev (python 3.6 is already installed)`
 1. `apt -y install python3-pip`
 1. `apt install -y r-base`
