@@ -26,28 +26,31 @@ export class EdssComponent implements OnInit {
       },
       options: {
         scales: {
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'score'
-              },
-              ticks: {
-                beginAtZero: true,
-                suggestedMax: 10
-              }
-            }],
-            xAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'time'
-              }
-            }]
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'score'
+            },
+            ticks: {
+              beginAtZero: true,
+              suggestedMax: 10
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'time'
+            }
+          }]
         }
       }
     });
   }
 
   ngAfterViewInit():void {
-    this.createChart()
+    setTimeout(()=>{
+      this.createChart()
+    }, 300)
+    
   }
 }
