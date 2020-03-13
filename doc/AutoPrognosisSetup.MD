@@ -9,6 +9,8 @@
 1. `docker pull ubuntu`
 1. `docker create -t -i ubuntu bash`
 1. `docker start -a -i modest_pascal`
+
+### Inside docker container
 1. `apt update`
 1. `apt upgrade`
 1. `apt install software-properties-common (haven't done this before ... will see what it does)`
