@@ -13,7 +13,7 @@ Command-line tools and python APIs for functionality
 
 Some integration with Azure databricks
 
-### MLflow tracking
+### MLflow tracking
 
 Log parameters, code versions, metrics and output files when running code. Visualise/analyse and compare results.
 
@@ -53,7 +53,7 @@ Launch runs locally, databricks, kubernetes or any computing infrastucture
 Multistep workflows combining project runs and tracking, e.g. output of some steps used as input to others. Launch runs in parallel.
 
 
-### MLflow Models
+### MLflow Models
 
 Standard format for packaging machine learning models
 
@@ -78,7 +78,7 @@ Built-in deployment tools - including deployment to Azure ML
   - Docker container with REST API endpoint
 
 
-## DVC
+## DVC
 - _Data Version Control for Machine Learning Projects_
 - https://dvc.org/
 
@@ -112,7 +112,7 @@ Paid-for enterprise version provides:
 
 Instructions to deploy to Azure Kubernetes Service
 
-### Versioned Data
+### Versioned Data
 
 "Git-like" operations
 
@@ -149,19 +149,51 @@ Pipelines can have input from multiple repos, which can be combined and trigger 
 Can have many workers
 
 
+## Kedro
+_A Python library that implements software engineering best-practice for data and ML pipelines._
+https://kedro.readthedocs.io/en/stable/
+
+Project template
+
+Data catalogue: connectors for saving/loading different file formats (including SQL)
+
+Pipeline abstraction: Resolution of dependencies between python functions
+
+The Journal: Reproduce runs (version control?)
+
+Coding Standards: built-in testing, linting, docs generation
+
+Flexible deployment: Docker, Airflow, REST, Azure, AWS, GCP, Databricks...
+
+Could be combined with MLFlow for the metric tracking part: https://medium.com/@QuantumBlack/deploying-and-versioning-data-pipelines-at-scale-942b1d81b5f5
+
+Kedro docker: https://github.com/quantumblacklabs/kedro-docker
+
+Kedro airflow: https://github.com/quantumblacklabs/kedro-airflow
+
+Kedro-Viz (pipeline visualisation): https://github.com/quantumblacklabs/kedro-viz/
 
 ## neptune.ai
 _Experiment management workflow_\
 https://neptune.ai/
 
+Paid options, but mostly free. But not open source.
+
+Seems very similar to MLFlow but maybe with a fancier dashboard? Plus collaboration features.
+
+Focuses on three things:
+
+Track: Metrics and outputs
+
+Organise: Transform tracked data into "knowledge repository"
+
+Collaborate: Share, compare work
+
+Integrations with popular model libraries.
+
 ## Azure Machine Learning and MLOps (commercial)
 _Pipelines, automation, tracking etc._\
 https://azure.microsoft.com/en-gb/services/machine-learning/
-
-## Tensorboard*
-_Measure and visualise model performance during training_\
-_Living with Machines (Kasra) have used this_\
-https://www.tensorflow.org/tensorboard\
 
 ## Databricks (commercial)
 
