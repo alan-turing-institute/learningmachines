@@ -17,7 +17,7 @@ export class RelapseComponent implements OnInit {
   createChart() {
     let predictionData = {
         label: 'Prediction',
-        data: [null,50,20,null],
+        data: [null,50,70,80],
         yAxisID: 'probability',
       }
     

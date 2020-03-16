@@ -11,6 +11,7 @@ import { EdssComponent } from './vis/edss/edss.component';
 import { FormsModule } from '@angular/forms';
 import { PredictionComponent } from './vis/prediction/prediction.component';
 import { RelapseComponent } from './vis/relapse/relapse.component';
+import { PerformanceComponent } from './vis/performance/performance.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RelapseComponent } from './vis/relapse/relapse.component';
     MapComponent,
     EdssComponent,
     PredictionComponent,
-    RelapseComponent
+    RelapseComponent,
+    PerformanceComponent
   ],
   imports: [
     BrowserModule,

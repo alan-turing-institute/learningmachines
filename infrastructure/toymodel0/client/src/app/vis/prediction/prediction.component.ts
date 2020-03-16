@@ -19,7 +19,6 @@ export class PredictionComponent implements OnInit {
     function randomValues(count, min, max) {
       const delta = max - min;
       let result = Array.from({length: count}).map(() => Math.random() * delta + min);
-      console.log(result)
       return result
     }
 
