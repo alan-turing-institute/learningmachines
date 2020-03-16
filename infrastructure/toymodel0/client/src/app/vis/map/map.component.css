@@ -8,5 +8,8 @@ img {
   display: block;
   max-height: auto;
   max-width: 100%;
-  overflow: scroll;
+}
+
+.mapImage {
+  overflow:scroll
 }

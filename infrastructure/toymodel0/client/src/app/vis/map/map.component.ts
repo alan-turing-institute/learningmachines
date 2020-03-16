@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
   constructor() { }
+  showModal: boolean
 
   ngOnInit(): void {
+    this.showModal=false
   }
+
+ toggleModal() {
+  this.showModal=!this.showModal
+ }
 
 }
