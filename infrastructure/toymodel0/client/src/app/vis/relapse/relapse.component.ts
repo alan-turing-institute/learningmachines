@@ -15,31 +15,31 @@ export class RelapseComponent implements OnInit {
   }
 
   createChart() {
-    let predictionData = {
-        label: 'Prediction',
+    let probabilityData = {
+        label: 'Probability',
         data: [null,50,70,80],
         yAxisID: 'probability',
       }
     
-    let relapseData = {
-      label: 'Occurence',
+    let uncertaintyData = {
+      label: 'Uncertainty',
       backgroundColor: 'rgba(255,0,0,0.5)',
       borderColor: 'red',
       borderWidth: 1,
-      data: [null, 100, 100, null],
+      data: [null, 50, 80, 75],
       spanGaps: true,
-      yAxisID: 'occurence',
+      yAxisID: 'uncertainty',
     }
     
     this.chart = new Chart('relapse', {
       type: 'scatter',
       data: {
-          datasets: [relapseData, predictionData]
+          datasets: [probabilityData, uncertaintyData]
       },
       options: {
         title: {
           display: true,
-          text: 'Probability/Occurence of Relapse'},
+          text: 'Probability/Uncertainty of relapse within 3 months'},
         scales: {
           xAxes: [{
             type: 'category',
@@ -47,8 +47,8 @@ export class RelapseComponent implements OnInit {
             labels: ['Baseline', '3 months', '6 months', '9 months'],
           }],
           yAxes:[{
-            id: 'occurence',
-            position: 'right',
+            id: 'probability',
+            position: 'left',
             ticks: {
               display:false,
               suggestedMax: 100,
@@ -56,15 +56,15 @@ export class RelapseComponent implements OnInit {
             },
             scaleLabel: {
               display: true,
-              labelString: "Occurence"
+              labelString: "Probability"
             }
           },
           {
-            id: 'probability',
-            position: 'left',
+            id: 'uncertainty',
+            position: 'right',
             scaleLabel: {
               display: true,
-              labelString: 'Probability'},
+              labelString: 'Uncertainty'},
             ticks: {
               beginAtZero: true,
               suggestedMax: 100,
@@ -72,7 +72,7 @@ export class RelapseComponent implements OnInit {
           }]
         }
       }
-  });
+    });
   }
 
   ngAfterViewInit():void {

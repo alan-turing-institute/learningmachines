@@ -21,6 +21,9 @@ export class EdssComponent implements OnInit {
         labels: ['Baseline', '3 months', '6 months', '9 months'],
         datasets: [{
             label: 'EDSS',
+            backgroundColor: 'rgba(0,0,255,0.5)',
+            borderColor: 'blue',
+            borderWidth: 1,
             data: [4, 3, 2],
         }]
       },
