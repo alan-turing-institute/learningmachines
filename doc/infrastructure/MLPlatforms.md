@@ -29,7 +29,7 @@ Command-line tools and python APIs for functionality
 
 Some integration with Azure databricks
 
-### MLflow tracking
+### MLflow tracking
 
 Log parameters, code versions, metrics and output files when running code. Visualise/analyse and compare results.
 
@@ -69,7 +69,7 @@ Launch runs locally, databricks, kubernetes or any computing infrastucture
 Multistep workflows combining project runs and tracking, e.g. output of some steps used as input to others. Launch runs in parallel.
 
 
-### MLflow Models
+### MLflow Models
 
 Standard format for packaging machine learning models
 
@@ -94,7 +94,7 @@ Built-in deployment tools - including deployment to Azure ML
   - Docker container with REST API endpoint
 
 
-## DVC
+## DVC
 - _Data Version Control for Machine Learning Projects_
 - https://dvc.org/
 
@@ -128,7 +128,7 @@ Paid-for enterprise version provides:
 
 Instructions to deploy to Azure Kubernetes Service
 
-### Versioned Data
+### Versioned Data
 
 "Git-like" operations
 
