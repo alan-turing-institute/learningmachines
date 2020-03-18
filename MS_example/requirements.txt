@@ -1,0 +1,8 @@
+flask
+Flask-SQLAlchemy
+Flask-Migrate
+requests
+psycopg2-binary
+numpy
+pytest
+pandas
