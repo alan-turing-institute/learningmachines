@@ -8,6 +8,10 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
     with app.app_context():
         db.init_app(app)
+
+    @app.route('/')
+    def hello_world():
+        return 'MS database set up successfully, waiting for more information...'
     return app
 
 
@@ -48,7 +52,7 @@ def setup_database(app, datapath, POPULATE_DB=True):
                     end_day=ce_file.iloc[row].CEENDY,
                     day=ce_file.iloc[row].CEDY, )
             print("filled CE table")
-            print("filling Quetionaire(QS)")
+            print("filling Questionaire(QS)")
             for row in range(len(qs_file)):
                 one_event = QS(
                     patient_id=qs_file.iloc[row].USUBJID,
