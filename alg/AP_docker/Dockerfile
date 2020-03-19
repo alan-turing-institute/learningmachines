@@ -25,11 +25,13 @@ RUN sed -i 's/,repos=\"http:\/\/cran.cnr.Berkeley.edu\/\"//g' /AutoPrognosis/cfg
 #"
 RUN Rscript /AutoPrognosis/cfg/install_packages.r
 RUN pip3 install -r /AutoPrognosis/cfg/requirements.txt
-RUN pip3 install jupyter jupyter-core notebook sklearn pivottablejs GPyOpt
+RUN pip3 install cython jupyter jupyter-core notebook sklearn pivottablejs GPyOpt pandas
 RUN python3 -m pip install tensorflow
+RUN cd /AutoPrognosis/alg/autoprognosis; wget https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data
+RUN mv /AutoPrognosis/alg/autoprognosis/spambase.data /AutoPrognosis/alg/autoprognosis/spambase.csv
+RUN mkdir /root/.jupyter
+COPY jupyter_notebook_config.py /root/.jupyter/.
 
 # Run command to keep container running
-# CMD ["jupiter", "notebook", "--port=8080", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
-# CMD tail -f /dev/null
-CMD jupyter notebook --port=8080 --no-browser --ip=0.0.0.0 --allow-root
+CMD cd /AutoPrognosis; jupyter notebook --port=8080 --no-browser --ip=0.0.0.0 --allow-root
 
