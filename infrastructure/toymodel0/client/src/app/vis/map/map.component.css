@@ -1,0 +1,15 @@
+.visControl {
+  /* display: block ; */
+  float: right;
+  padding-top: 5%;
+}
+
+img {
+  display: block;
+  max-height: auto;
+  max-width: 100%;
+}
+
+.mapImage {
+  overflow:scroll
+}
