@@ -1,4 +1,0 @@
-#!/bin/sh
-# docker create autoprognosis:1.3 | xargs -I{} docker run -p 8080:8080 {}
-docker run -d -p 8080:8080 autoprognosis:1.3
-
