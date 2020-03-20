@@ -25,9 +25,13 @@ def setup_database(app, datapath, POPULATE_DB=True):
             print("Created new empty database")
             import pandas as pd
             dm_file = pd.read_csv(f"{datapath}/dm.csv")
+            dm_file = dm_file.astype(object).where(pd.notnull(dm_file), None)
             ce_file = pd.read_csv(f"{datapath}/ce.csv")
+            ce_file = ce_file.astype(object).where(pd.notnull(ce_file), None)
             mh_file = pd.read_csv(f"{datapath}/mh.csv")
+            mh_file = mh_file.astype(object).where(pd.notnull(mh_file), None)
             qs_file = pd.read_csv(f"{datapath}/qs.csv")
+            qs_file = qs_file.astype(object).where(pd.notnull(qs_file), None)
             print("filling Patients Demography(DM)")
             for row in range(len(dm_file)):
                 DM.populate(patient_id=dm_file.iloc[row].USUBJID,
