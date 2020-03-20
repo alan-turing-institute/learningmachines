@@ -1,2 +1,7 @@
 data/
+MS_example/data/
+*.db
+.ipynb_checkpoints/
+__pycache__/
 infrastructure/toymodel0/client/node_modules
+
