@@ -34,10 +34,10 @@ class MH(db.Model):
     __tablename__ = 'medical_health'
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     patient_id = db.Column(db.String(120), db.ForeignKey('patient_bkg.patient_id'), nullable=False)
-    decode = db.Column(db.String(2), nullable=True)
+    decode = db.Column(db.String(), nullable=True)
     category = db.Column(db.String(100), nullable=True)
     sub_category = db.Column(db.String(100), nullable=True)
-    term = db.Column(db.String(100), nullable=True)
+    term = db.Column(db.String(), nullable=True)
     start_day = db.Column(db.Integer, nullable=True)
     end_day = db.Column(db.Integer, nullable=True)
     day = db.Column(db.Integer, nullable=True)
