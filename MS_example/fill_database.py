@@ -1,6 +1,6 @@
 from flask import Flask
 from database import db
-from tables import DM,CE,QS
+from tables import DM,CE,QS,MH
 
 
 def create_app():
@@ -26,6 +26,7 @@ def setup_database(app, datapath, POPULATE_DB=True):
             import pandas as pd
             dm_file = pd.read_csv(f"{datapath}/dm.csv")
             ce_file = pd.read_csv(f"{datapath}/ce.csv")
+            mh_file = pd.read_csv(f"{datapath}/mh.csv")
             qs_file = pd.read_csv(f"{datapath}/qs.csv")
             print("filling Patients Demography(DM)")
             for row in range(len(dm_file)):
@@ -52,6 +53,21 @@ def setup_database(app, datapath, POPULATE_DB=True):
                     end_day=ce_file.iloc[row].CEENDY,
                     day=ce_file.iloc[row].CEDY, )
             print("filled CE table")
+            print("filling Medical Health(MH)")
+            for row in range(len(mh_file)):
+                one_MH = MH(
+                    patient_id=mh_file.iloc[row].USUBJID,
+                    category=mh_file.iloc[row].MHCAT,
+                    decode=mh_file.iloc[row].MHDECOD,
+                    sub_category=mh_file.iloc[row].MHSCAT,
+                    term=mh_file.iloc[row].MHTERM,
+                    start_day=mh_file.iloc[row].MHSTDY,
+                    end_day=mh_file.iloc[row].MHENDY,
+                    day=mh_file.iloc[row].MHDY, )
+                db.session.add(one_MH)
+                db.session.flush()
+            db.session.commit()
+            print("filled MH table")
             print("filling Questionaire(QS)")
             for row in range(len(qs_file)):
                 one_event = QS(

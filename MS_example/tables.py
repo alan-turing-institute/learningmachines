@@ -1,5 +1,7 @@
 from database import db
 
+
+
 class DM(db.Model):
     __tablename__ = 'patient_bkg'
     patient_id = db.Column(db.String(), unique=True, nullable=False, primary_key=True)
@@ -28,6 +30,36 @@ class DM(db.Model):
         db.session.add(person)
         db.session.commit()
 
+class MH(db.Model):
+    __tablename__ = 'medical_health'
+    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    patient_id = db.Column(db.String(120), db.ForeignKey('patient_bkg.patient_id'), nullable=False)
+    decode = db.Column(db.String(2), nullable=True)
+    category = db.Column(db.String(100), nullable=True)
+    sub_category = db.Column(db.String(100), nullable=True)
+    term = db.Column(db.String(100), nullable=True)
+    start_day = db.Column(db.Integer, nullable=True)
+    end_day = db.Column(db.Integer, nullable=True)
+    day = db.Column(db.Integer, nullable=True)
+
+    def __init__(self, patient_id, decode, category, sub_category, term, start_day, end_day, day):
+        self.patient_id = patient_id
+        self.decode = decode
+        self.category = category
+        self.sub_category = sub_category
+        self.term = term
+        self.start_day = start_day
+        self.day = day
+        self.end_day = end_day
+
+    def __repr__(self):
+        return f"Medical Health Record('ID: {self.id}',Patient ID:'{self.patient_id}','Category:{self.category}','Day:{self.day}','Start Day:{self.start_day}')"
+
+    @classmethod
+    def add_MH_record(self, patient_id, decode, category, sub_category, term, start_day, end_day, day):
+        MH_record = self(patient_id, decode, category, sub_category, term, start_day, end_day, day)
+        db.session.add(MH_record)
+        db.session.commit()
 
 class CE(db.Model):
     __tablename__ = 'clinical_event'
