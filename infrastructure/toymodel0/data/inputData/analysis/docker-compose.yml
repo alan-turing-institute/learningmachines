@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  MS_database:
+    container_name: test_MS_database
+    webapp:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      image: test_1:tag1
+      ports:
+      - "8000:8000"
