@@ -1,5 +1,4 @@
-data/
-MS_example/data/
+infrastructure/toymodel0/data/inputData/csv
 *.db
 .ipynb_checkpoints/
 __pycache__/
