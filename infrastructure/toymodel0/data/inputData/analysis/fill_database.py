@@ -3,18 +3,6 @@ from database import db
 from tables import DM,CE,QS,MH
 
 
-def create_app():
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-    with app.app_context():
-        db.init_app(app)
-
-    @app.route('/')
-    def hello_world():
-        return 'MS database set up successfully, waiting for more information...'
-    return app
-
-
 def setup_database(app, datapath, POPULATE_DB=True):
     if POPULATE_DB:
         print("Populating database...")
@@ -91,7 +79,7 @@ def setup_database(app, datapath, POPULATE_DB=True):
             db.session.commit()
             print("filled QS table")
     else:
-        print("database setup passed.")
+        print("POPULATE_DB set to False")
     print("database setup and ready to use.")
 
 

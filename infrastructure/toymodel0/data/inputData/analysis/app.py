@@ -1,8 +1,20 @@
 from flask import Flask
 from database import db
-from fill_database import create_app,setup_database
+from fill_database import setup_database
 from time import sleep
 from sqlalchemy.exc import OperationalError
+
+def create_app():
+    """Construct the core application."""
+    app = Flask(__name__, instance_relative_config=False)
+    app.config.from_object('config.Config')
+    with app.app_context():
+      db.init_app(app)
+      import routes
+
+
+    return app
+
 
 if __name__ == '__main__':
 

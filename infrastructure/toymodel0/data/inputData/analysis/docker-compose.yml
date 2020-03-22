@@ -1,11 +1,17 @@
 version: "3.7"
+
 services:
-  MS_database:
-    container_name: test_MS_database
-    webapp:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      image: test_1:tag1
-      ports:
-      - "8000:8000"
+
+  db:
+    container_name: MS_test_database
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_URL: "${POSTGRES_URL}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+    image: db_test
+    ports:
+    - "127.0.0.1:5432:5432"
