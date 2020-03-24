@@ -1,27 +1,80 @@
-# Version controlling, monitoring and deploying models
+# Software Infrasturcture for Learning Machines
 
-Surely a lot of people (companies) are doing this?
+## System Components
 
-## What are we looking for?
+The full software infrastructure for the Learning Machines project will consist of four separate components - the main Learning Machine system, a user interface, and data source or generation tool, and a trigger to run the whole system. These will interact roughly as seen in the diagram below, and are also described in slightly more detail below.
 
-- Machine learning project structure/management
-- Pipelines
-- Continuous deployment
-- Version control: code, models, data
-- Tracking/logging: Model performance, drifts
-- Automated: Predictions, monitoring, retraining
-- APIs
-- Experiments: try new models…
-- Access control
+![](full_system_diagram.png)
+
+#### 1. Learning Machine
+
+The core of the project will be a "Learning Machine" - a system incorporating a model that makes predictions on new data, provides insights into its decisions, monitors whether the model is performing as expected, and automatically retrains the model when appropriate.
+
+Main blocks:
+- Preprocess: Take input data from the data source and perform any necessary data cleaning and feature engineering steps.
+- Predict: Use pre-trained model to make a prediction with the processed data.
+- Interpret: Evaluate the model prediction and provide insights into which factors contributed to that decision.
+- Monitor: Evaluate the performance of the model and identify drifts in the dataset, in order to trigger model retraining.
+- Retrain: A pipeline to retrain the preprocessing and prediction steps.
+- Database: Stores on input data, predictions and model evaluations, as well as different versions of the models themselves.
+
+#### 2. User Interface
+
+An interactive interface with visualisations showing the output of the system and how it works. Different sections showing:
+- Patient data (model input)
+- "Clinician" view: Model prediction and explanation for that prediction, i.e. what a clinician would be presented with to make a decision on how to diagnose/treat a patient.
+- "Data Scientist" view: Model performance, drift monitoring and other metrics used to decide when to retrain the model.
+
+#### 3. Data Source
+
+A way to provide the input data to the Learning Machine. For demonstration purposes the data is likely to be either a pre-existing dataset and/or a mechanism to generate synthetic data. In a real world scenario, this block would represent live data (for example, a new patient test result) being uploaded  and sent to the model for processing.
+
+In the demo scenario with a pre-existing dataset, for example, the data source will provide a way to sequentially send one row of data to the Learning Machine.
+
+#### 4. Data Trigger
+
+Simplest part of the system and could be considered as part of the Data Source or the User Interface, rather than a separate component. A way to trigger/schedule the data source to send new data to the Learning Machine. For example, trigger one new entry to be sent. Alternatively, send several new entries at once or perform a longer simulation, such as triggering one new data entry to be generated per second.
+
+## Requirements
+
+**Essential (will be part of toy model):**
+- **Open Source:** Strong preference for everything to use open source tools.
+
+- **Pipelines:** Self-contained blocks for different parts of the system with well-defined relationships between each block.
+
+- **Tracking/logging:** Ways to track and visualise model performance, drifts and other metrics across different runs/time periods.
+
+- **Automated:** Predictions, monitoring, retraining and other components should be triggered automatically and/or on a schedule.
+
+- **APIs:** Each component of the system to interact via APIs.
+
+**Preferred (will be part of future iterations):**
+
+- **Machine learning project structure/management:** An (ideally) approach-agnostic way to structure and package a machine learning system. Maybe language-agnostic but we plan to focus on python.
+
+- **Continuous deployment:** A way to update a block/component of the system, ideally keeping the system operational whilst the update is in progress.
+
+- **Testing:** Tests to ensure that an update to one block/component does not break its interaction with other components. And also tests within each block/component to ensure they are working as expected.
+
+- **Version control:** Code, models, data and all other parts of the system (or the system as a whole). A straightforward mechanism to change part of the (or the whole) system to a previous state.
+
+- **Experiments:** Try new models without modifying the live production model. A development version of the system where it's ok to break something, and local development environments for each component of the system.
+
+- **Access control:** Who has permission to do what?
+
+- **Scaling:** A robust way to scale infrastructure to cope with demand. For example, model retraining is computationally intensive so additional hardware will be needed whilst retraining is in progress.
+
+- **Ease of use:** Should be possible for an external user to implement their own version of the system.
+
+
+
+# Pre-Existing Tools
 
 MLFlow:
 Good for: Comparing and visualising output of different training runs, quickly deploying models as an API.
 
 Kedro:
 Good for: Project template/structure, defining and visualising pipelines.
-
-
-# Tools
 
 ## MLflow
 - _Open source package for packaging, deploying and tracking models_
