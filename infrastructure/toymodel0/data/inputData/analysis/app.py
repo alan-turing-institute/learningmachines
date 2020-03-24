@@ -10,14 +10,9 @@ def create_app():
     app.config.from_object('config.Config')
     with app.app_context():
       db.init_app(app)
-      import routes
-
-
     return app
 
-
 if __name__ == '__main__':
-
     app = create_app()
     db_ready = False
     while not db_ready:
@@ -28,7 +23,6 @@ if __name__ == '__main__':
             db_ready = False
             print("Database is not ready yet...")
             sleep(5)
-
     print("Past this point!")
     app.run(debug=True, host='0.0.0.0')
 
