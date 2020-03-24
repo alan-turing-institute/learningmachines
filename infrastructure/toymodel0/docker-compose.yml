@@ -1,17 +1,28 @@
 version: '3'
 services:
-  learningmachines_client:
-    container_name: learningmachines_client
-    build:
-      context: client
-      dockerfile: Dockerfile
+  # learningmachines_client:
+  #   container_name: learningmachines_client
+  #   build:
+  #     context: client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #    - "4200:4200"
+  #   networks:
+  #   - learningmachines_nw
+  #   volumes:
+  #   - ./client/src:/app/src
+  #   # - ./client/node_modules:/app/node_modules
+
+  learningmachines_inputDatabase:
+    image: "postgres:11"
+    container_name: "learningmachines_input_database"
     ports:
-     - "4200:4200"
-    networks:
-    - learningmachines_nw
+      - "5432:5432"
     volumes:
-    - ./client/src:/app/src
-    # - ./client/node_modules:/app/node_modules
+      - ./data/inputData/database/data:/var/lib/postgresql/data
+    networks:
+      - learningmachines_nw
+    # restart: unless-stopped
 
 networks:
   learningmachines_nw:
