@@ -4,6 +4,7 @@ Surely a lot of people (companies) are doing this?
 
 ## What are we looking for?
 
+- Machine learning project structure/management
 - Pipelines
 - Continuous deployment
 - Version control: code, models, data
@@ -12,6 +13,12 @@ Surely a lot of people (companies) are doing this?
 - APIs
 - Experiments: try new models…
 - Access control
+
+MLFlow:
+Good for: Comparing and visualising output of different training runs, quickly deploying models as an API.
+
+Kedro:
+Good for: Project template/structure, defining and visualising pipelines.
 
 
 # Tools
