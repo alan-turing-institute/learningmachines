@@ -1,4 +1,4 @@
-# List of Potential Dataset
+# List of Potential Datasets
 
 This document is to collect potential datasets that could be useful for the toymodel of Learning Machine.
 
