@@ -13,16 +13,48 @@ services:
   #   - ./client/src:/app/src
   #   # - ./client/node_modules:/app/node_modules
 
-  learningmachines_inputDatabase:
-    image: "postgres:11"
-    container_name: "learningmachines_input_database"
+  # database:
+  #   container_name: learningmachines_database
+  #   build:
+  #     context: ./data/inputData/database
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #   - ./data/inputData/database/data:/var/lib/postgresql
+  #   ports:
+  #   - '5432:5432'
+  #   networks:
+  #   - learningmachines_nw
+  #   environment: 
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_DB: cpath
+  #     POSTGRES_HOST_AUTH_METHOD: "trust"
+  #   restart: unless-stopped
+    
+  api:
+    container_name: learningmachines_api
+    build:
+      context: ./data/inputData/access
+      dockerfile: Dockerfile
     ports:
-      - "5432:5432"
+    - '5000:5000'
+    stdin_open: true
+    tty: true
     volumes:
-      - ./data/inputData/database/data:/var/lib/postgresql/data
+    - ./data/inputData/access:/app
+    # - ./traffic-api/data:/app/data
+    # depends_on: traffic_database
+    restart: on-failure
+    environment:
+    - FLASK_CONFIGURATION=default
+    - FLASK_ENV=development
+    - FLASK_APP=./data/inputData/access/app.py
+    - POSTGRES_DB=cpath
+    - POSTGRES_USER=postgres
+    - POSTGRES_HOST=learningmachines_database
+    - ALLOW_IP_RANGE=0.0.0.0/0
+    - POPULATE_DB=true
     networks:
-      - learningmachines_nw
-    # restart: unless-stopped
+    - learningmachines_nw
 
 networks:
   learningmachines_nw:
