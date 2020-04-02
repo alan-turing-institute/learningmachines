@@ -1,1 +1,12 @@
+# Data
 data/
+MS_example/data/
+*.db
+alg/MLFlow/mlruns
+
+# System/cache/config files
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+infrastructure/toymodel0/client/node_modules
+
