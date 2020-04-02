@@ -1,27 +1,104 @@
-# Version controlling, monitoring and deploying models
+# Software Infrasturcture for Learning Machines
 
-Surely a lot of people (companies) are doing this?
+The proposed learning machine is a complex system with many components, and software engineering will therefore be a large part of the project. This document begins to sketch out the infrastructure involved in the Learning Machines project, our requirements, and some relevant pre-existing tools.
 
-## What are we looking for?
+## System Components
 
-- Machine learning project structure/management
-- Pipelines
-- Continuous deployment
-- Version control: code, models, data
-- Tracking/logging: Model performance, drifts
-- Automated: Predictions, monitoring, retraining
-- APIs
-- Experiments: try new models…
-- Access control
+The full software infrastructure for the Learning Machines project will consist of four separate components - the main Learning Machine system, a user interface, a data source or generation tool, and a trigger to run the whole system. These will interact roughly as seen in the diagram below, and are also described in slightly more detail below.
 
-MLFlow:
-Good for: Comparing and visualising output of different training runs, quickly deploying models as an API.
+![](full_system_diagram.png)
 
-Kedro:
-Good for: Project template/structure, defining and visualising pipelines.
+#### 1. Learning Machine
 
+The core of the project will be a "Learning Machine" - a system incorporating a model that makes predictions on new data, provides insights into its decisions, monitors whether the model is performing as expected, and automatically retrains the model when appropriate.
 
-# Tools
+Main blocks:
+- Preprocess: Take input data from the data source and perform any necessary data cleaning and feature engineering steps.
+- Predict: Use pre-trained model to make a prediction with the processed data.
+- Interpret: Evaluate the model prediction and provide insights into which factors contributed to that decision.
+- Monitor: Evaluate the performance of the model and identify drifts in the dataset, in order to trigger model retraining.
+- Retrain: A pipeline to retrain the preprocessing and prediction steps.
+- Database: Stores on input data, predictions and model evaluations, as well as different versions of the models themselves.
+
+#### 2. User Interface
+
+An interactive interface with visualisations showing the output of the system and how it works. Different sections showing:
+- Patient data (model input)
+- "Clinician" view: Model prediction and explanation for that prediction, i.e. what a clinician would be presented with to make a decision on how to diagnose/treat a patient.
+- "Data Scientist" view: Model performance, drift monitoring and other metrics used to decide when to retrain the model.
+
+#### 3. Data Source
+
+A way to provide the input data to the Learning Machine. For demonstration purposes the data is likely to be either a pre-existing dataset and/or a mechanism to generate synthetic data. In a real world scenario, this block would represent live data (for example, a new patient test result) being uploaded  and sent to the model for processing.
+
+In the demo scenario with a pre-existing dataset, for example, the data source will provide a way to sequentially send one row of data to the Learning Machine.
+
+#### 4. Data Trigger
+
+Simplest part of the system and could be considered as part of the Data Source or the User Interface, rather than a separate component. A way to trigger/schedule the data source to send new data to the Learning Machine. For example, trigger one new entry to be sent. Alternatively, send several new entries at once or perform a longer simulation, such as triggering one new data entry to be generated per second.
+
+## Requirements
+
+**Essential (will be part of toy model):**
+- **Open Source:** Strong preference for everything to use open source tools.
+
+- **Pipelines:** Self-contained blocks for different parts of the system with well-defined relationships between each block.
+
+- **Tracking/logging:** Ways to track and visualise model performance, drifts and other metrics across different runs/time periods.
+
+- **Automated:** Predictions, monitoring, retraining and other components should be triggered automatically and/or on a schedule.
+
+- **APIs:** Each component of the system to interact via APIs.
+
+**Preferred (will be part of future iterations):**
+
+- **Machine learning project structure/management:** An (ideally) approach-agnostic way to structure and package a machine learning system. Maybe language-agnostic but we plan to focus on python.
+
+- **Continuous deployment:** A way to update a block/component of the system, ideally keeping the system operational whilst the update is in progress.
+
+- **Testing:** Tests to ensure that an update to one block/component does not break its interaction with other components. And also tests within each block/component to ensure they are working as expected.
+
+- **Version control:** Code, models, data and all other parts of the system (or the system as a whole). A straightforward mechanism to change part of the (or the whole) system to a previous state.
+
+- **Experiments:** Try new models without modifying the live production model. A development version of the system where it's ok to break something, and local development environments for each component of the system.
+
+- **Privacy and Access control:** Who has permission to what and to do what?
+
+- **Scaling:** A robust way to scale infrastructure to cope with demand. For example, model retraining is computationally intensive so additional hardware will be needed whilst retraining is in progress.
+
+- **Ease of use:** Should be possible for an external user to implement their own version of the system.
+
+# Pre-Existing Open Source Tools
+
+## Tools Specifically Targeted at Machine Learning Workflows
+
+### Most promising:
+- **MLFow:** Good for comparing and visualising output of different training runs, quickly deploying models as an API. _Relevant for the Retrain and Predict blocks._
+- **Kedro:** Good for project templating/structure, defining and visualising pipelines. _Relevant for system design and interface between blocks._
+
+MLFlow and Kedro can also be used together to benefit from the metric tracking/visualisation parts of MLFlow, and the project management/pipeline strengths of Kedro. This is described in [this blog post](https://medium.com/@QuantumBlack/deploying-and-versioning-data-pipelines-at-scale-942b1d81b5f5).
+
+Outstanding Questions:
+- MLFlow in particular, but probably also Kedro, are focused at training a model and then using that model as is. Can they be used/adapted to also provide monitoring of the model being used to make predictions?
+- Triggering workflows: Kedro (and probably also MLFLow) can be used to define pipelines but can they be automatically triggered/scheduled, or triggered only on some condition being met (e.g. on model performance dropping below some threshold)?
+
+###Also considered:
+- **DVC (Data version control):** Git-like way to version control large files, such as data or trained models.
+- **Pachyderm:** Versioned data and pipelines.
+
+I mostly disregarded these for now as they mean using a tool-dependent file system, e.g. `.dvc` files for DVC and the `PFS` file system for Pachyderm. This implies that they may not be (easily) compatible with using standard SQL databases to store data. Pachyderm in particular does seem to have nice features, although some you have to pay for.
+
+## General Tools for Software Infrastructure
+
+There are many tools, not specific to Machine Learning purposes, that are relevant for the requirements of continuous deployment, creating complex workflows, managing infrastructure, and so on. These include but are not limited to:
+- **Docker:** Containerised code. Most likely will be the basis for the toy model.
+- **Airflow:** Creating and managing complex pipelines. Kedro plugin available.
+- **Kubenetes:** Managing clusters of (docker) containers.
+- **GoCD:** Continuous deployment.
+
+The issues of reliable deployment, updating the system etc. will become more relevant for later iterations, rather than the toy model, in most cases. The specifics pros and cons of the many tools available should be investigated for this project.
+
+# Notes on Tools
 
 ## MLflow
 - _Open source package for packaging, deploying and tracking models_
@@ -170,8 +247,6 @@ Pipelines triggered and run on new data only
 Pipelines can have input from multiple repos, which can be combined and trigger the pipeline in different ways.
 
 Can have many workers
-
-
 
 ## neptune.ai
 _Experiment management workflow_\
