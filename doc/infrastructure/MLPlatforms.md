@@ -78,11 +78,7 @@ Simplest part of the system and could be considered as part of the Data Source o
 
 MLFlow and Kedro can also be used together to benefit from the metric tracking/visualisation parts of MLFlow, and the project management/pipeline strengths of Kedro. This is described in [this blog post](https://medium.com/@QuantumBlack/deploying-and-versioning-data-pipelines-at-scale-942b1d81b5f5).
 
-Outstanding Questions:
-- MLFlow in particular, but probably also Kedro, are focused at training a model and then using that model as is. Can they be used/adapted to also provide monitoring of the model being used to make predictions?
-- Triggering workflows: Kedro (and probably also MLFLow) can be used to define pipelines but can they be automatically triggered/scheduled, or triggered only on some condition being met (e.g. on model performance dropping below some threshold)?
-
-###Also considered:
+### Also considered:
 - **DVC (Data version control):** Git-like way to version control large files, such as data or trained models.
 - **Pachyderm:** Versioned data and pipelines.
 
@@ -98,9 +94,21 @@ There are many tools, not specific to Machine Learning purposes, that are releva
 
 The issues of reliable deployment, updating the system etc. will become more relevant for later iterations, rather than the toy model, in most cases. The specifics pros and cons of the many tools available should be investigated for this project.
 
+# Pre-Existing Commercial Tools
+
+All (at least many of) the big cloud platforms have services available that I think do most of what we're trying to achieve, i.e. providing ways to train, deploy, version control and monitor models. Databricks also seems to be a very popular tool in this area, and MLflow is an open sourced package from the same company. Azure, for example, has Databricks available on Azure ML.
+
+# Outstanding Questions
+
+- MLFlow in particular, but probably also Kedro, are focused at training a model and then using that model as is. Can they be used/adapted to also provide monitoring of the model being used to make predictions?
+- Triggering workflows: Kedro (and probably also MLFLow) can be used to define pipelines but can they be automatically triggered/scheduled, or triggered only on some condition being met (e.g. on model performance dropping below some threshold)?
+- How to update the deployed model? Ideally, a way to build and then serve the new model without any downtime, i.e. using the old model whilst the endpoint for the new model is being built.
+- Schema/storage mechanism for data and artifacts (models etc.) How to keep track of what data was used to train a model, keep an archive of previous model versions, history of monitoring results etc. Parts of this can be solved with MLflow. For models or other artifacts the norm seems to be to have some cloud storage backend. 
+
 # Notes on Tools
 
 ## MLflow
+
 - _Open source package for packaging, deploying and tracking models_
 - https://mlflow.org/
 
