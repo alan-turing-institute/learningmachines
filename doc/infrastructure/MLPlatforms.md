@@ -75,8 +75,11 @@ Simplest part of the system and could be considered as part of the Data Source o
 ### Most promising:
 - **MLFow:** Good for comparing and visualising output of different training runs, quickly deploying models as an API. _Relevant for the Retrain and Predict blocks._
 - **Kedro:** Good for project templating/structure, defining and visualising pipelines. _Relevant for system design and interface between blocks._
+- **KubeFlow and Seldon Core:** Managing deployed machine learning systems on Kubernetes. _Relevant for overall system specification and management._
 
 MLFlow and Kedro can also be used together to benefit from the metric tracking/visualisation parts of MLFlow, and the project management/pipeline strengths of Kedro. This is described in [this blog post](https://medium.com/@QuantumBlack/deploying-and-versioning-data-pipelines-at-scale-942b1d81b5f5).
+
+KubeFlow and Seldon Core (for model serving) look very promising to me in terms of setting up complex infrastructure, being able to update the deployed model in a nice way (even distributing traffic between several different models), and monitoring the inputs or outputs of requests to the model end-points. However, I have almost zero experience with Kubernetes so I think it would be a steep learning curve.
 
 ### Also considered:
 - **DVC (Data version control):** Git-like way to version control large files, such as data or trained models.
@@ -185,6 +188,16 @@ Built-in deployment tools - including deployment to Azure ML
   - local REST API
   - Docker container with REST API endpoint
 
+## Kedro
+- _Development workflow tool that helps structure reproducible, scaleable, deployable, robust and versioned data pipelines_
+- https://kedro.readthedocs.io/en/stable/
+
+## KubeFlow and Seldon Core
+- _Making deployments of machine learning (ML) workflows on Kubernetes simple, portable and scalable_
+- KubeFlow: https://www.kubeflow.org/
+- Seldon-Core: https://docs.seldon.io/projects/seldon-core/en/latest/
+
+Video describing Seldon Core features (model serving built on top of KubeFlow): https://www.youtube.com/watch?v=pDlapGtecbY
 
 ## DVC
 - _Data Version Control for Machine Learning Projects_
