@@ -18,6 +18,7 @@ To make Jupyter Notebooks work with a password rather than it requiring a token,
 `c.NotebookApp.password = "<password>"`
   
 Yo prepare the hashed password do the following in any python console (The package `notebook` is required):
+
 `from notebook.auth import passwd
 >>> passwd()
 Enter password:
