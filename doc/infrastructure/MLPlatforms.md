@@ -84,6 +84,7 @@ KubeFlow and Seldon Core (for model serving) look very promising to me in terms 
 ### Also considered:
 - **DVC (Data version control):** Git-like way to version control large files, such as data or trained models.
 - **Pachyderm:** Versioned data and pipelines.
+- **Weights & Balances:** Maybe similar to MLFlow: https://www.wandb.com/ Tim mentioned it as something added to Safe Haven for DSSG.
 
 I mostly disregarded these for now as they mean using a tool-dependent file system, e.g. `.dvc` files for DVC and the `PFS` file system for Pachyderm. This implies that they may not be (easily) compatible with using standard SQL databases to store data. Pachyderm in particular does seem to have nice features, although some you have to pay for.
 
