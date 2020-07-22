@@ -84,7 +84,6 @@ KubeFlow and Seldon Core (for model serving) look very promising to me in terms 
 ### Also considered:
 - **DVC (Data version control):** Git-like way to version control large files, such as data or trained models.
 - **Pachyderm:** Versioned data and pipelines.
-- **Weights & Balances:** Maybe similar to MLFlow: https://www.wandb.com/ Tim mentioned it as something added to Safe Haven for DSSG.
 
 I mostly disregarded these for now as they mean using a tool-dependent file system, e.g. `.dvc` files for DVC and the `PFS` file system for Pachyderm. This implies that they may not be (easily) compatible with using standard SQL databases to store data. Pachyderm in particular does seem to have nice features, although some you have to pay for.
 
@@ -101,6 +100,9 @@ The issues of reliable deployment, updating the system etc. will become more rel
 # Pre-Existing Commercial Tools
 
 All (at least many of) the big cloud platforms have services available that I think do most of what we're trying to achieve, i.e. providing ways to train, deploy, version control and monitor models. Databricks also seems to be a very popular tool in this area, and MLflow is an open sourced package from the same company. Azure, for example, has Databricks available on Azure ML.
+
+- **Weights & Balances:** Maybe similar to MLFlow: https://www.wandb.com/ Tim mentioned it as something added to Safe Haven for DSSG. Free for personal use but not open source I think.
+
 
 # Outstanding Questions
 
