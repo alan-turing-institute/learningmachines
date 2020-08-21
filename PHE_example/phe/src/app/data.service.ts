@@ -6,6 +6,7 @@ const axios = require("axios");
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
 
   constructor() { }
@@ -14,6 +15,9 @@ export class DataService {
     console.log("Hello World")
   }
   
+  
+
+
   public getData = async ( queries={} )=> {
     console.log(queries)
     const endpoint = 'https://api.coronavirus.data.gov.uk/v1/data';
