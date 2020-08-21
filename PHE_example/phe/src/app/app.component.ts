@@ -58,15 +58,15 @@ interface chartDataFormat {
 }) 
 
 export class AppComponent {
-  title:string = 'Horsham COVID-19 Case Tracker';
+  title:string = 'COVID-19 Case Tracking';
   newCasesData: chartDataFormat[];
   ageCasesData: chartDataFormat[];
-  view: any[] = [1500, 300];
+  view: any[] = [window.innerWidth, 300];
   
   // options
   legend: boolean = true;
   legendTitle: string = "Area Names"
-  ageLegendTitle: string = "Age"
+  ageLegendTitle: string = "Gender"
   legendPosition: string = "right"
   showLabels: boolean = true;
   animations: boolean = true;
@@ -90,7 +90,6 @@ export class AppComponent {
   ngOnInit() {
     let areasOfInterest:Array<{areaType, areaName}> = [
       {areaType:"ltla", areaName:"Horsham"},
-      // {areaType:"ltla", areaName:"Ipswich"},
       {areaType:"ltla", areaName:"Crawley"},
       {areaType:"ltla", areaName:"Adur"},
       {areaType:"ltla", areaName:"Arun"},
@@ -163,12 +162,12 @@ export class AppComponent {
       let maleRate = maleData.filter(bin => {
         return bin.age == ageBin.name
       })
-      ageBin.series.push({name:"male", value:maleRate[0].rate}) 
+      ageBin.series.push({name:"male", value:maleRate[0].value}) 
       
       let femaleRate = femaleData.filter(bin => {
         return bin.age == ageBin.name
       })
-      ageBin.series.push({name:"female", value:femaleRate[0].rate}) 
+      ageBin.series.push({name:"female", value:femaleRate[0].value}) 
     });
 
     this.ageCasesData = []

@@ -1,10 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}
   </h1>
 </div>
-<ngx-charts-line-chart
+<div style="text-align:center">
+  <h3>
+    Number of cases detected, by specimen collection date
+  </h3>
+  <ngx-charts-line-chart
   [view]="view"
   [scheme]="colorScheme"
   [legend]="legend"
@@ -19,8 +23,13 @@
   [timeline]="timeline"
   [results]="newCasesData"
 >
-</ngx-charts-line-chart>
+</ngx-charts-line-chart> 
+</div>
 
+<div style="text-align:center">
+  <h3>
+    Cumulative cases, by age and gender
+  </h3>
 <ngx-charts-bar-vertical-stacked
   [view]="view"
   [scheme]="colorScheme"
@@ -38,4 +47,5 @@
   [animations]="animations"
 >
 </ngx-charts-bar-vertical-stacked>
+</div>
 
