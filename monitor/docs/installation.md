@@ -33,7 +33,7 @@ For ModMon development you can add the `-e` flag to install the package in edita
 To configure database and some environoment settings ModMon uses a configuration file in .ini format. By default this is the file in [modmon/config/defaults.ini](../modmon/config/defaults.ini). This defines:
 * The ModMon database to be a postgresql database on localhost, without a username and password.
 * conda environments to install dependencies via the internet.
-* R models to be run in a conda environment with the R version specified by the renv.lock file.
+* R models to be run with the system default R (not in a conda environment, which we've found to cause problems in some cases)
 * Submitted models to be stored in the user's home directory at `$HOME/modmon/models`.
 * Reports to be stored in the user's home directory at `$HOME/modmon/reports`.
 
