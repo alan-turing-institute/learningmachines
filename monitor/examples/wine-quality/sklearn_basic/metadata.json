@@ -1,0 +1,18 @@
+{
+	"team": "REG",
+	"contact": "Ed Chalstrey",
+	"contact_email": "echalstrey@turing.ac.uk",
+	"team_description": "A team from The Alan Turing Institute",
+	"research_question": "Investigate wine quality dataset",
+	"model_name": "WineQuality1",
+	"model_description": "Model to assess wine quality",
+	"model_version": "1.0.0",
+	"db_name": "dummydb",
+	"data_window_start": "2020-03-03",
+	"data_window_end": "2020-06-03",
+	"model_train_datetime": "2020-06-03",
+	"training_data_description": "This is 50% of the wine quality dataset",
+	"model_run_datetime": "2020-07-11",
+	"test_data_description": "This is the 50% of the wine quality dataset that was not used for training the model",
+	"command": "python run_prediction_model.py <database> <start_date> <end_date>"
+}

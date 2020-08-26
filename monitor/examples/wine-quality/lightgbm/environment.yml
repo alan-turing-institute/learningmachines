@@ -1,0 +1,7 @@
+name: wine-lightgbm
+
+dependencies:
+  - python=3.8.3
+  - pip
+  - pip:
+    - -r requirements.txt
