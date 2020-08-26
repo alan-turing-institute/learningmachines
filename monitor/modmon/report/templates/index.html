@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit Report</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      {% include 'main.css' %}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>DECOVID Model Appraisal Report</h1>
+      <h2>{{ date }}</h2>
+      <p>This report shows the performance of predictive models applied to DECOVID research questions.
+        As Covid19 progresses, new data will be added to the OMOP patient database.
+      This model appraisal report tracks the performance of models on each new database iteration,
+      across all performance metrics associated with a given model and research question.</p>
+      <div class="figures">
+        {% for fname, figure in figures.items() if figure.type ==
+        "table" %}
+        <figure>
+          <figcaption>
+            <span>Table {{loop.index}}. </span>{{ figure.description | markdown
+            }}
+          </figcaption>
+          {{ figure.content | safe }}
+        </figure>
+        {% endfor %} {% for fname, figure in figures.items() if figure.type == "plot" %}
+        <figure>
+          <figcaption>
+            <span>Figure {{loop.index}}. </span>{{ figure.description | markdown
+            }}
+          </figcaption>
+          {{ figure.content | safe }}
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
