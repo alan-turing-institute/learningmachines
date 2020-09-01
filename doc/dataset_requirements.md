@@ -1,4 +1,4 @@
-# Dataset Requirements
+# Dataset Requirements
 
 To gather a list of requirements and options for a Learning Machines dataset, both for the toy model and later fully-featured versions.
 
