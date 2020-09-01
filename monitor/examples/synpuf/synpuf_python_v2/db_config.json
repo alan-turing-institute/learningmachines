@@ -1,0 +1,7 @@
+{
+    "driver": "ODBC Driver 17 for SQL Server",
+    "server": "51.104.224.106,1433",
+    "user": "analysts",
+    "password": "An8lysts.",
+    "port": 1433
+}

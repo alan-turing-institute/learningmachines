@@ -1,0 +1,18 @@
+{
+	"team": "REG2",
+	"contact": "Jack Roberts",
+	"contact_email": "jroberts@turing.ac.uk",
+	"team_description": "A team from The Alan Turing Institute",
+	"research_question": "Investigate WHITE wine quality dataset",
+	"model_name": "wine-lightgbm",
+	"model_description": "Model to assess wine quality",
+	"model_version": "0.0.1",
+	"db_name": "dummydb",
+	"data_window_start": "0002-01-01",
+	"data_window_end": "2000-01-01",
+	"model_train_datetime": "2020-06-03",
+	"training_data_description": "This is the first 2500 rows of the wine quality dataset",
+	"model_run_datetime": "2020-07-11",
+	"test_data_description": "[Add description]",
+	"command": "make clean; make START_DATE=<start_date> END_DATE=<end_date> DATABASE=<database>"
+}
