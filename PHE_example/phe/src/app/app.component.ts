@@ -58,7 +58,7 @@ interface chartDataFormat {
 }) 
 
 export class AppComponent {
-  title:string = 'COVID-19 Case Tracking';
+  title:string = 'Cases around me';
   newCasesData: chartDataFormat[];
   ageCasesData: chartDataFormat[];
   view: any[] = [window.innerWidth, 300];
@@ -91,12 +91,24 @@ export class AppComponent {
     let areasOfInterest:Array<{areaType, areaName}> = [
       {areaType:"ltla", areaName:"Horsham"},
       {areaType:"ltla", areaName:"Crawley"},
-      {areaType:"ltla", areaName:"Adur"},
-      {areaType:"ltla", areaName:"Arun"},
-      {areaType:"ltla", areaName:"Mid Sussex"},
-      {areaType:"ltla", areaName:"Chichester"},
-      {areaType:"ltla", areaName:"Worthing"},
-      {areaType:"utla", areaName:"West Sussex"}] 
+      {areaType:"ltla", areaName:"Spelthorne"}] 
+    // let areasOfInterest:Array<{areaType, areaName}> = [
+    //     {areaType:"ltla", areaName:"Horsham"},
+    //     {areaType:"ltla", areaName:"Crawley"},
+    //     {areaType:"ltla", areaName:"Adur"},
+    //     {areaType:"ltla", areaName:"Arun"},
+    //     {areaType:"ltla", areaName:"Mid Sussex"},
+    //     {areaType:"ltla", areaName:"Chichester"},
+    //     {areaType:"ltla", areaName:"Worthing"},
+    //     {areaType:"ltla", areaName:"Spelthorne",}] 
+    
+      // let areasOfInterest:Array<{areaType, areaName}> = [
+      //   {areaType:"ltla", areaName:"Greenwich"},
+      //   {areaType:"utla", areaName:"Wiltshire"},
+      //   {areaType:"ltla", areaName:"Camden"},
+      //   {areaType:"ltla", areaName:"Horsham"},
+      //   {areaType:"ltla", areaName:"Tower Hamlets"},
+      //   {areaType:"ltla", areaName:"Islington"}]
     this.updateCasesData(areasOfInterest)
     this.updateAgeData()
   }
@@ -126,6 +138,7 @@ export class AppComponent {
     let areas:Array<chartDataFormat> = []
     for (var areaIndex = 0; areaIndex < areasOfInterest.length; areaIndex++) {
       let response:response = await this.dataService.getData(this.constructParamsByName(areasOfInterest[areaIndex].areaType,areasOfInterest[areaIndex].areaName));
+      console.log(`Response: '${response}`)
       areas.push({name: areasOfInterest[areaIndex].areaName, series:[]})
       for (var day = response.length-1; day >= 0; day--){
         let caseResponseOnDay:caseResponseStructure = <caseResponseStructure>response.data[day]
@@ -133,8 +146,7 @@ export class AppComponent {
       }
     }
     this.newCasesData = []
-    this.newCasesData = areas
-    // console.log(this.newCasesData)
+    this.newCasesData = Object.assign(this.newCasesData,areas)
   }
 
   async updateAgeData() {

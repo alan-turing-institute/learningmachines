@@ -20,8 +20,9 @@ export class DataService {
 
   public getData = async ( queries={} )=> {
     console.log(queries)
-    const endpoint = 'https://api.coronavirus.data.gov.uk/v1/data';
-    const { data, status, statusText } = await axios.get(endpoint, { 
+    const endpoint = 'https://cors-anywhere.herokuapp.com/https://api.coronavirus.data.gov.uk/v1/data';
+    const { data, status, statusText } = await axios.get(endpoint, 
+    { 
         params: queries,
         timeout: 10000 
     });
