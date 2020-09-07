@@ -1,0 +1,13 @@
+.vis {
+  height: 30%;
+  overflow: scroll;
+}
+
+.perspectives {
+  height: 70%;
+  overflow: scroll;
+}
+
+.learningMachines {
+  padding-top: 15px;
+}
