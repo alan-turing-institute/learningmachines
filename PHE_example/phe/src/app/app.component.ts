@@ -91,7 +91,8 @@ export class AppComponent {
     let areasOfInterest:Array<{areaType, areaName}> = [
       {areaType:"ltla", areaName:"Horsham"},
       {areaType:"ltla", areaName:"Crawley"},
-      {areaType:"ltla", areaName:"Spelthorne"}] 
+      {areaType:"ltla", areaName:"Spelthorne"},
+      {areaType:"ltla", areaName:"Birmingham"}] 
     // let areasOfInterest:Array<{areaType, areaName}> = [
     //     {areaType:"ltla", areaName:"Horsham"},
     //     {areaType:"ltla", areaName:"Crawley"},
