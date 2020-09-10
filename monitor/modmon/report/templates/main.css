@@ -1,0 +1,62 @@
+body {
+  font-family: Andale Mono, monospace;
+  background-color: #9e9e9e6b;
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+}
+h2 {
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+figure {
+  margin-bottom: 25px;
+}
+svg {
+  width: 60%;
+  height: auto; /* allow svg to resize dynamically */
+}
+figcaption {
+  width: 70%;
+  margin: auto;
+  font-size: 14px;
+  padding-top: 10px;
+}
+figcaption p {
+  display: inline;
+}
+table {
+  width: auto;
+  margin: 0 auto;
+  max-width: 65%;
+  text-align: left;
+  border-collapse: collapse;
+  border: transparent;
+  font-size: 10px;
+}
+td,
+th {
+  padding: 5px;
+  text-align: left;
+}
+thead {
+  background: #dfdfdf; /* darken header a bit */
+  font-weight: bold;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* darken every 2nd cell */
+}
+tr:hover {
+  background-color: #9e9e9e6b; /* darken on rollover */
+}
+.card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadows around card */
+  transition: 0.3s;
+  border-radius: 10px; /* rounded corners */
+  margin: 5% 0; /* margins between card and border */
+  padding: 5%; /* padding between card border and card contents */
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Add deeper shadow on mouse-over */
+}

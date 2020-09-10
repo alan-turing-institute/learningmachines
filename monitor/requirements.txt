@@ -1,0 +1,10 @@
+colorama
+dateparser
+matplotlib
+pandas
+psycopg2
+pyodbc
+seaborn
+sqlalchemy
+unitreport
+repro-catalogue
