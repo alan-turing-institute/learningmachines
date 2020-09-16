@@ -12,7 +12,7 @@ To gather a list of requirements and options for a Learning Machines dataset, bo
 
 - Exhibits drifts in time
 
-- Publicly available previous work - code and model.
+- Publicly available previous work - code and model
 
 
 ## Data Drifts
@@ -26,4 +26,4 @@ This one is the hardest to satisfy.
 Options:
 - Find a longitudinal study/dataset with patient-level data preserved (less likely to be publicly available)
 - Find a healthcare-related but less sensitive subject (i.e. not patient-level hospital data) with times and sufficient complexity.
-- Artificially create drifts, by ordering the data in some way (e.g. start with older patients and then feed in younger patients over time).
+- Artificially create drifts, by ordering the data in some way (e.g. start with older patients and then feed in younger patients over time)
