@@ -102,6 +102,67 @@ For anonymisation reasons the original treatment year is removed (see "Date Shif
 * Past literature(s):
 * Link: https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF
 
+### GBSG2
+
+* Brief description: Cancer data from a well known clinical trial.
+* Sector: Health
+* Real or synthetic data: Real
+* Patient-level: Yes
+* Size: 
+* Known drifts:
+* Access: Public
+* Past literature(s):
+* Link: https://www.rdocumentation.org/packages/TH.data/versions/1.0-10/topics/GBSG2
+
+### SEER
+
+* Brief description: USA cancer incidence data.
+* Sector: Health
+* Real or synthetic data: Real
+* Patient-level: Yes
+* Size: 
+* Known drifts:
+* Access: Public (access request)
+* Past literature(s):
+* Link: https://seer.cancer.gov/data/
+
+### Diabetes
+
+* Brief description: 10 years (1999-2008) of clinical diabetes care at 130 US hospitals
+* Sector: Health
+* Real or synthetic data: Real
+* Patient-level: Yes
+* Size: 
+* Known drifts:
+* Access: Public
+* Past literature(s):
+* Link: https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008
+
+### SUPPORT
+
+* Brief description: Study to Understand Prognoses Preferences Outcomes and Risks of Treatment
+* Sector: Health
+* Real or synthetic data: Real
+* Patient-level: Yes
+* Size: 9000 patients (SUPPORT2)
+* Known drifts:
+* Access: Public
+* Past literature(s):
+* Links:
+  - http://biostat.mc.vanderbilt.edu/wiki/Main/SupportDesc
+  - http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/support2csv.zip
+
+SUPPORT: Public data of critical patients. Find a description at http://biostat.mc.vanderbilt.edu/wiki/Main/SupportDesc and the data attached.
+
+### Propublica COMPAS dataset
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5777393/#R2
+https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm
+https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing
+https://github.com/propublica/compas-analysis
+
+
+
 ### ELSA
 
 English Longitudinal Study of Ageing
@@ -114,3 +175,4 @@ https://www.elsa-project.ac.uk/data-and-documentation
 USA hospital data (must pay for each year separately)
 
 https://www.hcup-us.ahrq.gov/
+
