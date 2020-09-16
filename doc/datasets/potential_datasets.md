@@ -92,6 +92,15 @@ For anonymisation reasons the original treatment year is removed (see "Date Shif
 
 ### SynPUF
 
+* Brief description: Synthetic medical claims data in OMOP format.
+* Sector: Health
+* Real or synthetic data: Synthetic
+* Patient-level: Yes
+* Size: Full set >2 million patients. We have a 1000 patient subset.
+* Known drifts:
+* Access: Public
+* Past literature(s):
+* Link: https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF
 
 ### ELSA
 
