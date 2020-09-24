@@ -42,7 +42,7 @@ For anonymisation reasons the original treatment year is removed (see "Date Shif
 * Patient-level: Yes
 * Size: Millions of patients (from 1970s to present), ~one hundred features.
 * Known drifts:
-* Access: Public (access request)
+* Access: Public (straightforward access request)
 * Past literature(s):
   * 
   * 
