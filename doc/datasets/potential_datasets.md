@@ -44,9 +44,10 @@ For anonymisation reasons the original treatment year is removed (see "Date Shif
 * Known drifts:
 * Access: Public (straightforward access request)
 * Past literature(s):
-  * http://papers.nips.cc/paper/6827-deep-multi-task-gaussian-processes-for-survival-analysis-with-competing-risks.pdf
+  * http://papers.nips.cc/paper/6827-deep-multi-task-gaussian-processes-for-survival-analysis-with-competing-risks.pdf (code available)
   * http://papers.nips.cc/paper/7413-multitask-boosting-for-survival-analysis-with-competing-risks.pdf
   * http://proceedings.mlr.press/v84/bellot18a/bellot18a.pdf
+  * http://medianetlab.ee.ucla.edu/papers/AAAI_2018_DeepHit#:~:text=DeepHit%20makes%20no%20assumptions%20about,one%20possible%20event%20of%20interest (code available)
 * Link: https://seer.cancer.gov/data/
 
 
