@@ -91,8 +91,7 @@ export class AppComponent {
     let areasOfInterest:Array<{areaType, areaName}> = [
       {areaType:"ltla", areaName:"Horsham"},
       {areaType:"ltla", areaName:"Crawley"},
-      {areaType:"ltla", areaName:"Spelthorne"},
-      {areaType:"ltla", areaName:"Birmingham"}] 
+      {areaType:"ltla", areaName:"Spelthorne"}] 
     // let areasOfInterest:Array<{areaType, areaName}> = [
     //     {areaType:"ltla", areaName:"Horsham"},
     //     {areaType:"ltla", areaName:"Crawley"},
@@ -109,7 +108,9 @@ export class AppComponent {
       //   {areaType:"ltla", areaName:"Camden"},
       //   {areaType:"ltla", areaName:"Horsham"},
       //   {areaType:"ltla", areaName:"Tower Hamlets"},
-      //   {areaType:"ltla", areaName:"Islington"}]
+      //   {areaType:"ltla", areaName:"Islington"},{areaType:"ltla", areaName:"Barnet"},
+      // {areaType:"ltla", areaName:"Camden"},
+      // {areaType:"utla", areaName:"County Durham"}]
     this.updateCasesData(areasOfInterest)
     this.updateAgeData()
   }
