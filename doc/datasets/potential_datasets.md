@@ -23,6 +23,21 @@ This document is to collect potential datasets that could be useful for the toym
 For anonymisation reasons the original treatment year is removed (see "Date Shifting" here: https://mimic.physionet.org/mimicdata/time/). This GitHub issue mentions the process for getting access to the original treatment year: https://github.com/MIT-LCP/mimic-code/issues/263
 
 
+### SEER
+
+* Brief description: USA cancer incidence data.
+* Sector: Health
+* Real or synthetic data: Real
+* Patient-level: Yes
+* Size: Millions of patients (from 1970s to present), ~one hundred features.
+* Known drifts:
+* Access: Public (access request)
+* Past literature(s):
+  * 
+  * 
+* Link: https://seer.cancer.gov/data/
+
+
 ### PHE Covid-19 Data
 * Brief description: Regional Covid19 tests, cases and deaths for the UK.
 * Sector: Health
@@ -114,17 +129,6 @@ For anonymisation reasons the original treatment year is removed (see "Date Shif
 * Past literature(s):
 * Link: https://www.rdocumentation.org/packages/TH.data/versions/1.0-10/topics/GBSG2
 
-### SEER
-
-* Brief description: USA cancer incidence data.
-* Sector: Health
-* Real or synthetic data: Real
-* Patient-level: Yes
-* Size: 
-* Known drifts:
-* Access: Public (access request)
-* Past literature(s):
-* Link: https://seer.cancer.gov/data/
 
 ### Diabetes
 
