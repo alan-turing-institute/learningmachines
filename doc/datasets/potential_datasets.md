@@ -16,6 +16,7 @@ This document is to collect potential datasets that could be useful for the toym
   * https://arxiv.org/pdf/1908.00690.pdf
     * Note that this states dates in MIMIC are offset by a random amount for each patient to maintain privacy. Authors needed a separate data agreement to access the actual year of each entry, allowing them to look at the performance of models on future data.
     * Code: https://github.com/MLforHealth/MIMIC_Generalisation
+  * https://arxiv.org/pdf/1902.00450.pdf (time series work, software available here: https://bitbucket.org/mvdschaar/mlforhealthlabpub/src/master/README.md)
 * Turing contacts:
   * QuiPP have looked into MIMIC before as well.
 * Link: https://mimic.physionet.org/
@@ -48,6 +49,8 @@ For anonymisation reasons the original treatment year is removed (see "Date Shif
   * http://papers.nips.cc/paper/7413-multitask-boosting-for-survival-analysis-with-competing-risks.pdf
   * http://proceedings.mlr.press/v84/bellot18a/bellot18a.pdf
   * http://medianetlab.ee.ucla.edu/papers/AAAI_2018_DeepHit#:~:text=DeepHit%20makes%20no%20assumptions%20about,one%20possible%20event%20of%20interest (code available)
+  * Autoprosnosis http://proceedings.mlr.press/v80/alaa18b/alaa18b.pdf (code available)
+  (All codes can be found here https://bitbucket.org/mvdschaar/mlforhealthlabpub/src/master/README.md)
 * Link: https://seer.cancer.gov/data/
 
 
