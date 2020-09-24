@@ -22,6 +22,17 @@ This document is to collect potential datasets that could be useful for the toym
 
 For anonymisation reasons the original treatment year is removed (see "Date Shifting" here: https://mimic.physionet.org/mimicdata/time/). This GitHub issue mentions the process for getting access to the original treatment year: https://github.com/MIT-LCP/mimic-code/issues/263
 
+### MIMIC-IV critical care dataset
+* Brief description: Recently released update to MIMIC-III (see above). Includes original treatment year in 3-year bins (see [here](https://mimic-iv.mit.edu/docs/datasets/core/patients/))
+* Sector: Health
+* Real or synthetic data: Real
+* Patient-level: Yes
+* Size (rows and features): Large (and data spans a decade)!
+* Known drifts: Abrupt concept shift and gradual concept shift.
+* Access: Online training course and access request form (see [here](https://mimic-iv.mit.edu/docs/access/))
+* Past literature(s):
+* Link: https://mimic-iv.mit.edu/
+
 
 ### SEER
 
