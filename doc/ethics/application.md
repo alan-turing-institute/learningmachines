@@ -15,7 +15,8 @@ Machine learning techniques are effective for building predictive models because
 
 Maintenance of predictive models is crucial for safe and effective long term use. A model developed using retrospective data in the medical domain risks becoming obsolete as medical treatments advance. 
 
-> Clinical data is highly dependent on the landscape of clinical practice as well as underlying population demographics and comorbidities, all of which vary over time. The complete utility of a healthcare model can be nearly impossible to ascertain unless one accounts for the inevitable effect of temporal dataset drift [https://arxiv.org/pdf/1908.00690.pdf].
+> Clinical data is highly dependent on the landscape of clinical practice as well as underlying population demographics and comorbidities, all of which vary over time. The complete utility of a healthcare model can be nearly impossible to ascertain unless one accounts for the inevitable effect of temporal dataset drift 
+> <div style="text-align: right"> <i>[https://arxiv.org/pdf/1908.00690.pdf] </i></div>
 
 In the case of cystic fibrosis, new treatments mean that patients can survive longer without the need for a lung transplant; this means that an algorithm that predicts when a patient requires a transplant will be gradually be making predictions about older patients with different comorbidities. Breast cancer risk assessment models which were trained on data collected from patients ten years ago may be using features such as smoking, when smoking as a trend amongst women has changed over the years. Another example is when new treatments are introduced or new data types such as genomic profiles and imaging need to be incorporated into prediction models.
 
@@ -45,7 +46,7 @@ There are many ways to build II. This project will prioritise approaches and com
 
 Learning Machines aligns with Turing goals because at the Turing we are interested in developing best practices for research and software engineering. The intelligence infrastructure proposed will support long term maintenance of prediction models built using machine learning techniques.
 
-### 2. Data and Research Methods Description
+## 2. Data and Research Methods Description
 
 Please provide a description / overview of the data that you will use for your project, if any, as well as the research methods you will use. 
 
@@ -55,3 +56,39 @@ Please provide a description / overview of the data that you will use for your p
 >- the sources of the data, e.g. the datasets that will be used, who they were created by, where they are accessible from
 >- if known, where and how the data to be used was collected
 >- a brief description of the research to be carried out and the methods that will be used
+
+### The sources of the data, e.g. the datasets that will be used, who they were created by, where they are accessible from
+
+We proposed to obtain datasets from the Surveillance, Epidemiology, and End Results (SEER) Program. The SEER program provides information on cancer statistics in an effort to reduce the cancer burden among the U.S. population. SEER is supported by the Surveillance Research Program (SRP) in NCI's Division of Cancer Control and Population Sciences (DCCPS).
+
+We have identified SEER as the source for data as one of its goals are as below:
+
+>Describe temporal changes in cancer incidence, mortality, extent of disease at diagnosis (stage), therapy, and patient survival as they may relate to the impact of cancer prevention and control interventions.
+> <div style="text-align: right"> <i>https://seer.cancer.gov/about/goals.html </i></div>
+
+
+Each member of the Learning Machines team will sign a SEER Research Data Use Agreement (DUA) to request for SEER data. The SEER Stat program will be used to perform cohort selection neccessary for the project  and to download SEER data. 
+
+### The type of data
+
+We propose to obtain cancer incidence data; these data were collected by the SEER program and amalgamated from multiple population-based cancer registries. Data types include patient demographics, primary tumor site, tumor morphology, stage at diagnosis, and first course of treatment, follow ups with patients for vital status.
+
+### The amount of data
+
+The dataset we are considering contains XX patients, collected from up to 9 cancer registries in the United States. 
+
+There are XX patient features that LM is proposing to export from the SEER database; these are summarised in the table below.
+
+|  Name | Data Type  | Description  |
+|---|---|---|
+|  sss |  Category |  sss |
+|   |   |   |
+|   |   |   |
+
+This set of data was collected in 1975-2017
+
+### A brief description of the research to be carried out and the methods that will be used
+
+The first step for LM is automate the generation of quality control checks and descriptive statistics for the dataset. This will be developed using Python Unit Testing framework. The statistical measures will be distribution and mean of the different patient features over time. 
+
+
