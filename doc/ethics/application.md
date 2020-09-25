@@ -13,7 +13,7 @@ Source: _https://turingcomplete.topdesk.net/tas/public/ssp/content/serviceflow?u
 
 Machine learning techniques are effective for building predictive models because they are good at identifying patterns in large datasets. However, the development of a model for complex real life problems often stops at the point of publication or proof of concept. 
 
-Maintenance of predictive models is crucial for safe and effective long term use. A model developed using retrospective data in the medical domain risks becoming obsolete as medical treatments advance. 
+The practice of maintenance of predictive models is crucial for safe and effective long term use. A model developed using retrospective data in the medical domain risks becoming obsolete as medical treatments advance. 
 
 > Clinical data is highly dependent on the landscape of clinical practice as well as underlying population demographics and comorbidities, all of which vary over time. The complete utility of a healthcare model can be nearly impossible to ascertain unless one accounts for the inevitable effect of temporal dataset drift 
 > <div style="text-align: right"> <i>[https://arxiv.org/pdf/1908.00690.pdf] </i></div>
@@ -26,11 +26,11 @@ For all these reasons, decisions to retrain models are difficult decisions. In a
 
 ### The purpose and goal of this project
 
-The purpose of Learning Machines is to enable continuous appraisal of the performance of an algorithm when it is used with new data, over time. 
+The purpose of Learning Machines is to enable continuous appraisal of the performance of an algorithm, as new data is collected over time. 
 
 The goal of LM project is to determine, design and build software infrastructure neccessary to support the continuous appraisal of an algorithm performance, for the long term. In this document, we will refer to this infrastructure that supports long term monitoring of an algorithm, the intelligence infrastructure (II). 
 
-There are many ways to build II. This project will prioritise approaches and components which enables good research engineering practices with minimal overheads to researchers themselves. Examples of software components to be used in the Learning Machines Intelligence Infrastructure (LM II) are:
+There are many ways to build II. This project will prioritise approaches and components which enables good research engineering practices with minimal overheads to researchers themselves. Examples of modules to be used in the Learning Machines Intelligence Infrastructure (LM II) are:
 
 1. Pre-specification of statistical measures of the dataset used to train a model leading to automated report generation of those measures when new data is available (eg. when the algorithm is used) 
 1. Version control of datasets
@@ -59,7 +59,7 @@ Please provide a description / overview of the data that you will use for your p
 
 ### The sources of the data, e.g. the datasets that will be used, who they were created by, where they are accessible from
 
-We proposed to obtain datasets from the Surveillance, Epidemiology, and End Results (SEER) Program. The SEER program provides information on cancer statistics in an effort to reduce the cancer burden among the U.S. population. SEER is supported by the Surveillance Research Program (SRP) in NCI's Division of Cancer Control and Population Sciences (DCCPS).
+We propose to obtain datasets from the Surveillance, Epidemiology, and End Results (SEER) Program. The SEER program provides information on cancer statistics in an effort to reduce the cancer burden among the U.S. population. SEER is supported by the Surveillance Research Program (SRP) in NCI's Division of Cancer Control and Population Sciences (DCCPS).
 
 We have identified SEER as the source for data as one of its goals are as below:
 
@@ -85,10 +85,14 @@ There are XX patient features that LM is proposing to export from the SEER datab
 |   |   |   |
 |   |   |   |
 
-This set of data was collected in 1975-2017
+This set of data was collected in 1975-2017.
 
 ### A brief description of the research to be carried out and the methods that will be used
 
-The first step for LM is automate the generation of quality control checks and descriptive statistics for the dataset. This will be developed using Python Unit Testing framework. The statistical measures will be distribution and mean of the different patient features over time. 
+The first step for LM is automate the generation of quality control checks and descriptive statistics for the dataset. This will be developed using Python Unit Testing framework. We will be using both single value measures (eg. distribution or mean) and methods such as autoencoders to quantify how values change over time. 
+
+The algorithm or analysis performed here on the dataset will be simplistic 'toy models' or have been published with open source code. We will be looking at deploying random forest type methods to predict cause of death. It is important to note that the algorithm or analysis itself is not the focal point of the project, instead it is features of datasets changing over time as new data is accumulated, and how this affects algorithm performance.
+
+
 
 
