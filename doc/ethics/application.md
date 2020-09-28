@@ -100,9 +100,9 @@ The full list of patient features are listed as a data dictionary [here](https:/
 
 ### A brief description of the research to be carried out and the methods that will be used
 
-The first step for LM is automate the generation of quality control checks and descriptive statistics for the dataset. This will be developed using Python Unit Testing framework. We will be using both single value measures (eg. distribution or mean) and methods such as autoencoders to quantify how values change over time. 
+The first step for LM is to automate the generation of quality control checks and descriptive statistics for the dataset. This will be developed using Python Unit Testing framework. We will be using both single value measures (eg. distribution or mean) and also more complicated methods such as autoencoders to quantify how values are changing over time and whether a retraining is necessary. 
 
-The algorithm or analysis performed here on the dataset will be simplistic 'toy models' or have been published with open source code. We will be looking at deploying well established machine learning methods eg.regression and random forest to predict disease outcomes. 
+The algorithm or analysis performed here on the dataset will be simplistic 'toy models' or have been published with open source code. We will be looking at deploying well established machine learning methods (e.g. random forest) to predict disease outcomes. 
 
 It is important to note that the algorithm or analysis itself is not the focal point of the project, instead it is features of datasets changing over time as new data is accumulated, and how this affects algorithm performance.
 
