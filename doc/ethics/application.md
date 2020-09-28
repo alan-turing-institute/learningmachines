@@ -67,31 +67,44 @@ We have identified SEER as the source for data as one of its goals are as below:
 > <div style="text-align: right"> <i>https://seer.cancer.gov/about/goals.html </i></div>
 
 
-Each member of the Learning Machines team will sign a SEER Research Data Use Agreement (DUA) to request for SEER data. The SEER Stat program will be used to perform cohort selection neccessary for the project  and to download SEER data. 
+There are two SEER products: 
+- SEER Research, which excludes geography (county, state/registry), month in dates (e.g. month at diagnosis), and a few other demographic fields. and 
+- SEE Research Plus, which include geography, months in dates, and other demographic fields, as well as information on radiation therapy and chemotherapy given as part of the first-course treatment. 
+
+Learning Machines will apply to access SEER Research, therefore accordingly
+each member of the Learning Machines team will sign a SEER Research Data Use Agreement (DUA) to request for SEER data. A copy of the DUA is found [here](https://seer.cancer.gov/data/dua/SEER-DUA-ResearchData.pdf) and also included as supplementary information with this application.
+
+As per accessibility protocol for SEER Research, the SEER Stat program will be used to perform cohort selection neccessary for the project  and to download SEER data. 
 
 ### The type of data
 
-We propose to obtain cancer incidence data; these data were collected by the SEER program and amalgamated from multiple population-based cancer registries. Data types include patient demographics, primary tumor site, tumor morphology, stage at diagnosis, and first course of treatment, follow ups with patients for vital status.
+We propose to obtain cancer incidence data; these data were collected by the SEER program and amalgamated from multiple population-based cancer registries. Data types include patient demographics, primary tumor site, tumor morphology, stage at diagnosis, and first course of treatment, follow ups with patients for vital status.  
 
 ### The amount of data
 
-The dataset we are considering contains XX patients, collected from up to 9 cancer registries in the United States. 
+The dataset we are considering contains 5,347,692 records of incidences of tumours, collected from up to 9 cancer registries in the United States, from years 1975-2017
 
-There are XX patient features that LM is proposing to export from the SEER database; these are summarised in the table below.
+There are approximately 141 patient features in the the SEER Research database; examples of these which are relevant to Learning Machines are summarised in the table below.
 
-|  Name | Data Type  | Description  |
+|  Name | Data Type (Category vs Numerical vs Date)  | Description  |
 |---|---|---|
-|  sss |  Category |  sss |
-|   |   |   |
-|   |   |   |
+| Age recode with <1 year olds | Category | This recode has 19 age groups in the age recode variable (< 1 year, 1-4 years, 5-9 years, ..., 85+ years). |
+| Race recode (White, Black, Other) | Category | Race recode is based on the race variables and the American Indian/Native American IHS link variable. |
+| Year of diagnosis | Date (Year) | Values are 1973-2014 but may be a subset. |
+| Primary Site | Category | Codes are found in the Topography section of the International Classification of Diseases for Oncology (ICD-O) 3rd edition |
+| Grade | Category | Grade Based on grade codes in ICD-O-3 |
+| Total number of in situ/malignant tumors for patient | Numerical | Based on maximum sequence number of any malignant/in situ tumors in SEER through the last released year of diagnosis. This value is the same across all tumors for a person |
 
-This set of data was collected in 1975-2017.
+The full list of patient features are listed as a data dictionary [here](https://seer.cancer.gov/data-software/documentation/seerstat/nov2019/seerstat-variable-dictionary-nov2019.pdf
+)
 
 ### A brief description of the research to be carried out and the methods that will be used
 
 The first step for LM is automate the generation of quality control checks and descriptive statistics for the dataset. This will be developed using Python Unit Testing framework. We will be using both single value measures (eg. distribution or mean) and methods such as autoencoders to quantify how values change over time. 
 
-The algorithm or analysis performed here on the dataset will be simplistic 'toy models' or have been published with open source code. We will be looking at deploying random forest type methods to predict cause of death. It is important to note that the algorithm or analysis itself is not the focal point of the project, instead it is features of datasets changing over time as new data is accumulated, and how this affects algorithm performance.
+The algorithm or analysis performed here on the dataset will be simplistic 'toy models' or have been published with open source code. We will be looking at deploying well established machine learning methods eg.regression and random forest to predict disease outcomes. 
+
+It is important to note that the algorithm or analysis itself is not the focal point of the project, instead it is features of datasets changing over time as new data is accumulated, and how this affects algorithm performance.
 
 
 
