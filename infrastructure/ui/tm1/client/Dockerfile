@@ -4,10 +4,12 @@ RUN apt-get update; apt-get -y install nano
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+# COPY package*.json ./
+# RUN npm install
 
-COPY . . 
+# COPY . . 
 EXPOSE  4200
-CMD [ "npm", "start" ]
+CMD [ "ng", "serve" ]
+
+
 
