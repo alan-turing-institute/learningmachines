@@ -3,27 +3,18 @@ import { NgModule } from '@angular/core';
 import { ClarityModule } from "@clr/angular";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PatientComponent } from './perspectives/patient/patient.component';
-import { ClinicianComponent } from './perspectives/clinician/clinician.component';
-import { EngineerComponent } from './perspectives/engineer/engineer.component';
-import { MapComponent } from './vis/map/map.component';
-import { EdssComponent } from './vis/edss/edss.component';
 import { FormsModule } from '@angular/forms';
-import { PredictionComponent } from './vis/prediction/prediction.component';
-import { RelapseComponent } from './vis/relapse/relapse.component';
-import { PerformanceComponent } from './vis/performance/performance.component';
+
+import { TimelineComponent } from './navigation/timeline/timeline.component';
+import { PatientComponent } from './perspectives/patients/patient/patient.component';
+import { PatientsComponent } from './perspectives/patients/patients.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientComponent,
-    ClinicianComponent,
-    EngineerComponent,
-    MapComponent,
-    EdssComponent,
-    PredictionComponent,
-    RelapseComponent,
-    PerformanceComponent
+    TimelineComponent,
+    PatientsComponent
   ],
   imports: [
     BrowserModule,
