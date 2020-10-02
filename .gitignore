@@ -8,5 +8,7 @@ alg/MLFlow/mlruns
 .DS_Store
 .ipynb_checkpoints/
 __pycache__/
-infrastructure/toymodel0/client/node_modules
+
+# Libraries
+node_modules/
 
