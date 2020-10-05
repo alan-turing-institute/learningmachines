@@ -88,19 +88,19 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    let areasOfInterest:Array<{areaType, areaName}> = [
-      {areaType:"ltla", areaName:"Horsham"},
-      {areaType:"ltla", areaName:"Crawley"},
-      {areaType:"ltla", areaName:"Spelthorne"}] 
     // let areasOfInterest:Array<{areaType, areaName}> = [
-    //     {areaType:"ltla", areaName:"Horsham"},
-    //     {areaType:"ltla", areaName:"Crawley"},
-    //     {areaType:"ltla", areaName:"Adur"},
-    //     {areaType:"ltla", areaName:"Arun"},
-    //     {areaType:"ltla", areaName:"Mid Sussex"},
-    //     {areaType:"ltla", areaName:"Chichester"},
-    //     {areaType:"ltla", areaName:"Worthing"},
-    //     {areaType:"ltla", areaName:"Spelthorne",}] 
+    //   {areaType:"ltla", areaName:"Horsham"},
+    //   {areaType:"ltla", areaName:"Crawley"},
+    //   {areaType:"ltla", areaName:"Spelthorne"},
+    //   {areaType:"ltla", areaName:"Birmingham"}] 
+    let areasOfInterest:Array<{areaType, areaName}> = [
+        {areaType:"ltla", areaName:"Horsham"},
+        {areaType:"ltla", areaName:"Crawley"},
+        {areaType:"ltla", areaName:"Adur"},
+        {areaType:"ltla", areaName:"Arun"},
+        {areaType:"ltla", areaName:"Mid Sussex"},
+        {areaType:"ltla", areaName:"Chichester"},
+        {areaType:"ltla", areaName:"Worthing"}] 
     
       // let areasOfInterest:Array<{areaType, areaName}> = [
       //   {areaType:"ltla", areaName:"Greenwich"},
