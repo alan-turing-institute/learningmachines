@@ -8,9 +8,7 @@ import { PatientService } from './patient.service';
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-
   constructor(private patientService: PatientService) { }
-
   patients : Array<Patient>
   
   ngOnInit(): void {

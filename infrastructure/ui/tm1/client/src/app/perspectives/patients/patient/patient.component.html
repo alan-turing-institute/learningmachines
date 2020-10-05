@@ -1,46 +1,69 @@
-<div class="card">
+<div class="card clickable" (click)="displayDetails()">
   <div class="card-header">
-      Patient ID: {{patientID}}
-      <!-- <div class="progress-block">
-        <label for="demoProgressBar">Loaded record</label>
-        <clr-progress-bar id="demoProgressBar" clrValue="100"></clr-progress-bar>
-      </div> -->
+      Patient ID: {{patient.id}}
   </div>
   <div class="card-block">
       <div class="card-text">
         <div class="clr-row">
           <div class="clr-col-6">
-            <form clrForm>
-              <label>Predicted</label>
               <clr-checkbox-container>
+                <label>Predicted</label>
                 <clr-checkbox-wrapper>
-                  <input type="checkbox" clrCheckbox value="option1" name="options" />
+                  <input type="checkbox" clrCheckbox value="option1" name="options" disabled/>
                   <label>Option 1</label>
                 </clr-checkbox-wrapper>
                 <clr-checkbox-wrapper>
-                  <input type="checkbox" clrCheckbox value="option2" name="options" />
-                  <label>Option 2 97%</label>
+                  <input type="checkbox" clrCheckbox value="option2" name="options" disabled/>
+                  <label>Option 2 </label>
                 </clr-checkbox-wrapper>
+                <clr-control-helper>Confidence: 97%</clr-control-helper>
               </clr-checkbox-container>
-            </form>
           </div>
           <div class="clr-col-6">
-            <form clrForm>
+            <clr-checkbox-container>
               <label>Actual</label>
-              <clr-checkbox-container>
-                <clr-checkbox-wrapper>
-                  <input type="checkbox" clrCheckbox value="option1" name="options" />
-                  <label>Option 1</label>
-                </clr-checkbox-wrapper>
-                <clr-checkbox-wrapper>
-                  <input type="checkbox" clrCheckbox value="option2" name="options" />
-                  <label>Option 2</label>
-                </clr-checkbox-wrapper>
-              </clr-checkbox-container>
-            </form>
+              <clr-checkbox-wrapper>
+                <input type="checkbox" clrCheckbox value="option1" name="options" />
+                <label>Option 1</label>
+              </clr-checkbox-wrapper>
+              <clr-checkbox-wrapper>
+                <input type="checkbox" clrCheckbox value="option2" name="options" />
+                <label>Option 2</label>
+              </clr-checkbox-wrapper>
+            </clr-checkbox-container>
+            
           </div>
         </div>
         
       </div>
   </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'sm'">
+  <h3 class="modal-title">Patient ID: {{patient.id}}</h3>
+  <div class="modal-body">
+    <clr-datagrid>
+      <clr-dg-column>Patient Information</clr-dg-column>
+      <clr-dg-column>Value</clr-dg-column>
+      <clr-dg-row *ngFor="let info of patient.personalInfo">
+          <clr-dg-cell>{{info.name}}</clr-dg-cell>
+          <clr-dg-cell>{{info.value}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+    <clr-datagrid>
+      <clr-dg-column>Patient Medical History</clr-dg-column>
+      <clr-dg-column>Value</clr-dg-column>
+      <clr-dg-column>Date Diagnosed</clr-dg-column>
+      <clr-dg-column>Treatment</clr-dg-column>
+      <clr-dg-column>Outcome</clr-dg-column>
+      <clr-dg-column>Date of Outcome</clr-dg-column>
+      <!-- <clr-dg-row *ngFor="let info of patient.personalInfo">
+          <clr-dg-cell>{{info.name}}</clr-dg-cell>
+          <clr-dg-cell>{{info.value}}</clr-dg-cell>
+      </clr-dg-row> -->
+    </clr-datagrid>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="opened = false">Close</button>
+  </div>
+</clr-modal>
