@@ -1,3 +1,5 @@
+type ChartType = "bar" | "line"
+
 interface Treatment {
   treatment: string;
   value: string;
@@ -22,6 +24,7 @@ interface MedicalHistory {
   diagnosisDate: Date;
   treatment: Treatment;
   outcome: Outcome;
+  outcomeDate: Date;
 }
 
 interface Personal {

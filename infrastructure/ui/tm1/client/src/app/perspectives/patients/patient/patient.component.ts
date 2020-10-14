@@ -12,9 +12,6 @@ export class PatientComponent implements OnInit {
 
   opened:Boolean
   @Input() patient: Patient;
-  // patientID:string = "#1234567"
-  // patientAge: number = 36
-  // patientName: string = "John Doe"
 
   ngOnInit(): void {
     this.opened = false

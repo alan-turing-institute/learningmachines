@@ -1,14 +1,20 @@
-<div class="card">
-  <div class="card-header">
-      Engineer
-      <div class="progress-block">
-        <label for="demoProgressBar">Start benchmark</label>
-        <clr-progress-bar id="demoProgressBar" clrValue="0"></clr-progress-bar>
-      </div>
-  </div>
-  <div class="card-block">
-      <div class="card-text">
-        <app-performance></app-performance>
-      </div>
+<div class="card-columns">
+  <div *ngFor="let view of descriptiveStatistics" class="card clickable">
+    <div class="card-header">
+      {{view.title}}
+    </div>
+    <div class="card-block">
+      <div class="card-img">
+        <app-bar-chart [chartView]="view"></app-bar-chart>
+    </div>
+    <div class="card-block">
+        <p class="card-text">
+            ...
+        </p>
+    </div>
+    </div>
   </div>
 </div>
+
+
+

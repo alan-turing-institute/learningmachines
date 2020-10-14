@@ -52,6 +52,7 @@ export class PerformanceComponent implements OnInit {
   ngAfterViewInit():void {
     setTimeout(()=>{
       this.createPerformance()
+      console.log("done")
     }, 300)
   }
 

@@ -1,0 +1,34 @@
+<form clrStepper [formGroup]="form" (ngSubmit)="submit()">
+  <clr-stepper-panel formGroupName="train">
+    <clr-step-title>Select Training Data</clr-step-title>
+    <!-- <clr-step-description>Select Training Data</clr-step-description>  -->
+    <clr-step-content *clrIfExpanded>
+      <app-data-engineer></app-data-engineer>
+      <button clrStepButton="next">Next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+  <clr-stepper-panel formGroupName="monitor">
+    <clr-step-title>Monitor Model Performance</clr-step-title>
+    <!-- <clr-step-description>Select Training Data</clr-step-description> -->
+    <clr-step-content *clrIfExpanded>
+      <app-performance></app-performance>
+      <button clrStepButton="next">Next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+  <clr-stepper-panel formGroupName="enroll">
+    <clr-step-title>Enroll patients</clr-step-title>
+    <!-- <clr-step-description>Select Training Data</clr-step-description> -->
+    <clr-step-content *clrIfExpanded>
+      <app-data-engineer></app-data-engineer>
+      <button clrStepButton="next">Next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+  <clr-stepper-panel formGroupName="outcome">
+    <clr-step-title>Record outcome</clr-step-title>
+    <!-- <clr-step-description>Select Training Data</clr-step-description> -->
+    <clr-step-content *clrIfExpanded>
+      <app-data-engineer></app-data-engineer>
+      <button clrStepButton="next">Report</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+</form>

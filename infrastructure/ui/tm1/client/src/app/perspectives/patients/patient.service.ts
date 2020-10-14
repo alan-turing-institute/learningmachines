@@ -21,30 +21,30 @@ export class PatientService {
         ],
         medicalHistory: []
       },
-      { id: '1', 
+      { id: '3', 
         personalInfo: [
           {name: 'age', value:'16'}
         ],
         medicalHistory: []
       },
-      { id: '2', 
+      { id: '4', 
         personalInfo: [
           {name: 'age', value:'16'}
         ],
         medicalHistory: []
       },
-      { id: '1', 
+      { id: '5', 
         personalInfo: [
           {name: 'age', value:'16'}
         ],
         medicalHistory: []
       },
-      { id: '2', 
+      { id: '6', 
         personalInfo: [
           {name: 'age', value:'16'}
         ],
         medicalHistory: []
-      },
+      }
     ]
     return patients
   }
