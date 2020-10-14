@@ -25,12 +25,15 @@ export class BarChartComponent implements OnInit {
   }
 
   createChart() {
+    var densityData = {
+      label: 'Density of Planets (kg/m3)',
+      data: [5427, 5243, 5514, 3933, 1326, 687, 1271, 1638]
+    };
     this.myChart = new Chart(this.chartView.id, {
       type: 'bar',
       data: {
-        labels: ["2000", "2001"],
-      datasets: [10, 20]
-      },
+        labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
+        datasets: [densityData]},
       options: {
         scales: {
             xAxes: [{
