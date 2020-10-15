@@ -1,16 +1,9 @@
-<div class="card-columns">
-  <div *ngFor="let view of descriptiveStatistics" class="card clickable">
-    <div class="card-header">
-      {{view.title}}
-    </div>
+<div class="clr-row">
+  <div *ngFor="let view of descriptiveStatistics" class="clr-col-lg-6 clr-col-12">
+  <div  class="card">
     <div class="card-block">
       <div class="card-img">
         <app-bar-chart [chartView]="view"></app-bar-chart>
-    </div>
-    <div class="card-block">
-        <p class="card-text">
-            ...
-        </p>
     </div>
     </div>
   </div>

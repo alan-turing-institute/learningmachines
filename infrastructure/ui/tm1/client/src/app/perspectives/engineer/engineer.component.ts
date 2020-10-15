@@ -24,8 +24,24 @@ export class EngineerComponent implements OnInit {
       {id: "numCases", 
       vis: "bar", 
       title: "Dataset Size",
-      data: [{x:'2000', y:20}, {x:'2001', y:10}]
+      data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
+      },
+      {id: "numCases1", 
+      vis: "bar", 
+      title: "Dataset Size",
+      data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
+      },
+      {id: "numCases2", 
+      vis: "bar", 
+      title: "Dataset Size",
+      data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
+      },
+      {id: "numCases3", 
+      vis: "bar", 
+      title: "Dataset Size",
+      data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
       }
+
     ]
   }
 }

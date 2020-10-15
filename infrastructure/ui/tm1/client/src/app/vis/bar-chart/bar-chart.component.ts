@@ -25,24 +25,31 @@ export class BarChartComponent implements OnInit {
   }
 
   createChart() {
-    var densityData = {
-      label: 'Density of Planets (kg/m3)',
-      data: [5427, 5243, 5514, 3933, 1326, 687, 1271, 1638]
+    var dataset = {
+      label: this.chartView.title,
+      data: this.chartView.data.map(function(e){
+        return e.y
+      })
     };
+    
     this.myChart = new Chart(this.chartView.id, {
       type: 'bar',
       data: {
-        labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
-        datasets: [densityData]},
-      options: {
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    offsetGridLines: true
-                }
-            }]
-        }
-      }
+        labels: this.chartView.data.map(function(e){
+          return e.x
+        }),
+        barThickness: 'flex',
+        datasets: [dataset]
+      },
+      // options: {
+      //   scales: {
+      //       xAxes: [{
+      //           gridLines: {
+      //               offsetGridLines: true
+      //           }
+      //       }]
+      //   }
+      // }
     });
   }
 
