@@ -16,6 +16,7 @@ import { StepperComponent } from './navigation/stepper/stepper.component';
 import { DataEngineerComponent } from './perspectives/data-engineer/data-engineer.component';
 
 import { BarChartComponent } from './vis/bar-chart/bar-chart.component';
+import { LineChartComponent } from './vis/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BarChartComponent } from './vis/bar-chart/bar-chart.component';
     EngineerComponent,
     StepperComponent,
     DataEngineerComponent,
-    BarChartComponent
+    BarChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

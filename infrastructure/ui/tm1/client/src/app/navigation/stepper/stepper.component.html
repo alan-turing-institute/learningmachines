@@ -1,34 +1,42 @@
 <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
+
   <clr-stepper-panel formGroupName="train">
-    <clr-step-title>Select Training Data</clr-step-title>
+    <clr-step-title>Get Training Data</clr-step-title>
     <!-- <clr-step-description>Select Training Data</clr-step-description>  -->
     <clr-step-content *clrIfExpanded>
       <app-data-engineer></app-data-engineer>
       <button clrStepButton="next">Next</button>
     </clr-step-content>
   </clr-stepper-panel>
+
   <clr-stepper-panel formGroupName="monitor">
-    <clr-step-title>Monitor Model Performance</clr-step-title>
-    <!-- <clr-step-description>Select Training Data</clr-step-description> -->
+    <clr-step-title>Train Model</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <app-performance></app-performance>
-      <button clrStepButton="next">Next</button>
+      <!-- <app-performance></app-performance> -->
+      <button clrStepButton="next">Train</button>
     </clr-step-content>
   </clr-stepper-panel>
+
   <clr-stepper-panel formGroupName="enroll">
-    <clr-step-title>Enroll patients</clr-step-title>
-    <!-- <clr-step-description>Select Training Data</clr-step-description> -->
+    <clr-step-title>Get New Cases</clr-step-title>
     <clr-step-content *clrIfExpanded>
       <app-data-engineer></app-data-engineer>
-      <button clrStepButton="next">Next</button>
+      <button clrStepButton="next">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>
-  <clr-stepper-panel formGroupName="outcome">
-    <clr-step-title>Record outcome</clr-step-title>
-    <!-- <clr-step-description>Select Training Data</clr-step-description> -->
+
+  <clr-stepper-panel formGroupName="predict">
+    <clr-step-title>Get Predictions</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <app-data-engineer></app-data-engineer>
-      <button clrStepButton="next">Report</button>
+      <button clrStepButton="next">Predict</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="record">
+    <clr-step-title>Monitor Performance</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <button clrStepButton="next">Next</button>
+      <button clrStepButton="next">Retrain</button>
     </clr-step-content>
   </clr-stepper-panel>
 </form>

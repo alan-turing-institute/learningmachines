@@ -1,13 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-
-type ChartType = "bar" | "line"
-interface DataView {
-  id: string
-  vis: ChartType
-  title: string
-  data: Array<{x:string, y:number}>
-}
+import { DataView } from '../chartSpecification';
 
 @Component({
   selector: 'app-bar-chart',

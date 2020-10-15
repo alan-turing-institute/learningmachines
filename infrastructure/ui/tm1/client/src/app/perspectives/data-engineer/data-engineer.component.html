@@ -1,10 +1,12 @@
-<ul class="clr-timeline clr-timeline-vertical">
-  <li *ngFor="let year of years" class="clr-timeline-step">
-    <div class="clr-timeline-step-header">{{year.value}}</div>
-    <clr-icon [attr.shape]="year.icon" aria-label="Not started" (click)="toggleTrainingYear(year.value)"></clr-icon>
-    <div class="clr-timeline-step-body">
-      <span class="clr-timeline-step-title">{{year.purpose}}</span>
-      <span class="clr-timeline-step-description">Root CA certificate requested.</span>
-    </div>
-  </li>
-</ul>
+<div class='cohortSelector'>
+  <ul class="clr-timeline clr-timeline-vertical">
+    <li *ngFor="let year of years" class="clr-timeline-step">
+      <div class="clr-timeline-step-header">{{year.value}}</div>
+      <clr-icon [attr.shape]="year.icon" aria-label="Not started" (click)="toggleTrainingYear(year.value)"></clr-icon>
+      <div class="clr-timeline-step-body">
+        <span class="clr-timeline-step-title">{{year.purpose}}</span>
+        <span class="clr-timeline-step-description">{{year.numberOfRows}} rows</span>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { YearSelection } from './data'
+import { DataEngineerService} from './data-engineer.service'
 
-type PurposeTypes = "train" | "test" | "unseen"
-type IconTypes = "circle" | "dot-circle" | "success-standard" | "error-standard"
-
-interface YearSelection {
-  value: number;
-  purpose: PurposeTypes;
-  icon: IconTypes;
-}
 
 @Component({
   selector: 'app-data-engineer',
@@ -16,19 +10,18 @@ interface YearSelection {
 })
 export class DataEngineerComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private dataService: DataEngineerService) { }
   years: Array<YearSelection>
 
   ngOnInit(): void {
-    this.years = [
-      {value: 2000, purpose: 'unseen', icon: 'circle'},
-      {value: 2001, purpose: 'unseen', icon: 'circle'},
-      {value: 2002, purpose: 'unseen', icon: 'circle'}
-    ]
+    this.getYears()
   }
 
-  toggleTrainingYear(selectedYear:number): void {
+  getYears():void {
+    this.years = this.dataService.getYears()
+  }
+
+  toggleTrainingYear(selectedYear:string): void {
     this.years.map(function(element, index, array){
       if (element.value == selectedYear){
         if (element.purpose == 'unseen') {

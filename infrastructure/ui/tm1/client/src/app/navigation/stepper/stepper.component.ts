@@ -18,7 +18,9 @@ export class StepperComponent implements OnInit {
       }),
       enroll: this.formBuilder.group({
       }),
-      outcome: this.formBuilder.group({
+      predict: this.formBuilder.group({
+      }),
+      record: this.formBuilder.group({
       }),
     });
   }
