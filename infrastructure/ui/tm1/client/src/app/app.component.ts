@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataView } from './vis/chartSpecification';
+
+import { YearSelection } from './perspectives/data-engineer/data'
+import { DataEngineerService} from './perspectives/data-engineer/data-engineer.service'
+
 
 @Component({
   selector: 'app-root',
@@ -7,25 +11,22 @@ import { DataView } from './vis/chartSpecification';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  performance:DataView = this.getPerformanceData()
+export class AppComponent implements OnInit {
+
+  constructor(private dataService: DataEngineerService) {
+  }
+  
+  performance:DataView = null
+  descriptiveStatistics: Array<DataView> = []
+  years: Array<YearSelection> = []
   title = 'toymodel0';
 
-  getPerformanceData(): DataView {
-    let performance:DataView = {id: "performanceVis", 
-        vis: "line",
-        sizeClass:"fixedSize", 
-        title: "Model Performance",
-        data: [{x:'V.0', y:80}, 
-          {x:'2003', y:77}, 
-          {x:'2004', y:60},
-          {x:'2005', y:55},
-          {x:'V.1', y:81},
-          {x:'2006', y:79},
-        ]
-      }
-    return performance
+  ngOnInit():void {
+    this.years = this.dataService.getYears()
+    this.performance = this.dataService.getPerformanceData()
+    this.descriptiveStatistics = this.dataService.getDescriptiveStatistics()
   }
+
 }
 
 

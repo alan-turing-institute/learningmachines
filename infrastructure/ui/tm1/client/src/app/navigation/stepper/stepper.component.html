@@ -5,7 +5,7 @@
     <!-- <clr-step-description>Select Training Data</clr-step-description>  -->
     <clr-step-content *clrIfExpanded>
       <app-data-engineer [years]="years"></app-data-engineer>
-      <button clrStepButton="next" (click)="updateYearSelection()" routerLink="/engineer-view">Next</button>
+      <button clrStepButton="next" (click)="updateYearSelection()" [routerLink]="['/engineer-view',years]">Next</button>
     </clr-step-content>
   </clr-stepper-panel>
 
@@ -20,7 +20,7 @@
   <clr-stepper-panel formGroupName="enroll">
     <clr-step-title>Get New Cases</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <app-data-engineer></app-data-engineer>
+      <app-data-engineer [years]="years"></app-data-engineer>
       <button clrStepButton="next" routerLink="/engineer-view">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>

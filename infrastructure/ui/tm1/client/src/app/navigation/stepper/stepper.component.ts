@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { YearSelection } from '../../perspectives/data-engineer/data'
 import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
@@ -11,7 +11,7 @@ import { DataEngineerService} from '../../perspectives/data-engineer/data-engine
 
 export class StepperComponent implements OnInit {
   form: FormGroup;
-  years: Array<YearSelection>
+  @Input() years: Array<YearSelection>
 
   constructor(private formBuilder: FormBuilder, private dataService: DataEngineerService) { 
     this.form = this.formBuilder.group({
@@ -33,7 +33,7 @@ export class StepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getYears()
+    // this.getYears()
   }
 
   submit(): void {
