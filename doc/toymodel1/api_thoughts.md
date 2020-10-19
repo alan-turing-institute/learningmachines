@@ -80,3 +80,55 @@ retrainModel(int startYear, int endYear, [optional: modelID]) {
              // run retraining command for all models/model defined by modelID
 }
 ```
+``` javascript
+getYears():void{
+    let yearsSelection = []
+    for (let y = 1992; y <=2017; y++)
+    {
+      this.yearsSelection.push({value: y.toString(), 
+        purpose: 'unseen', 
+        icon: 'circle',
+        numberOfRows: Math.round(Math.random()*100)}
+      )
+    }
+    return yearsSelection
+  }
+
+  getPerformanceData(): void {
+    let performance = {
+      id: "performanceVis", 
+      vis: "line",
+      sizeClass:"fixedSize", 
+      title: "Model Performance",
+      data: [{x:'V.0', y:80}, 
+      {x:'2003', y:77}, 
+      {x:'2004', y:60},
+      {x:'2005', y:55},
+      {x:'V.1', y:81},
+      {x:'2006', y:79},
+    ]}
+    return performance
+  }
+
+  getDescriptiveStatistics(): void {
+    let descriptiveStatistics = [
+      { id: "numCases", 
+        sizeClass: "autoSize",
+        vis: "bar", 
+        title: "Dataset Size",
+        data: []
+      },
+      {id: "numCases1", 
+      sizeClass: "autoSize",
+      vis: "bar", 
+        title: "Dataset Size",
+        data: []
+      }
+    ]
+    descriptiveStatistics = descriptiveStatistics.map(function(element){
+      for (let y = 1992; y <=2017; y++)
+        element.data.push({x:y.toString(), y:Math.round(Math.random()*1000)})
+      return element
+    })
+  }
+```

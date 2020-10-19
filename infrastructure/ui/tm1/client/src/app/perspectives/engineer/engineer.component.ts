@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DataView, ChartType } from '../../vis/chartSpecification';
+import { YearSelection } from '../../perspectives/data-engineer/data'
+import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
+
 
 @Component({
   selector: 'app-engineer',
@@ -7,11 +10,46 @@ import { DataView, ChartType } from '../../vis/chartSpecification';
   styleUrls: ['./engineer.component.css']
 })
 
-export class EngineerComponent implements OnInit {
+export class EngineerComponent implements OnInit, OnChanges {
 
-  constructor() { }
-  @Input() descriptiveStatistics: Array<DataView>
+  constructor(private dataService: DataEngineerService) { }
+  @Input() years: Array<YearSelection>
+  descriptiveStatistics: Array<DataView>
 
   ngOnInit(): void {
+    this.descriptiveStatistics=[]
+    
+    // let years = this.dataService.getYears()
+    // let trainingSelection:Array<YearSelection> = years.filter(function(element){
+    //   return element.purpose == "train"
+    // })
+
+    // let trainingYears:Array<string> = trainingSelection.map(function(element){
+    //   return element.value
+    // })
+
+    // this.descriptiveStatistics = this.dataService.getFilteredDescriptiveStatistics(trainingYears)
+  }
+
+  ngOnChanges(changes: SimpleChanges):void{
+    this.updateDescriptiveStatistics()
+  }
+
+  updateDescriptiveStatistics() {
+    let trainingSelection:Array<YearSelection> = this.years.filter(function(element){
+      return element.purpose == "train"
+    })
+
+    if (trainingSelection.length > 0){
+      let trainingYears:Array<string> = trainingSelection.map(function(element){
+        return element.value
+      })
+      this.descriptiveStatistics = this.dataService.getFilteredDescriptiveStatistics(trainingYears)
+    }
+    else {
+      this.descriptiveStatistics = []
+    }
+
+    
   }
 }

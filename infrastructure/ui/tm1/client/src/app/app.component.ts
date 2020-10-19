@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
     this.descriptiveStatistics = this.dataService.getDescriptiveStatistics()
   }
 
+  updateYearSelection():void {
+    this.years = this.dataService.getYears()
+  }
+
 }
 
 

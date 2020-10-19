@@ -48,9 +48,8 @@ export class BarChartComponent implements OnInit {
 
   ngAfterViewInit():void {
     setTimeout(()=>{
-      console.log(this.chartView.id)
       this.createChart()
-    }, 300)
+    }, 100)
   }
 
 }

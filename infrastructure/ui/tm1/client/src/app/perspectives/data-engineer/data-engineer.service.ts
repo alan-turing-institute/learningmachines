@@ -9,8 +9,15 @@ export class DataEngineerService {
 
   yearsSelection:Array<YearSelection>
   descriptiveStatistics:Array<DataView>
-  
+  performance:DataView
+
   constructor() { 
+    this.setYears();
+    this.setPerformanceData();
+    this.setDescriptiveStatistics();
+  }
+
+  setYears():void{
     this.yearsSelection = []
     for (let y = 1992; y <=2017; y++)
     {
@@ -20,33 +27,43 @@ export class DataEngineerService {
         numberOfRows: Math.round(Math.random()*100)}
       )
     }
+  }
 
+  setPerformanceData(): void {
+    this.performance = {
+      id: "performanceVis", 
+      vis: "line",
+      sizeClass:"fixedSize", 
+      title: "Model Performance",
+      data: [{x:'V.0', y:80}, 
+      {x:'2003', y:77}, 
+      {x:'2004', y:60},
+      {x:'2005', y:55},
+      {x:'V.1', y:81},
+      {x:'2006', y:79},
+    ]}
+  }
+
+  setDescriptiveStatistics(): void {
     this.descriptiveStatistics = [
-      {id: "numCases", 
-      sizeClass: "autoSize",
+      { id: "numCases", 
+        sizeClass: "autoSize",
         vis: "bar", 
         title: "Dataset Size",
-        data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
+        data: []
       },
       {id: "numCases1", 
       sizeClass: "autoSize",
       vis: "bar", 
         title: "Dataset Size",
-        data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
-      },
-      {id: "numCases2", 
-      sizeClass: "autoSize",
-      vis: "bar", 
-      title: "Dataset Size",
-      data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
-      },
-      {id: "numCases3", 
-      sizeClass: "autoSize",
-      vis: "bar", 
-      title: "Dataset Size",
-      data: [{x:'2000', y:5427}, {x:'2001', y:5243}, {x:'2002', y:5514}]
+        data: []
       }
     ]
+    this.descriptiveStatistics = this.descriptiveStatistics.map(function(element){
+      for (let y = 1992; y <=2017; y++)
+        element.data.push({x:y.toString(), y:Math.round(Math.random()*1000)})
+      return element
+    })
   }
 
   getYears():Array<YearSelection>{
@@ -68,28 +85,16 @@ export class DataEngineerService {
       return element
     })
   }
-
+ 
   getPerformanceData(): DataView {
-    let performance:DataView = {id: "performanceVis", 
-        vis: "line",
-        sizeClass:"fixedSize", 
-        title: "Model Performance",
-        data: [{x:'V.0', y:80}, 
-          {x:'2003', y:77}, 
-          {x:'2004', y:60},
-          {x:'2005', y:55},
-          {x:'V.1', y:81},
-          {x:'2006', y:79},
-        ]
-      }
-    return performance
+    return this.performance
   }
 
   getDescriptiveStatistics():Array<DataView> {
     return this.descriptiveStatistics
   }
-  
-  getFilteredDescriptiveStatistics(year:string):Array<DataView>  {
+
+  getFilteredDescriptiveStatistics(years:Array<string>):Array<DataView>  {
     let filteredByYear:Array<DataView>=[]
     for (let s = 0; s < this.descriptiveStatistics.length; s++) {
       let aStat:DataView = {
@@ -100,11 +105,10 @@ export class DataEngineerService {
         data: []
       }
       aStat.data = this.descriptiveStatistics[s].data.filter(function(element){
-        return (element.x==year)
+        return (years.includes(element.x))
       })
       filteredByYear.push(aStat)
     }
-    console.log(filteredByYear)
     return filteredByYear
   }
 }
