@@ -13,7 +13,8 @@ export class AppComponent {
 
   getPerformanceData(): DataView {
     let performance:DataView = {id: "performanceVis", 
-        vis: "line", 
+        vis: "line",
+        sizeClass:"fixedSize", 
         title: "Model Performance",
         data: [{x:'V.0', y:80}, 
           {x:'2003', y:77}, 

@@ -4,9 +4,44 @@
 ```javascript
 getPatients(int startYear, int endYear, int maxPatients) {
     // MonMon generates predictions for patients -> prediction table
-    return {
-        data: {[patient1:{age:23, gender m}, patient2:{age:43, gender:F}]
-    }
+    return [
+        { id: '1', 
+        personalInfo: [
+          {property: 'age', value:'16'}
+        ],
+        medicalHistory: []
+      },
+      { id: '2', 
+        personalInfo: [
+          {property: 'age', value:'16'}
+        ],
+        medicalHistory: []
+      },
+      { id: '3', 
+        personalInfo: [
+          {property: 'age', value:'16'}
+        ],
+        medicalHistory: []
+      },
+      { id: '4', 
+        personalInfo: [
+          {property: 'age', value:'16'}
+        ],
+        medicalHistory: []
+      },
+      { id: '5', 
+        personalInfo: [
+          {property: 'age', value:'16'}
+        ],
+        medicalHistory: []
+      },
+      { id: '6', 
+        personalInfo: [
+          {property: 'age', value:'16'}
+        ],
+        medicalHistory: []
+      }
+    ]
 }
     
 runPrediction(int startYear, int endYear) {

@@ -1,0 +1,9 @@
+.fixedSize {
+ position: relative; 
+ height:20vh;
+ width:80vw;
+}
+
+.autoSize {
+  position: relative; 
+ }

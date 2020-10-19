@@ -31,6 +31,7 @@ export class LineChartComponent implements OnInit {
     };
      
     var chartOptions = {
+      maintainAspectRatio: (this.chartView.sizeClass=="fixedSize"?false:true),
       legend: {
         display: true,
         position: 'top',

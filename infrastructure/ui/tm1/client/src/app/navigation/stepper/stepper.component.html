@@ -4,8 +4,8 @@
     <clr-step-title>Get Training Data</clr-step-title>
     <!-- <clr-step-description>Select Training Data</clr-step-description>  -->
     <clr-step-content *clrIfExpanded>
-      <app-data-engineer></app-data-engineer>
-      <button clrStepButton="next">Next</button>
+      <app-data-engineer [years]="years"></app-data-engineer>
+      <button clrStepButton="next" (click)="updateYearSelection()" routerLink="/engineer-view">Next</button>
     </clr-step-content>
   </clr-stepper-panel>
 
@@ -13,7 +13,7 @@
     <clr-step-title>Train Model</clr-step-title>
     <clr-step-content *clrIfExpanded>
       <!-- <app-performance></app-performance> -->
-      <button clrStepButton="next">Train</button>
+      <button clrStepButton="next"  routerLink="/patient-view">Train</button>
     </clr-step-content>
   </clr-stepper-panel>
 
@@ -21,22 +21,22 @@
     <clr-step-title>Get New Cases</clr-step-title>
     <clr-step-content *clrIfExpanded>
       <app-data-engineer></app-data-engineer>
-      <button clrStepButton="next">Predict</button>
+      <button clrStepButton="next" routerLink="/engineer-view">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>
 
   <clr-stepper-panel formGroupName="predict">
     <clr-step-title>Get Predictions</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <button clrStepButton="next">Predict</button>
+      <button clrStepButton="next" routerLink="/cases-view">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>
 
   <clr-stepper-panel formGroupName="record">
     <clr-step-title>Monitor Performance</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <button clrStepButton="next">Next</button>
-      <button clrStepButton="next">Retrain</button>
+      <button clrStepButton="next" routerLink="/model-view">Next</button>
+      <button clrStepButton="next" routerLink="/model-view">Retrain</button>
     </clr-step-content>
   </clr-stepper-panel>
 </form>

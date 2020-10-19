@@ -6,19 +6,37 @@ import { YearSelection } from './data';
 })
 export class DataEngineerService {
 
-  constructor() { }
-
-  getYears():Array<YearSelection>{
-    let yearsSelection:Array<YearSelection> = []
+  yearsSelection:Array<YearSelection>
+  constructor() { 
+    this.yearsSelection = []
     for (let y = 1992; y <=2017; y++)
     {
-      yearsSelection.push({value: y.toString(), 
+      this.yearsSelection.push({value: y.toString(), 
         purpose: 'unseen', 
         icon: 'circle',
         numberOfRows: Math.round(Math.random()*100)}
       )
     }
-    return yearsSelection
+  }
+
+  getYears():Array<YearSelection>{
+    return this.yearsSelection
+  }
+
+  toggleTrainingYear(selectedYear:string): void {
+    this.yearsSelection = this.yearsSelection.map(function(element, index, array){
+      if (element.value == selectedYear){
+        if (element.purpose == 'unseen') {
+          element.purpose = 'train'
+          element.icon = 'success-standard'
+        }
+        else if (element.purpose == 'train') {
+          element.purpose = 'unseen'
+          element.icon = 'circle'
+        }
+      }
+      return element
+    })
   }
 
 }

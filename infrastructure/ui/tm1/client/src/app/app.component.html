@@ -5,7 +5,7 @@
       <a href="..." class="active nav-link"><span class="nav-text">SEER Research</span></a>  
     </div>
   </header>
-  <div class="content-container">
+  <!-- <div class="content-container">
       <div class="content-area">
         <div class="clr-row">
           <div class="clr-col-4">
@@ -23,5 +23,23 @@
           <div class="clr-col-8"><router-outlet></router-outlet></div>
         </div>
       </div>
+  </div> -->
+
+  <div class="content-container">
+    <div class="content-area">
+      <div class="clr-row" >
+        <div class="clr-col-12 performance">
+          <app-line-chart [chartView]="performance"></app-line-chart>
+        </div>
+      </div>  
+      <div class="clr-row perspectives">
+        <div class="clr-col-3">
+          <app-stepper></app-stepper>
+        </div>
+        <div class="clr-col-9">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -34,8 +34,8 @@ import { LineChartComponent } from './vis/line-chart/line-chart.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: 'cases-view', component: PatientsComponent},
-      {path: 'model-view', component: EngineerComponent},
+      {path: 'engineer-view', component: EngineerComponent},
+      {path: 'patient-view', component: PatientsComponent}
     ]),
     BrowserAnimationsModule,
     AppRoutingModule,

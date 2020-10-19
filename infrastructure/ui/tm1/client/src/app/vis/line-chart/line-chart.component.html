@@ -1,4 +1,4 @@
-<div *ngIf="myChart">
+<div *ngIf="myChart" [class]="chartView.sizeClass" >
   <canvas [id]="chartView.id">{{ myChart }}</canvas>
 </div>
 
