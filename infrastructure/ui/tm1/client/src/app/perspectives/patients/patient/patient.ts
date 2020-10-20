@@ -27,7 +27,7 @@ interface MedicalHistory {
   outcomeDate: Date;
 }
 
-interface Personal {
+export interface Personal {
   name: string;
   value: string;
 }

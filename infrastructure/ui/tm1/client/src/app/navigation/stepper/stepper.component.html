@@ -25,7 +25,8 @@
     <clr-step-content *clrIfExpanded>
       <app-data-engineer 
         [stepperMode]="stepperMode"
-        [years]="years"></app-data-engineer>
+        [years]="years"
+        (yearsUpdateEvent)="updateYearSelection()"></app-data-engineer>
       <button clrStepButton="next">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>

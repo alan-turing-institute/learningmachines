@@ -17,18 +17,20 @@ export class AppComponent implements OnInit {
   }
   
   performance:DataView = null
-  descriptiveStatistics: Array<DataView> = []
+  // descriptiveStatistics: Array<DataView> = []
   years: Array<YearSelection> = []
   title = 'toymodel0';
 
   ngOnInit():void {
     this.years = this.dataService.getYears()
     this.performance = this.dataService.getPerformanceData()
-    this.descriptiveStatistics = this.dataService.getDescriptiveStatistics()
+    // this.descriptiveStatistics = this.dataService.getDescriptiveStatistics()
   }
 
   updateYearSelection():void {
+
     this.years = this.dataService.getYears()
+    console.log(this.years)
   }
 
 }
