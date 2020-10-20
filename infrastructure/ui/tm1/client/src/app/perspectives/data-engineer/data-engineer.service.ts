@@ -27,7 +27,7 @@ export class DataEngineerService {
         numberOfRows: Math.round(Math.random()*100)}
       )
     }
-    console.log(JSON.stringify(this.yearsSelection))
+    // console.log(JSON.stringify(this.yearsSelection))
   }
 
   setPerformanceData(): void {
@@ -43,7 +43,7 @@ export class DataEngineerService {
       {x:'V.1', y:81},
       {x:'2006', y:79},
     ]}
-    console.log(JSON.stringify(this.performance))
+    // console.log(JSON.stringify(this.performance))
   }
 
   setDescriptiveStatistics(): void {
@@ -66,7 +66,7 @@ export class DataEngineerService {
         element.data.push({x:y.toString(), y:Math.round(Math.random()*1000)})
       return element
     })
-    console.log(JSON.stringify(this.descriptiveStatistics))
+    // console.log(JSON.stringify(this.descriptiveStatistics))
   }
 
   getYears():Array<YearSelection>{

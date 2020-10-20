@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   updateYearSelection():void {
 
     this.years = this.dataService.getYears()
-    console.log(this.years)
+    // console.log(this.years)
   }
 
 }
