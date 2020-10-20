@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
-import { YearSelection } from './data'
+import { YearSelection, dataPurpose } from './data'
 import { DataEngineerService} from './data-engineer.service'
 import { Output, EventEmitter } from '@angular/core';
 
@@ -9,12 +9,13 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./data-engineer.component.css']
 })
 export class DataEngineerComponent {
+  @Input() stepperMode: dataPurpose
   @Input() years:Array<YearSelection>
   @Output() yearsUpdateEvent = new EventEmitter<Boolean>();
   constructor(private dataService: DataEngineerService) { }
 
-  toggleTrainingYear(selectedYear:string): void {
-    this.dataService.toggleTrainingYear(selectedYear)
+  toggleYearPurpose(selectedYear:string, purpose: dataPurpose): void {
+    this.dataService.toggleYearPurpose(selectedYear, purpose)
     this.yearsUpdateEvent.emit(true);
   }
 }

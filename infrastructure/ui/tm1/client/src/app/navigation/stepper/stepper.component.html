@@ -4,8 +4,12 @@
     <clr-step-title>Get Training Data</clr-step-title>
     <!-- <clr-step-description>Select Training Data</clr-step-description>  -->
     <clr-step-content *clrIfExpanded>
-      <app-data-engineer (yearsUpdateEvent)="updateYearSelection()" [years]="years"></app-data-engineer>
-      <button clrStepButton="next">Next</button>
+      <app-data-engineer 
+        [stepperMode]="stepperMode"
+        [years]="years"
+        (yearsUpdateEvent)="updateYearSelection()" >
+      </app-data-engineer>
+      <button clrStepButton="next" (click)="updateStepperMode('test')">Next</button>
     </clr-step-content>
   </clr-stepper-panel>
 
@@ -19,7 +23,9 @@
   <clr-stepper-panel formGroupName="enroll">
     <clr-step-title>Get New Cases</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <app-data-engineer [years]="years"></app-data-engineer>
+      <app-data-engineer 
+        [stepperMode]="stepperMode"
+        [years]="years"></app-data-engineer>
       <button clrStepButton="next">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>

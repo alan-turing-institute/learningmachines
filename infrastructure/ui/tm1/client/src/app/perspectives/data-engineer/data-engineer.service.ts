@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { YearSelection } from './data';
+import { YearSelection, dataPurpose } from './data';
 import { DataView} from '../../vis/chartSpecification';
 
 @Injectable({
@@ -70,14 +70,14 @@ export class DataEngineerService {
     return this.yearsSelection
   }
 
-  toggleTrainingYear(selectedYear:string): void {
+  toggleYearPurpose(selectedYear:string, purpose: dataPurpose): void {
     this.yearsSelection = this.yearsSelection.map(function(element, index, array){
       if (element.value == selectedYear){
         if (element.purpose == 'unseen') {
-          element.purpose = 'train'
+          element.purpose = purpose
           element.icon = 'success-standard'
         }
-        else if (element.purpose == 'train') {
+        else if (element.purpose == purpose) {
           element.purpose = 'unseen'
           element.icon = 'circle'
         }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { YearSelection } from '../../perspectives/data-engineer/data'
+import { YearSelection, dataPurpose } from '../../perspectives/data-engineer/data'
 import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
 import { DataView} from '../../vis/chartSpecification';
 import { Output, EventEmitter } from '@angular/core';
@@ -13,6 +13,7 @@ import { Output, EventEmitter } from '@angular/core';
 
 export class StepperComponent implements OnInit {
   form: FormGroup;
+  stepperMode: dataPurpose
   @Input() years: Array<YearSelection>
   @Output() yearsUpdateEvent = new EventEmitter<Boolean>();
 
@@ -31,13 +32,8 @@ export class StepperComponent implements OnInit {
     });
   }
 
-  getYears():void {
-    this.years = this.dataService.getYears()
-  }
-
   ngOnInit(): void {
-    this.getYears()
-    // this.descriptiveStatistics = []
+    this.stepperMode = 'train'
   }
 
   submit(): void {
@@ -46,5 +42,9 @@ export class StepperComponent implements OnInit {
  
   updateYearSelection() {
     this.yearsUpdateEvent.emit(true);
+  }
+
+  updateStepperMode(mode: dataPurpose): void {
+    this.stepperMode = mode
   }
 }
