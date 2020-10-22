@@ -19,49 +19,63 @@ getYears():void{
 
 ### ModMon database
 
-NOTE (for Jack mostly): Currently assuming there's always only one active model version in the ModMon database, and predictions/metrics only generated for that active model version. If storing results from multiple models/model versions then queries below will need to include filtering on modelid and modelversion fields in the database.
+NOTE1: Calculating predictions, metrics and retraining takes some amount of time (especially retraining). There probably needs to be a concept of waiting/checking when things have finished running somewhere.
+
+NOTE2 (for Jack mostly): Currently assuming there's always only one active model version in the ModMon database, and predictions/metrics only generated for that active model version. If storing results from multiple models/model versions then queries below will need to include filtering on modelid and modelversion fields in the database.
 
 ```javascript
 runPrediction(int startYear, int endYear) {
-    // MonMon generates predictions for patients in year -> prediction table
+    start_date = "startYear-1-1";
+    end_date = "endYear-12-31";
+    call("modmon_predict --start_date start_date --end_date end_date");
     return true;
 }
 
 getDatasetID(int startYear, int endYear) {
-	// datasetid = SELECT datasetid FROM dataset WHERE start_date='startYear' AND end_date='endYear';
-	return datasetid
+	datasetid = query("SELECT datasetid FROM dataset WHERE start_date='startYear' AND end_date='endYear';");
+	return datasetid;
 }
 
 getPredictions(int startYear, int endYear, int maxPredictions) {
-    datasetid = getDatasetID(startYear, endYear)
+    datasetid = getDatasetID(startYear, endYear);
     if datasetid is NULL:
-    	runPrediction(startYear, endYear)
-	// wait for prediction to finish?
-	datasetid = getDatasetID(startYear, endYear)
+    	runPrediction(startYear, endYear);
+	// wait for prediction to finish;
+	datasetid = getDatasetID(startYear, endYear);
 
-    // predictions = SELECT recordid, values FROM prediction WHERE datasetid='datasetid' LIMIT maxPredictions;
-    return predictions
+    predictions = query("SELECT recordid, values FROM prediction WHERE datasetid='datasetid' LIMIT maxPredictions;")
+    return predictions;
+    // [{recordid: 1, values: {"alive": 0.76, "cvd": 0.05, "cancer": 0.19}}]
 }
 
 runMetrics(int startYear, int endYear) {
-    // MonMon generates metrics for patients in year -> metrics table
+    start_date = "startYear-1-1";
+    end_date = "endYear-12-31";
+    call("modmon_score --start_date start_date --end_date end_date");
     return true;
 }
     
-getMetrics(int startYear, int endYear, [optional: int modelID]) {
-    // query ModMon dataset table -> get dataset ID for startYear and endYear
-    // if dataset exists:
-        // query Metrics table -> get all metrics values for that dataset ID
-	// else
-        // run Modmon to generate metrics
-        // get all metrics from metrics table for generated dataset ID
-    return {data: {"accuracy": 0.92, "auc": 0.82}	}
+getMetrics(int startYear, int endYear) {
+    datasetid = getDatasetID(startYear, endYear);
+    if datasetid is NULL:
+    	runMetrics(startYear, endYear);
+	// wait for metrics to finish
+	datasetid = getDatasetID(startYear, endYear);
+
+    metrics = query("SELECT metric, value FROM score WHERE datasetid='datasetid';");
+    return metrics;
+    // [{"metric": "accuracy", "value": 0.92}, {"metric": "AUC", "value": 0.89}]
 }
 
-retrainModel(int startYear, int endYear, [optional: modelID]) {
-             // run retraining command for all models/model defined by modelID
+retrainModel(int startYear, int endYear) {
+    start_date = "startYear-1-1";
+    end_date = "endYear-12-31";
+    call("modmon_retrain --start_date start_date --end_date end_date");
+    return true;
 }
-
+```
+---
+```
 getPerformanceData(): void { // this is the same as getMetrics?
     return {"id":"performanceVis","vis":"line","sizeClass":"fixedSize","title":"Model Performance","data":[{"x":"V.0","y":80},{"x":"2003","y":77},{"x":"2004","y":60},{"x":"2005","y":55},{"x":"V.1","y":81},{"x":"2006","y":79}]}
   }
