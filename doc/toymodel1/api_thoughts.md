@@ -18,22 +18,29 @@ getYears():void{
 ```
 
 ### ModMon database
+
+NOTE (for Jack mostly): Currently assuming there's always only one active model version in the ModMon database, and predictions/metrics only generated for that active model version. If storing results from multiple models/model versions then queries below will need to include filtering on modelid and modelversion fields in the database.
+
 ```javascript
 runPrediction(int startYear, int endYear) {
     // MonMon generates predictions for patients in year -> prediction table
     return true;
 }
 
-getPredictions(int startYear, int endYear, int maxPredictions, [optional: modelID]) {
-    // query ModMon dataset table -> get dataset ID for startYear and endYear
-    // if dataset exists:
-        // query Predictions table -> get all predictions values for that dataset ID
-	// else
-        // run Modmon to generate predictions
-        //  get all predictions from predictions table for generated dataset ID	
-    return {
-        data: {[patient: {prediction: B, uncertaintyValue: 0.9}]}
-    }
+getDatasetID(int startYear, int endYear) {
+	// datasetid = SELECT datasetid FROM dataset WHERE start_date='startYear' AND end_date='endYear';
+	return datasetid
+}
+
+getPredictions(int startYear, int endYear, int maxPredictions) {
+    datasetid = getDatasetID(startYear, endYear)
+    if datasetid is NULL:
+    	runPrediction(startYear, endYear)
+	// wait for prediction to finish?
+	datasetid = getDatasetID(startYear, endYear)
+
+    // predictions = SELECT recordid, values FROM prediction WHERE datasetid='datasetid' LIMIT maxPredictions;
+    return predictions
 }
 
 runMetrics(int startYear, int endYear) {
@@ -55,8 +62,7 @@ retrainModel(int startYear, int endYear, [optional: modelID]) {
              // run retraining command for all models/model defined by modelID
 }
 
-(this is the same as getMetrics?)
-  getPerformanceData(): void {
+getPerformanceData(): void { // this is the same as getMetrics?
     return {"id":"performanceVis","vis":"line","sizeClass":"fixedSize","title":"Model Performance","data":[{"x":"V.0","y":80},{"x":"2003","y":77},{"x":"2004","y":60},{"x":"2005","y":55},{"x":"V.1","y":81},{"x":"2006","y":79}]}
   }
 ```
