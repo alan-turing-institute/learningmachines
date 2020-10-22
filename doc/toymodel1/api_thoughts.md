@@ -18,7 +18,7 @@ getYears():void{
 ```
 
 ### ModMon database
-```
+```javascript
 runPrediction(int startYear, int endYear) {
     // MonMon generates predictions for patients in year -> prediction table
     return true;
