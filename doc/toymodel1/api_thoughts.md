@@ -24,16 +24,31 @@ NOTE1: Calculating predictions, metrics and retraining takes some amount of time
 NOTE2 (for Jack mostly): Currently assuming there's always only one active model version in the ModMon database, and predictions/metrics only generated for that active model version. If storing results from multiple models/model versions then queries below will need to include filtering on modelid and modelversion fields in the database.
 
 ```javascript
+// -----------------
+// Utility functions
+// -----------------
+
+getDates(int startYear, int endYear) {
+	start_date = "startYear-1-1";
+ 	end_date = "endYear-12-31";
+	return start_date, end_date;
+}
+
+getDatasetID(int startYear, int endYear) {
+	start_date, end_date = getDates(startYear, endYear);
+	datasetid = query("SELECT datasetid FROM dataset WHERE start_date='start_date' AND end_date='end_date';");
+	return datasetid;
+}
+
+// -----------------
+// API functions
+// -----------------
+
 runPrediction(int startYear, int endYear) {
     start_date = "startYear-1-1";
     end_date = "endYear-12-31";
     call("modmon_predict --start_date start_date --end_date end_date");
     return true;
-}
-
-getDatasetID(int startYear, int endYear) {
-	datasetid = query("SELECT datasetid FROM dataset WHERE start_date='startYear' AND end_date='endYear';");
-	return datasetid;
 }
 
 getPredictions(int startYear, int endYear, int maxPredictions) {
@@ -49,8 +64,7 @@ getPredictions(int startYear, int endYear, int maxPredictions) {
 }
 
 runMetrics(int startYear, int endYear) {
-    start_date = "startYear-1-1";
-    end_date = "endYear-12-31";
+    start_date, end_date = getDates(startYear, endYear);
     call("modmon_score --start_date start_date --end_date end_date");
     return true;
 }
@@ -68,8 +82,7 @@ getMetrics(int startYear, int endYear) {
 }
 
 retrainModel(int startYear, int endYear) {
-    start_date = "startYear-1-1";
-    end_date = "endYear-12-31";
+    start_date, end_date = getDates(startYear, endYear);
     call("modmon_retrain --start_date start_date --end_date end_date");
     return true;
 }
