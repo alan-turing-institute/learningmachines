@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Patient } from './patient/patient'; 
+import { Patient, Prediction, predictionOptions, causeOfDeathOptions, Death } from './patient/patient'; 
+import { YearSelection } from '../data-engineer/data';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,11 +31,12 @@ export class PatientService {
         personalInfo: [
           {name: 'age', value:Math.round(Math.random()*10).toString()}
         ],
-        medicalHistory: []
+        medicalHistory: [],
+        treatment:[],
+        death: null
       }
       this.patients.push(p)
     }
-    console.log(JSON.stringify(this.patients))
     return this.patients
   }
 
@@ -47,5 +49,44 @@ export class PatientService {
       return (yearsOfDiagnosis.includes(yearOfDiagnosis))
     })
     return patientsByYear
+  }
+
+  updateCauseOfDeath(patients:Array<Patient>):Array<Patient> {
+    function getOutcome(yearOfDiagnosis:Date): Death | null {
+      function generatePrediction():Prediction {
+        let prediction:predictionOptions = Math.random()>0.5?"class A":"class B"
+        let p:Prediction = {value: prediction, 
+          confidence:Math.round(Math.random()*100),
+          intepreter: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+          date: new Date()
+          }
+        return p
+      }
+
+      if (Math.random()<0.85) {
+        let causeOfDeath:causeOfDeathOptions = Math.random()>0.5?"class A":"class B"
+        let yearOfDeath:Date = new Date(yearOfDiagnosis.getFullYear()+5)
+        let predictedCauseOfDeath = generatePrediction()
+        return {
+          causeOfDeath: causeOfDeath,
+          predictedCauseOfDeath: predictedCauseOfDeath,
+          date: yearOfDeath
+        }
+      }
+      else {
+        return null
+      }
+    } 
+
+    let testPatientsOutcome:Array<Patient> = patients.map(function(p) {
+      if (p.death==null)
+        return {...p, death:getOutcome(p.yearOfDiagnosis)}
+      else
+        return {...p}
+    })
+
+    // console.log(testPatientsOutcome)
+    return testPatientsOutcome
+    
   }
 }

@@ -27,19 +27,13 @@
         [stepperMode]="stepperMode"
         [years]="years"
         (yearsUpdateEvent)="updateYearSelection()"></app-data-engineer>
-      <button clrStepButton="next">Predict</button>
+      <button clrStepButton="next" (click)="getPrediction()">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>
 
-  <clr-stepper-panel formGroupName="predict">
-    <clr-step-title>Get Predictions</clr-step-title>
-    <clr-step-content *clrIfExpanded>
-      <button clrStepButton="next">Predict</button>
-    </clr-step-content>
-  </clr-stepper-panel>
-
-  <clr-stepper-panel formGroupName="record">
-    <clr-step-title>Monitor Performance</clr-step-title>
+  
+  <clr-stepper-panel formGroupName="monitor">
+    <clr-step-title>Evaluate Performance</clr-step-title>
     <clr-step-content *clrIfExpanded>
       <button clrStepButton="next">Next</button>
       <button clrStepButton="next">Retrain</button>

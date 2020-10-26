@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PatientComponent } from './perspectives/patients/patient/patient.component';
 import { PatientsComponent } from './perspectives/patients/patients.component';
-import { PerformanceComponent } from './vis/performance/performance.component';
 import { EngineerComponent } from './perspectives/engineer/engineer.component';
 import { StepperComponent } from './navigation/stepper/stepper.component';
 import { DataEngineerComponent } from './perspectives/data-engineer/data-engineer.component';
@@ -23,7 +22,6 @@ import { LineChartComponent } from './vis/line-chart/line-chart.component';
     AppComponent,
     PatientComponent,
     PatientsComponent, 
-    PerformanceComponent,
     EngineerComponent,
     StepperComponent,
     DataEngineerComponent,

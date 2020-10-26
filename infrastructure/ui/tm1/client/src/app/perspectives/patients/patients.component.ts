@@ -32,7 +32,9 @@ export class PatientsComponent implements OnInit {
         return element.value
       })
 
-      this.patients = this.patientService.getPatients(testYears)
+      let testPatients:Array<Patient> = this.patientService.getPatients(testYears)
+      this.patients = this.patientService.updateCauseOfDeath(testPatients)
+      console.log(this.patients)
     }
     else {
       this.patients = []

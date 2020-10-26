@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { YearSelection, dataPurpose } from '../../perspectives/data-engineer/data'
-import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
-import { DataView} from '../../vis/chartSpecification';
+// import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
+// import { PatientService} from '../../perspectives/patients/patient.service'
+// import { DataView} from '../../vis/chartSpecification';
 import { Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -16,18 +17,15 @@ export class StepperComponent implements OnInit {
   stepperMode: dataPurpose
   @Input() years: Array<YearSelection>
   @Output() yearsUpdateEvent = new EventEmitter<true>();
+  @Output() predictionRequestEvent = new EventEmitter<true>();
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataEngineerService) { 
+  constructor(private formBuilder: FormBuilder) { 
     this.form = this.formBuilder.group({
       train: this.formBuilder.group({
       }),
-      monitor: this.formBuilder.group({
-      }),
       enroll: this.formBuilder.group({
       }),
-      predict: this.formBuilder.group({
-      }),
-      record: this.formBuilder.group({
+      monitor: this.formBuilder.group({
       }),
     });
   }
@@ -46,5 +44,9 @@ export class StepperComponent implements OnInit {
 
   updateStepperMode(mode: dataPurpose): void {
     this.stepperMode = mode
+  }
+
+  getPrediction() {
+    this.predictionRequestEvent.emit(true);
   }
 }

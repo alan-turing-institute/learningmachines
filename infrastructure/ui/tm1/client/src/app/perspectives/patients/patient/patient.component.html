@@ -1,6 +1,6 @@
 <div class="card clickable" (click)="displayDetails()">
   <div class="card-header">
-      Patient ID: {{patient.id}}
+      Patient ID: {{patient.id}}/{{patient.yearOfDiagnosis.getFullYear()}}
   </div>
   <div class="card-block">
       <div class="card-text">
@@ -16,7 +16,7 @@
                   <input type="checkbox" clrCheckbox value="option2" name="options" disabled/>
                   <label>Option 2 </label>
                 </clr-checkbox-wrapper>
-                <clr-control-helper>Confidence: 97%</clr-control-helper>
+                <clr-control-helper>Confidence: {{patient.death.predictedCauseOfDeath.confidence}}%</clr-control-helper>
               </clr-checkbox-container>
           </div>
           <div class="clr-col-6">
@@ -30,8 +30,7 @@
                 <input type="checkbox" clrCheckbox value="option2" name="options" />
                 <label>Option 2</label>
               </clr-checkbox-wrapper>
-            </clr-checkbox-container>
-            
+            </clr-checkbox-container> 
           </div>
         </div>
         
