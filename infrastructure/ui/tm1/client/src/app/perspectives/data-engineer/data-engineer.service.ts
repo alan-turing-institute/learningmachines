@@ -19,9 +19,16 @@ export class DataEngineerService {
 
   setYears():void{
     this.yearsSelection = []
+
+    function getDate(year:number):Date{
+      let newDate = new Date()
+      newDate.setFullYear(year)
+      return newDate
+    }
+
     for (let y = 1992; y <=2017; y++)
     {
-      this.yearsSelection.push({value: y.toString(), 
+      this.yearsSelection.push({value: getDate(y), 
         purpose: 'unseen', 
         icon: 'circle',
         numberOfRows: Math.round(Math.random()*100)}
@@ -73,9 +80,9 @@ export class DataEngineerService {
     return this.yearsSelection
   }
 
-  toggleYearPurpose(selectedYear:string, purpose: dataPurpose): void {
+  toggleYearPurpose(selectedYear:Date, purpose: dataPurpose): void {
     this.yearsSelection = this.yearsSelection.map(function(element, index, array){
-      if (element.value == selectedYear){
+      if (element.value.getFullYear() == selectedYear.getFullYear()){
         if (element.purpose == 'unseen') {
           element.purpose = purpose
           element.icon = 'success-standard'
@@ -97,8 +104,11 @@ export class DataEngineerService {
     return this.descriptiveStatistics
   }
 
-  getFilteredDescriptiveStatistics(years:Array<string>):Array<DataView>  {
+  getFilteredDescriptiveStatistics(selectedDates:Array<Date>):Array<DataView>  {
     let filteredByYear:Array<DataView>=[]
+    let selectedYears:Array<string> = selectedDates.map(function(d){
+      return d.getFullYear().toString();
+    })
     for (let s = 0; s < this.descriptiveStatistics.length; s++) {
       let aStat:DataView = {
         id: this.descriptiveStatistics[s].id,
@@ -108,7 +118,7 @@ export class DataEngineerService {
         data: []
       }
       aStat.data = this.descriptiveStatistics[s].data.filter(function(element){
-        return (years.includes(element.x))
+        return (selectedYears.includes(element.x))
       })
       filteredByYear.push(aStat)
     }

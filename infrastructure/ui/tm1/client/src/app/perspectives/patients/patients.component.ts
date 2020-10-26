@@ -28,7 +28,7 @@ export class PatientsComponent implements OnInit {
     })
 
     if (testSelection.length > 0){
-      let testYears:Array<string> = testSelection.map(function(element){
+      let testYears:Array<Date> = testSelection.map(function(element){
         return element.value
       })
 

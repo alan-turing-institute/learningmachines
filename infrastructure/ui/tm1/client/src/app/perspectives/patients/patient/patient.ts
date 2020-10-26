@@ -11,11 +11,13 @@ interface Prediction {
   outcome: string;
   confidence: string;
   intepreter: string;
+  date: Date;
 }
 
 interface Outcome {
   actual: string;
   prediction: Prediction;
+  date: Date;
 }
 
 interface MedicalHistory {
@@ -24,22 +26,22 @@ interface MedicalHistory {
   diagnosisDate: Date;
   treatment: Treatment;
   outcome: Outcome;
-  outcomeDate: Date;
 }
 
-export interface Personal {
+export interface PersonalInfo {
   name: string;
   value: string;
 }
 
-interface Laboratory {
-  measurementName: string;
-  value: string;
-  reported: Date;
-}
+// interface Laboratory {
+//   measurementName: string;
+//   value: string;
+//   reported: Date;
+// }
 
 export interface Patient {
   id: string;
-  personalInfo: Array<Personal>;
+  personalInfo: Array<PersonalInfo>;
+  yearOfDiagnosis: Date;
   medicalHistory: Array<MedicalHistory>
 }

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { TimelineComponent } from './navigation/timeline/timeline.component';
+
 import { PatientComponent } from './perspectives/patients/patient/patient.component';
 import { PatientsComponent } from './perspectives/patients/patients.component';
 import { PerformanceComponent } from './vis/performance/performance.component';
@@ -22,7 +22,6 @@ import { LineChartComponent } from './vis/line-chart/line-chart.component';
   declarations: [
     AppComponent,
     PatientComponent,
-    TimelineComponent,
     PatientsComponent, 
     PerformanceComponent,
     EngineerComponent,

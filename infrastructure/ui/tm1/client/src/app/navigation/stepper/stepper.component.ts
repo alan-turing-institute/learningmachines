@@ -15,7 +15,7 @@ export class StepperComponent implements OnInit {
   form: FormGroup;
   stepperMode: dataPurpose
   @Input() years: Array<YearSelection>
-  @Output() yearsUpdateEvent = new EventEmitter<Boolean>();
+  @Output() yearsUpdateEvent = new EventEmitter<true>();
 
   constructor(private formBuilder: FormBuilder, private dataService: DataEngineerService) { 
     this.form = this.formBuilder.group({

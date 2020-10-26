@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Patient, Personal } from './patient/patient'; 
+import { Patient } from './patient/patient'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -12,32 +12,39 @@ export class PatientService {
 
   setPatients():Array<Patient> {
     this.patients = []
-    let years:Array<string>=[]
+    let years:Array<number>=[]
     for (let y = 1992; y < 2017; y++ ) {
-      years.push(y.toString())
+      years.push(y)
     }
+
+    function getDate(year:number):Date{
+      let newDate = new Date()
+      newDate.setFullYear(year)
+      return newDate
+    }
+
     for (let y = 0; y < years.length; y++){
       let p:Patient = { 
         id: Math.round(Math.random()*100).toString(), 
+        yearOfDiagnosis: getDate(years[y]),
         personalInfo: [
-          {name: 'age', value:Math.round(Math.random()*10).toString()},
-          {name: 'yearOfDiagnosis', value: years[y]}
+          {name: 'age', value:Math.round(Math.random()*10).toString()}
         ],
         medicalHistory: []
       }
       this.patients.push(p)
     }
-    // console.log(JSON.stringify(this.patients))
+    console.log(JSON.stringify(this.patients))
     return this.patients
   }
 
-  getPatients(yearsOfDiagnosis:Array<string>):Array<Patient> {
+  getPatients(datesOfDiagnosis:Array<Date>):Array<Patient> {
+    let yearsOfDiagnosis:Array<number> = datesOfDiagnosis.map(function(d){
+      return d.getFullYear();
+    })
     let patientsByYear:Array<Patient> = this.patients.filter(function(p){
-      let personalInfo:Array<Personal> = p.personalInfo
-      let yearOfDiagnosis: Array<Personal> = personalInfo.filter(function(info){
-        return info.name=="yearOfDiagnosis"
-      })
-      return (yearOfDiagnosis.length == 1) && (yearsOfDiagnosis.includes(yearOfDiagnosis[0].value))
+      let yearOfDiagnosis: number = p.yearOfDiagnosis.getFullYear()
+      return (yearsOfDiagnosis.includes(yearOfDiagnosis))
     })
     return patientsByYear
   }

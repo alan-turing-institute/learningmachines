@@ -1,7 +1,7 @@
 <div class='cohortSelector'>
   <ul class="clr-timeline clr-timeline-vertical">
     <li *ngFor="let year of years" class="clr-timeline-step">
-      <div class="clr-timeline-step-header">{{year.value}}</div>
+      <div class="clr-timeline-step-header">{{year.value.getFullYear()}}</div>
       <div *ngIf="stepperMode=='train'; then allowTrainSelection else elseBlock"></div>
         <ng-template #allowTrainSelection>
           <clr-icon [attr.shape]="year.icon" aria-label="Not started" (click)="toggleYearPurpose(year.value, 'train')"></clr-icon> 

@@ -18,17 +18,6 @@ export class EngineerComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.descriptiveStatistics=[]
-    
-    // let years = this.dataService.getYears()
-    // let trainingSelection:Array<YearSelection> = years.filter(function(element){
-    //   return element.purpose == "train"
-    // })
-
-    // let trainingYears:Array<string> = trainingSelection.map(function(element){
-    //   return element.value
-    // })
-
-    // this.descriptiveStatistics = this.dataService.getFilteredDescriptiveStatistics(trainingYears)
   }
 
   ngOnChanges(changes: SimpleChanges):void{
@@ -41,7 +30,7 @@ export class EngineerComponent implements OnInit, OnChanges {
     })
 
     if (trainingSelection.length > 0){
-      let trainingYears:Array<string> = trainingSelection.map(function(element){
+      let trainingYears:Array<Date> = trainingSelection.map(function(element){
         return element.value
       })
       this.descriptiveStatistics = this.dataService.getFilteredDescriptiveStatistics(trainingYears)
@@ -49,7 +38,5 @@ export class EngineerComponent implements OnInit, OnChanges {
     else {
       this.descriptiveStatistics = []
     }
-
-    
   }
 }

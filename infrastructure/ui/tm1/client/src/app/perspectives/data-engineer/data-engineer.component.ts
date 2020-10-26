@@ -14,7 +14,7 @@ export class DataEngineerComponent {
   @Output() yearsUpdateEvent = new EventEmitter<Boolean>();
   constructor(private dataService: DataEngineerService) { }
 
-  toggleYearPurpose(selectedYear:string, purpose: dataPurpose): void {
+  toggleYearPurpose(selectedYear:Date, purpose: dataPurpose): void {
     this.dataService.toggleYearPurpose(selectedYear, purpose)
     this.yearsUpdateEvent.emit(true);
   }
