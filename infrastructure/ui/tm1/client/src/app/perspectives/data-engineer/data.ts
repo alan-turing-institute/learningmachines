@@ -6,4 +6,5 @@ export interface YearSelection {
   purpose: dataPurpose
   icon: iconShape
   numberOfRows: number
+  valueAsSortable(value):number
 }

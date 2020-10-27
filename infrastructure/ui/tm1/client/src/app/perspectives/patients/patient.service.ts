@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Patient, Prediction, predictionOptions, causeOfDeathOptions, Death } from './patient/patient'; 
-import { YearSelection } from '../data-engineer/data';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,10 +41,7 @@ export class PatientService {
     return this.patients
   }
 
-  getPatients(datesOfDiagnosis:Array<Date>):Array<Patient> {
-    let yearsOfDiagnosis:Array<number> = datesOfDiagnosis.map(function(d){
-      return d.getFullYear();
-    })
+  getPatients(yearsOfDiagnosis:Array<number>):Array<Patient> {
     let patientsByYear:Array<Patient> = this.patients.filter(function(p){
       let yearOfDiagnosis: number = p.yearOfDiagnosis.getFullYear()
       return (yearsOfDiagnosis.includes(yearOfDiagnosis))
@@ -51,7 +49,7 @@ export class PatientService {
     return patientsByYear
   }
 
-  updateCauseOfDeath(patients:Array<Patient>):Array<Patient> {
+  updateCauseOfDeath(selectedYears:Array<number>):Array<Patient> {
     function getOutcome(yearOfDiagnosis:Date): Death | null {
       function generatePrediction():Prediction {
         let prediction:predictionOptions = Math.random()>0.5?"class A":"class B"
@@ -77,16 +75,21 @@ export class PatientService {
         return null
       }
     } 
-
-    let testPatientsOutcome:Array<Patient> = patients.map(function(p) {
-      if (p.death==null)
-        return {...p, death:getOutcome(p.yearOfDiagnosis)}
-      else
+    this.patients = this.patients.map(function(p) {
+      if (selectedYears.includes(p.yearOfDiagnosis.getFullYear())) {
+        if (p.death==null){
+          return {...p, death:getOutcome(p.yearOfDiagnosis)}
+        }
+        else {
+          return {...p}
+        }
+      }
+      else {
         return {...p}
+      }
     })
 
     // console.log(testPatientsOutcome)
-    return testPatientsOutcome
-    
+    return this.getPatients(selectedYears)
   }
 }

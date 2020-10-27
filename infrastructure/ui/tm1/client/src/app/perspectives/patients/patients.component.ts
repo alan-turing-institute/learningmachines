@@ -10,12 +10,12 @@ import { YearSelection } from '../data-engineer/data';
 })
 export class PatientsComponent implements OnInit {
   constructor(private patientService: PatientService) { }
-  patients : Array<Patient>
+  selectedPatients : Array<Patient>
   @Input() years:Array<YearSelection>
 
   ngOnInit(): void {
     // this.patients = this.patientService.getPatients()
-    this.patients = []
+    this.selectedPatients = []
   }
 
   ngOnChanges(changes: SimpleChanges):void{
@@ -23,21 +23,31 @@ export class PatientsComponent implements OnInit {
   }
 
   updatePatients() {
+
+    // get the test years
     let testSelection:Array<YearSelection> = this.years.filter(function(element){
       return element.purpose == "test"
     })
 
     if (testSelection.length > 0){
-      let testYears:Array<Date> = testSelection.map(function(element){
-        return element.value
+      // get test dates
+      let testYears:Array<number> = testSelection.map(function(element){
+        return element.valueAsSortable(element.value)
       })
 
-      let testPatients:Array<Patient> = this.patientService.getPatients(testYears)
-      this.patients = this.patientService.updateCauseOfDeath(testPatients)
-      console.log(this.patients)
+      // get patients of test years
+      // let testPatients:Array<Patient> = this.patientService.getPatients(testYears)
+
+      // update the cause of death
+      this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
+
+      // sort patients with yearOfDiagnosis
+      this.selectedPatients.sort(function (p1, p2) {
+        return p1.yearOfDiagnosis.getFullYear()-p2.yearOfDiagnosis.getFullYear()
+      })
     }
     else {
-      this.patients = []
+      this.selectedPatients = []
     }
   }
 }

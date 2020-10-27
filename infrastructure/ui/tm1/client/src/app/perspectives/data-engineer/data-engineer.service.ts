@@ -31,8 +31,11 @@ export class DataEngineerService {
       this.yearsSelection.push({value: getDate(y), 
         purpose: 'unseen', 
         icon: 'circle',
-        numberOfRows: Math.round(Math.random()*100)}
-      )
+        numberOfRows: Math.round(Math.random()*100),
+        valueAsSortable: (value):number=> { 
+          return value.getFullYear()
+        }
+      })
     }
     // console.log(JSON.stringify(this.yearsSelection))
   }
