@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Patient } from './patient/patient'; 
 import { PatientService } from './patient.service';
-import { YearSelection } from '../data-engineer/data';
+import { YearSelection, dataPurpose } from '../data-engineer/data';
 
 @Component({
   selector: 'app-patients',
@@ -12,6 +12,7 @@ export class PatientsComponent implements OnInit {
   constructor(private patientService: PatientService) { }
   selectedPatients : Array<Patient>
   @Input() years:Array<YearSelection>
+  @Input() showPredictionsFlag:Boolean
 
   ngOnInit(): void {
     // this.patients = this.patientService.getPatients()
@@ -23,7 +24,6 @@ export class PatientsComponent implements OnInit {
   }
 
   updatePatients() {
-
     // get the test years
     let testSelection:Array<YearSelection> = this.years.filter(function(element){
       return element.purpose == "test"
@@ -34,9 +34,6 @@ export class PatientsComponent implements OnInit {
       let testYears:Array<number> = testSelection.map(function(element){
         return element.valueAsSortable(element.value)
       })
-
-      // get patients of test years
-      // let testPatients:Array<Patient> = this.patientService.getPatients(testYears)
 
       // update the cause of death
       this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)

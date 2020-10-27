@@ -14,7 +14,7 @@ import { Output, EventEmitter } from '@angular/core';
 
 export class StepperComponent implements OnInit {
   form: FormGroup;
-  stepperMode: dataPurpose
+  mode: dataPurpose | 'evaluate'
   @Input() years: Array<YearSelection>
   @Output() yearsUpdateEvent = new EventEmitter<true>();
   @Output() predictionRequestEvent = new EventEmitter<true>();
@@ -31,7 +31,7 @@ export class StepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stepperMode = 'train'
+    this.mode = 'train'
   }
 
   submit(): void {
@@ -42,11 +42,12 @@ export class StepperComponent implements OnInit {
     this.yearsUpdateEvent.emit(true);
   }
 
-  updateStepperMode(mode: dataPurpose): void {
-    this.stepperMode = mode
+  updateStepperMode(mode: dataPurpose | 'evaluate'): void {
+    this.mode = mode
   }
 
   getPrediction() {
     this.predictionRequestEvent.emit(true);
+    console.log(this.mode)
   }
 }

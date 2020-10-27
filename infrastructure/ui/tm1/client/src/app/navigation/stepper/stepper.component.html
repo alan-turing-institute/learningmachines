@@ -4,7 +4,7 @@
     <clr-step-title>Get Training Data</clr-step-title>
     <clr-step-content *clrIfExpanded>
       <app-data-engineer 
-        [stepperMode]="stepperMode"
+        [stepperMode]="mode"
         [years]="years"
         (yearsUpdateEvent)="updateYearSelection()" >
       </app-data-engineer>
@@ -23,18 +23,16 @@
     <clr-step-title>Get New Cases</clr-step-title>
     <clr-step-content *clrIfExpanded>
       <app-data-engineer 
-        [stepperMode]="stepperMode"
+        [stepperMode]="mode"
         [years]="years"
         (yearsUpdateEvent)="updateYearSelection()"></app-data-engineer>
-      <button clrStepButton="next" (click)="getPrediction()">Predict</button>
+      <button clrStepButton="next" (click)="updateStepperMode('evaluate');getPrediction()">Predict</button>
     </clr-step-content>
   </clr-stepper-panel>
 
-  
   <clr-stepper-panel formGroupName="monitor">
     <clr-step-title>Evaluate Performance</clr-step-title>
     <clr-step-content *clrIfExpanded>
-      <button clrStepButton="next">Next</button>
       <button clrStepButton="next">Retrain</button>
     </clr-step-content>
   </clr-stepper-panel>

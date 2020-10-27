@@ -15,7 +15,8 @@
       </div>  
       <div class="clr-row">
         <div class="clr-col-3">
-          <app-stepper (yearsUpdateEvent)="updateYearSelection()" (predictionRequestEvent)="showPredictions($event)" [years]="years"></app-stepper>
+          <app-stepper
+          (yearsUpdateEvent)="updateYearSelection()" (predictionRequestEvent)="printPredictions($event)" [years]="years"></app-stepper>
         </div>
         <div class="clr-col-9">
           <div class="clr-row">
@@ -25,7 +26,7 @@
           </div>
           <div class="clr-row">
             <div class="clr-col-12">
-              <app-patients [years]="years"></app-patients>
+              <app-patients [showPredictionsFlag]="showPredictions()" [years]="years"></app-patients>
             </div>
           </div>
         </div>

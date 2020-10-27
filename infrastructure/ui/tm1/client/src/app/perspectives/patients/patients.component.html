@@ -1,5 +1,5 @@
 <div class="card-columns">
   <div *ngFor="let patient of selectedPatients">
-    <app-patient *ngIf="patient.death" [patient]="patient"></app-patient>
+    <app-patient *ngIf="patient.death" [patient]="patient" [showPredictionsFlag]="showPredictionsFlag"></app-patient>
   </div>
 </div>

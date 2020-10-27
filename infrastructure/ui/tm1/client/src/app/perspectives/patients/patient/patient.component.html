@@ -1,26 +1,29 @@
 <div class="card">
   <div class="card-header">
-    <a class="card-link" (click)="displayDetails()">Patient ID: {{patient.id}}</a>
+    Patient ID: {{patient.id}}
     <div class="yearOfDiagnosis">
       {{patient.yearOfDiagnosis.getFullYear()}}
     </div>
   </div>
   <div class="card-block">
       <div class="card-text">
-        <div class="clr-row" >
+        <div class="clr-row">
           <div class="clr-col-6">
-            <div [ngClass]="{'clr-form-control': true, 'clr-error': patient.death.causeOfDeath!=patient.death.predictedCauseOfDeath.value}">
+            <div [ngClass]="{'clr-form-control': true, 'clr-error': (patient.death.causeOfDeath!=patient.death.predictedCauseOfDeath.value)&&(showPredictionsFlag)}">
               <label class="clr-control-label">Predicted</label>
               <div class="clr-control-container">
                 <div class="clr-checkbox-wrapper">
-                  <input type="checkbox" id="checkbox10" [checked]="patient.death.predictedCauseOfDeath.value=='class A'" disabled />
+                  <input type="checkbox" id="checkbox10" 
+                    [checked]="(patient.death.predictedCauseOfDeath.value=='class A') && (showPredictionsFlag)" 
+                    disabled />
                   <label class="clr-control-label">Class A</label>
                 </div>
                 <div class="clr-checkbox-wrapper">
-                  <input type="checkbox" id="checkbox11" [checked]="patient.death.predictedCauseOfDeath.value=='class B'" disabled />
+                  <input type="checkbox" id="checkbox11" 
+                  [checked]="(patient.death.predictedCauseOfDeath.value=='class B') && (showPredictionsFlag)" disabled />
                   <label class="clr-control-label">Class B</label>
                 </div>
-                <div class="clr-subtext-wrapper">
+                <div class="clr-subtext-wrapper" *ngIf="showPredictionsFlag">
                   <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
                   <span class="clr-subtext">Confidence: {{patient.death.predictedCauseOfDeath.confidence}}%</span>
                 </div>
@@ -28,21 +31,23 @@
             </div>
           </div>
           <div class="clr-col-6">
-            <clr-checkbox-container>
+            <clr-checkbox-container [ngClass]="{'clr-form-control': true, 'clr-error': (patient.death.causeOfDeath!=patient.death.predictedCauseOfDeath.value)&&(showPredictionsFlag)}">
               <label>Actual</label>
               <clr-checkbox-wrapper>
-                <input type="checkbox" clrCheckbox name="options" [checked]="patient.death.causeOfDeath=='class A'" disabled />
+                <input type="checkbox" clrCheckbox name="options" [checked]="(patient.death.causeOfDeath=='class A') && (showPredictionsFlag)" disabled />
                 <label>Class A</label>
               </clr-checkbox-wrapper>
               <clr-checkbox-wrapper>
-                <input type="checkbox" clrCheckbox name="options" [checked]="patient.death.causeOfDeath=='class B'"  disabled />
+                <input type="checkbox" clrCheckbox name="options" [checked]="(patient.death.causeOfDeath=='class B') && (showPredictionsFlag)"  disabled />
                 <label>Class B</label>
               </clr-checkbox-wrapper>
             </clr-checkbox-container>
           </div>
         </div>
-        
       </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-link" (click)="displayDetails()">More</button>
   </div>
 </div>
 
