@@ -26,7 +26,7 @@ chardet==3.0.4            # via binaryornot, requests
 click==7.1.1              # via cookiecutter, flask, kedro, pip-tools
 cookiecutter==1.7.0       # via kedro
 coverage==5.0.4           # via pytest-cov
-cryptography==2.8         # via azure-storage-common
+cryptography>=3.2         # via azure-storage-common
 decorator==4.4.2          # via ipython, traitlets
 defusedxml==0.6.0         # via nbconvert
 docutils==0.15.2          # via botocore
