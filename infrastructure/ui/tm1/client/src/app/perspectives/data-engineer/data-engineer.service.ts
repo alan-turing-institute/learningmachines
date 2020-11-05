@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { YearSelection, dataPurpose } from './data';
-import { DataView} from '../../vis/chartSpecification';
+import { DataView, AxisData} from '../../vis/chartSpecification';
 
 @Injectable({
   providedIn: 'root'
@@ -46,14 +46,8 @@ export class DataEngineerService {
       vis: "line",
       sizeClass:"fixedSize", 
       title: "Model Performance",
-      data: [{x:'V.0', y:80}, 
-      {x:'2003', y:77}, 
-      {x:'2004', y:60},
-      {x:'2005', y:55},
-      {x:'V.1', y:81},
-      {x:'2006', y:79},
-    ]}
-    // console.log(JSON.stringify(this.performance))
+      data: [{x:'V.0', y:80}]
+    }
   }
 
   setDescriptiveStatistics(): void {
@@ -100,6 +94,27 @@ export class DataEngineerService {
   }
  
   getPerformanceData(): DataView {
+    let yearsToShowPerformanceValues:Array<YearSelection> = this.yearsSelection.filter((y)=>{
+      return ((y.purpose == 'test') || (y.purpose == 'train'))
+    })
+
+    let yearsWithPerformanceValues:Array<String> = this.performance.data.map((axisData)=>{
+        return axisData.x
+    })
+
+    let newPerformanceData:Array<AxisData> = yearsToShowPerformanceValues.map((yearSelection)=>{
+      if (yearsWithPerformanceValues.includes(yearSelection.valueAsSortable.toString())){
+        return 
+      }
+      else {
+        let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
+        console.log(yearAsLabel)
+        let newPerformanceData:AxisData = {x:yearAsLabel, y: Math.random()*100}
+        return newPerformanceData
+      }
+    })
+    
+    this.performance = {...this.performance, data:this.performance.data.concat(newPerformanceData)}
     return this.performance
   }
 

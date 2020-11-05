@@ -44,10 +44,10 @@ export class StepperComponent implements OnInit {
 
   updateStepperMode(mode: dataPurpose | 'evaluate'): void {
     this.mode = mode
-  }
-
-  getPrediction() {
-    this.predictionRequestEvent.emit(true);
     console.log(this.mode)
+    if (this.mode == 'evaluate'){
+      console.log("emitting")
+      this.predictionRequestEvent.emit(true);
+    }
   }
 }

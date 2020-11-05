@@ -25,7 +25,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   years: Array<YearSelection> = []
   title = 'toymodel0';
   
-
   ngOnInit():void {
     this.years = this.dataService.getYears()
     this.performance = this.dataService.getPerformanceData()
@@ -43,8 +42,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.years = this.dataService.getYears()
     // console.log(this.years)
   }
+
   printPredictions(show:Boolean):void {
-    console.log(show)
+    this.performance=this.dataService.getPerformanceData()
   }
 
 }

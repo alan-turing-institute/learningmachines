@@ -1,7 +1,7 @@
 export type ChartType = "bar" | "line"
 export type SizeClass = "fixedSize" | "autoSize"
 
-interface AxisData {
+export interface AxisData {
   x:string,
   y:number
 }
