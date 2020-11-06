@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
 import { DataView, ChartType } from '../chartSpecification';
 
@@ -11,10 +11,18 @@ export class LineChartComponent implements OnInit {
 
   myChart:Chart = []
   @Input() chartView: DataView;
+  
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['chartView'].previousValue != undefined){
+      console.log(this.chartView.data)
+      this.createChart()
+    }
   }
 
   createChart() {

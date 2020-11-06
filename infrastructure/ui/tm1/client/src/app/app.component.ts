@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   performance:DataView = null
   // descriptiveStatistics: Array<DataView> = []
   years: Array<YearSelection> = []
-  title = 'toymodel0';
+  title = 'Learning Machines Demo V1 - Prognosis Classification with SEER';
   
   ngOnInit():void {
     this.years = this.dataService.getYears()
