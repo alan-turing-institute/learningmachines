@@ -1,5 +1,4 @@
 <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
-
   <clr-stepper-panel formGroupName="train">
     <clr-step-title>Get Training Data</clr-step-title>
     <clr-step-content *clrIfExpanded>
@@ -11,13 +10,6 @@
       <button clrStepButton="next" (click)="updateStepperMode('test')">Next</button>
     </clr-step-content>
   </clr-stepper-panel>
-
-  <!-- <clr-stepper-panel formGroupName="monitor">
-    <clr-step-title>Train Model</clr-step-title>
-    <clr-step-content *clrIfExpanded>
-      <button clrStepButton="next"  routerLink="/patient-view">Train</button>
-    </clr-step-content>
-  </clr-stepper-panel> -->
 
   <clr-stepper-panel formGroupName="enroll">
     <clr-step-title>Get New Cases</clr-step-title>

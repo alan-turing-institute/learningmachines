@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { PatientComponent } from './perspectives/patients/patient/patient.component';
 import { PatientsComponent } from './perspectives/patients/patients.component';
@@ -16,6 +16,7 @@ import { DataEngineerComponent } from './perspectives/data-engineer/data-enginee
 
 import { BarChartComponent } from './vis/bar-chart/bar-chart.component';
 import { LineChartComponent } from './vis/line-chart/line-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LineChartComponent } from './vis/line-chart/line-chart.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: 'engineer-view', component: EngineerComponent},
       {path: 'patient-view', component: PatientsComponent}

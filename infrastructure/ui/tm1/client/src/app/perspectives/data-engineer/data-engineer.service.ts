@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { YearSelection, dataPurpose } from './data';
 import { DataView, AxisData} from '../../vis/chartSpecification';
 
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,14 +14,26 @@ export class DataEngineerService {
   yearsSelection:Array<YearSelection>
   descriptiveStatistics:Array<DataView>
   performance:DataView
+  rootUrl: string
 
-  constructor() { 
-    this.setYears();
+  constructor(private http: HttpClient) { 
+    this.rootUrl = "http://13.80.18.73:8080"
+    this.setYears()
+      .subscribe((data:Array<YearSelection>) => {
+        console.log(data)
+      })
+    this.setYearsManual()
     this.setPerformanceData();
     this.setDescriptiveStatistics();
   }
 
-  setYears():void{
+  setYears():Observable<Array<YearSelection>> {
+    let url:URL=new URL("/diagnosedPerYear/", this.rootUrl)
+    console.log(url.toString())
+    return this.http.get<Array<YearSelection>>(url.toString());
+  }
+
+  setYearsManual():void{
     this.yearsSelection = []
 
     function getDate(year:number):Date{
@@ -110,7 +126,7 @@ export class DataEngineerService {
         newDataPoints.push(newPerformanceData)
       }
     })
-    console.log(newDataPoints)
+    // console.log(newDataPoints)
     this.performance = {...this.performance, data:newDataPoints}
     return this.performance
   }

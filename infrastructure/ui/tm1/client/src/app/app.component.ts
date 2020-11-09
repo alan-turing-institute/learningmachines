@@ -21,14 +21,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   showPredictions():Boolean {return false}
 
   performance:DataView = null
-  // descriptiveStatistics: Array<DataView> = []
   years: Array<YearSelection> = []
   title = 'Learning Machines Demo V1 - Prognosis Classification with SEER';
   
   ngOnInit():void {
     this.years = this.dataService.getYears()
     this.performance = this.dataService.getPerformanceData()
-    // this.descriptiveStatistics = this.dataService.getDescriptiveStatistics()
   }
 
   ngAfterViewInit() {
