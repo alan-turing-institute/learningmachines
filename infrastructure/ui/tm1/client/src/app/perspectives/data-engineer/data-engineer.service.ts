@@ -82,27 +82,53 @@ export class DataEngineerService {
       vis: "line",
       sizeClass:"fixedSize", 
       title: "Model Performance",
-      data: [{x:'V.0', y:80}]
+      data: []
     }
   }
 
   initDescriptiveStatisticsData(): void {
+  
+    let yearCountData:Array<AxisData>=[]
+    this.yearsSelection.map((year:YearSelection)=>{
+      let aYearCaseCount:AxisData = {
+        perspective: [""],
+        x:year.valueAsSortable(year.value).toString(),
+        y:[year.numberOfRows]
+      }
+      yearCountData.push(aYearCaseCount)
+    })
+
     let yearCountStatistics:DataView = { id: "yearCount",
         sizeClass: "autoSize",
         vis: "bar",
-        title: "Dataset Size (by Year)",
-        data: []
+        title: "Total Case Count (by Year)",
+        data: yearCountData
+    }
+    this.descriptiveStatistics.push(yearCountStatistics)
+
+    // 1975Alive0.483944011975Breast Cancer0.3078427341975Other0.129271305
+    let breakdown1975:AxisData = {
+      perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
+      x:'1975',
+      y:[Math.round(0.483944011975*100), Math.round(0.3078427341975*100), Math.round(0.129271305*100), Math.round(0.078941951*100)]
     }
 
-    let yearCountData:Array<{x:string, y: number}>=[]
-    this.yearsSelection.map((year:YearSelection)=>{
-      let yearCount:{x:string, y: number} = {x:year.valueAsSortable(year.value).toString(),
-        y:year.numberOfRows}
-        yearCountData.push(yearCount)
-    })
+    let breakdown1976:AxisData = {
+      perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
+      x:'1976',
+      y:[Math.round(0.472795891*100), Math.round(0.317433693*100), Math.round(0.128210504*100), Math.round(0.081559912*100)]
+    }
 
-    yearCountStatistics = {...yearCountStatistics, data:yearCountData}
-    this.descriptiveStatistics.push(yearCountStatistics)
+    let caseBreakdownStatistics:DataView = { id: "proportionCases",
+        sizeClass: "autoSize",
+        vis: "bar",
+        title: "Proportion of Cases (by Year)",
+        data: [breakdown1975, breakdown1976]
+    }
+
+    this.descriptiveStatistics.push(caseBreakdownStatistics)
+
+    console.log(this.descriptiveStatistics)
   }
 
   getYears():Array<YearSelection>{
@@ -138,7 +164,7 @@ export class DataEngineerService {
     yearsToShowPerformanceValues.map((yearSelection)=>{
       if (!yearsWithPerformanceValues.includes(yearSelection.valueAsSortable(yearSelection.value).toString())){
         let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
-        let newPerformanceData:AxisData = {x:yearAsLabel, y: Math.random()*100}
+        let newPerformanceData:AxisData = {perspective:[""], x:yearAsLabel, y: [Math.random()*100]}
         newDataPoints.push(newPerformanceData)
       }
     })

@@ -25,14 +25,17 @@ export class EngineerComponent implements OnInit, OnChanges {
   }
 
   updateDescriptiveStatistics() {
+    // get training selection
     let trainingSelection:Array<YearSelection> = this.years.filter(function(element){
       return element.purpose == "train"
     })
 
     if (trainingSelection.length > 0){
+      // get training years
       let trainingYears:Array<Date> = trainingSelection.map(function(element){
         return element.value
       })
+      
       this.descriptiveStatistics = this.dataService.getFilteredDescriptiveStatistics(trainingYears)
     }
     else {

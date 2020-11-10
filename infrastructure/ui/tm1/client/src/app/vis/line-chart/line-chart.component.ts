@@ -11,8 +11,6 @@ export class LineChartComponent implements OnInit {
 
   myChart:Chart = []
   @Input() chartView: DataView;
-  
-
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +18,6 @@ export class LineChartComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['chartView'].previousValue != undefined){
-      console.log(this.chartView.data)
       this.createChart()
     }
   }
