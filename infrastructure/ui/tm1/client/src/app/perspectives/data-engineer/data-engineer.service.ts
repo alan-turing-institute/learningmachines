@@ -4,7 +4,7 @@ import { DataView, AxisData} from '../../vis/chartSpecification';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,24 +18,45 @@ export class DataEngineerService {
 
   constructor(private http: HttpClient) { 
     this.rootUrl = "http://13.80.18.73:8080"
-    this.setYears()
-      .subscribe((data:Array<YearSelection>) => {
-        console.log(data)
-      })
-    this.setYearsManual()
-    this.setPerformanceData();
-    this.setDescriptiveStatistics();
+    this.yearsSelection = []
+    this.descriptiveStatistics = []
+    this.performance={
+      id: "performanceVis", 
+      vis: "line",
+      sizeClass:"fixedSize", 
+      title: "Model Performance",
+      data: []
+    }
+    this.setPerformanceDataManual();
   }
 
-  setYears():Observable<Array<YearSelection>> {
+  setYears():Observable<YearSelection[]> {
     let url:URL=new URL("/diagnosedPerYear/", this.rootUrl)
-    console.log(url.toString())
-    return this.http.get<Array<YearSelection>>(url.toString());
+    return this.http.get<YearSelection[]>(url.toString())
+      .pipe(
+        map((yearsCount:Array<any>) => 
+          yearsCount.map(yearCount=>{
+            let year:number = (yearCount as any).year
+            let count:number = (yearCount as any).count
+            let yearDate:Date = new Date()
+            yearDate.setFullYear(year)
+            let newYearSelection:YearSelection = { value: yearDate, 
+              purpose: 'unseen', 
+              icon: 'circle',
+              numberOfRows: count,
+              valueAsSortable: (value):number=> { 
+                return value.getFullYear()
+              }
+            }
+            this.yearsSelection.push(newYearSelection)
+            return newYearSelection
+          })
+        )
+      )
   }
 
   setYearsManual():void{
     this.yearsSelection = []
-
     function getDate(year:number):Date{
       let newDate = new Date()
       newDate.setFullYear(year)
@@ -53,10 +74,9 @@ export class DataEngineerService {
         }
       })
     }
-    // console.log(JSON.stringify(this.yearsSelection))
   }
 
-  setPerformanceData(): void {
+  setPerformanceDataManual(): void {
     this.performance = {
       id: "performanceVis", 
       vis: "line",
@@ -66,27 +86,23 @@ export class DataEngineerService {
     }
   }
 
-  setDescriptiveStatistics(): void {
-    this.descriptiveStatistics = [
-      { id: "numCases", 
+  initDescriptiveStatisticsData(): void {
+    let yearCountStatistics:DataView = { id: "yearCount",
         sizeClass: "autoSize",
-        vis: "bar", 
-        title: "Dataset Size",
+        vis: "bar",
+        title: "Dataset Size (by Year)",
         data: []
-      },
-      {id: "numCases1", 
-      sizeClass: "autoSize",
-      vis: "bar", 
-        title: "Dataset Size",
-        data: []
-      }
-    ]
-    this.descriptiveStatistics = this.descriptiveStatistics.map(function(element){
-      for (let y = 1992; y <=2017; y++)
-        element.data.push({x:y.toString(), y:Math.round(Math.random()*1000)})
-      return element
+    }
+
+    let yearCountData:Array<{x:string, y: number}>=[]
+    this.yearsSelection.map((year:YearSelection)=>{
+      let yearCount:{x:string, y: number} = {x:year.valueAsSortable(year.value).toString(),
+        y:year.numberOfRows}
+        yearCountData.push(yearCount)
     })
-    // console.log(JSON.stringify(this.descriptiveStatistics))
+
+    yearCountStatistics = {...yearCountStatistics, data:yearCountData}
+    this.descriptiveStatistics.push(yearCountStatistics)
   }
 
   getYears():Array<YearSelection>{

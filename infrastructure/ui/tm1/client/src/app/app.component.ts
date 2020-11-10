@@ -25,7 +25,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'Learning Machines Demo V1 - Prognosis Classification with SEER';
   
   ngOnInit():void {
-    this.years = this.dataService.getYears()
+    this.dataService.setYears()
+      .subscribe((data:Array<YearSelection>) => {
+        this.years = data
+        this.dataService.initDescriptiveStatisticsData()
+        console.log(this.years)
+      })
     this.performance = this.dataService.getPerformanceData()
   }
 
