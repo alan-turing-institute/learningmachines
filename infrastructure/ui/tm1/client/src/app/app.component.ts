@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DataView } from './vis/chartSpecification';
 
-import { YearSelection } from './perspectives/data-engineer/data'
+import { YearSelection, dataPurpose } from './perspectives/data-engineer/data'
 import { DataEngineerService} from './perspectives/data-engineer/data-engineer.service'
 import { StepperComponent} from './navigation/stepper/stepper.component'
 
@@ -17,22 +17,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild(StepperComponent)
-  private stepper: StepperComponent 
+  private stepper: StepperComponent
   showPredictions():Boolean {return false}
-
+  showView: 'Engineer' | 'Patient'
   performance:DataView = null
   years: Array<YearSelection> = []
   title = 'Learning Machines Demo V1 - Prognosis Classification with SEER';
   
   ngOnInit():void {
+    this.showView = 'Engineer'
     this.dataService.setYears()
       .subscribe((data:Array<YearSelection>) => {
         this.years = data
         this.dataService.initDescriptiveStatisticsData()
-        console.log(this.years)
       })
     this.performance = this.dataService.getPerformanceData()
   }
+
+  
 
   ngAfterViewInit() {
     // Redefine `seconds()` to get from the `CountdownTimerComponent.seconds` ...

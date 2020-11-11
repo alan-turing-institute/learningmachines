@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-import { DataView, AxisData, OutcomeCategories } from '../chartSpecification';
+import { DataView, AxisData, OutcomeCategories, ChartJSYAxisData } from '../chartSpecification';
+import { VisService } from '../vis.service'
 
 @Component({
   selector: 'app-bar-chart',
@@ -12,38 +13,14 @@ export class BarChartComponent implements OnInit {
   myChart:Chart = []
   @Input() chartView: DataView;
   pallette: Array<string>= ['#DEEAEE', '#B1CBBB', '#EEA29A', '#C94C4C']
-  constructor() { }
+  constructor(private visService: VisService) { }
 
   ngOnInit(): void {
   }
 
   createChart() {
-    console.log(this.chartView)
-    let perspectives:OutcomeCategories[] = [].concat(...this.chartView.data.map((data:AxisData)=>{return data.perspective}))
-    console.log(perspectives)
-    let uniquePerspectives:OutcomeCategories[] = [...new Set(perspectives)];
-    console.log(uniquePerspectives)
-    let datasets:Array<{label:string, data:Array<number>}> = []
-
-    uniquePerspectives.map((p:OutcomeCategories, index)=>{
-      let dataOfPerspective:Array<number> = this.chartView.data.map((data:AxisData)=>{
-        let indexOfPerspective:number = data.perspective.indexOf(p)
-        if (indexOfPerspective > -1)
-          return data.y[indexOfPerspective]
-      })
-      let dataset:{label: string, data: Array<number>, backgroundColor: string} = {
-        label: p,
-        data: dataOfPerspective,
-        backgroundColor: this.pallette[index]
-      };
-      datasets.push(dataset)
-    })
-
-    let years:Array<string> = this.chartView.data.map((data:AxisData)=>{
-      return data.x
-    })
-
-    let uniqueYears:Array<string> = [...new Set(years)];
+    let datasets:Array<ChartJSYAxisData> = this.visService.getDatasets(this.chartView.data)
+    let uniqueYears:Array<string> = this.visService.getYearLabels(this.chartView.data)
     
     this.myChart = new Chart(this.chartView.id, {
       type: 'bar',

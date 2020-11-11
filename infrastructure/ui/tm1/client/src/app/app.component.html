@@ -10,9 +10,9 @@
     <div class="content-area">
       <div class="clr-row" >
         <div class="clr-col-12">
-          <!-- <app-line-chart 
+          <app-line-chart 
             [chartView]="performance">
-          </app-line-chart> -->
+          </app-line-chart>
         </div>
       </div>  
       <div class="clr-row">
@@ -26,12 +26,17 @@
         <div class="clr-col-9">
           <div class="clr-row">
             <div class="clr-col-12">
-              <app-engineer [years]="years"></app-engineer>
+              <app-engineer 
+                [years]="years">
+              </app-engineer>
             </div>
           </div>
           <div class="clr-row">
             <div class="clr-col-12">
-              <app-patients [showPredictionsFlag]="showPredictions()" [years]="years"></app-patients>
+              <app-patients 
+                [showPredictionsFlag]="showPredictions()" 
+                [years]="years">
+              </app-patients>
             </div>
           </div>
         </div>

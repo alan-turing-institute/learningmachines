@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
-import { DataView, ChartType } from '../chartSpecification';
+import { DataView, ChartType, ChartJSYAxisData } from '../chartSpecification';
+import { VisService } from '../vis.service'
 
 @Component({
   selector: 'app-line-chart',
@@ -11,7 +12,7 @@ export class LineChartComponent implements OnInit {
 
   myChart:Chart = []
   @Input() chartView: DataView;
-  constructor() { }
+  constructor(private visService: VisService) { }
 
   ngOnInit(): void {
   }
@@ -23,16 +24,13 @@ export class LineChartComponent implements OnInit {
   }
 
   createChart() {
-    var data = {
-      labels: this.chartView.data.map(function(e){
-        return e.x
-      }),
-      datasets: [{
-        label: "Specificity",
-        data: this.chartView.data.map(function(e){
-          return e.y
-        }),
-      }]
+
+    let datasets:Array<ChartJSYAxisData> = this.visService.getDatasets(this.chartView.data)
+    let uniqueYears:Array<string> = this.visService.getYearLabels(this.chartView.data)
+    
+    var data:{labels:Array<string>, datasets:Array<ChartJSYAxisData>} = {
+      labels:uniqueYears,
+      datasets: datasets
     };
      
     var chartOptions = {

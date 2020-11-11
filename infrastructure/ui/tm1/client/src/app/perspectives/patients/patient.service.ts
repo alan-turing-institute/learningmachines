@@ -15,7 +15,7 @@ export class PatientService {
   setPatients():Array<Patient> {
     this.patients = []
     let years:Array<number>=[]
-    for (let y = 1992; y < 2017; y++ ) {
+    for (let y = 1975; y < 2017; y++ ) {
       years.push(y)
     }
 

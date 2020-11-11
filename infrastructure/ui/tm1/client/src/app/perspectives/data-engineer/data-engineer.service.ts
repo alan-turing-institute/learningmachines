@@ -160,16 +160,16 @@ export class DataEngineerService {
         return axisData.x
     })
 
-    let newDataPoints:Array<AxisData> = this.performance.data
+    let newDataPoints:Array<AxisData> = []
     yearsToShowPerformanceValues.map((yearSelection)=>{
       if (!yearsWithPerformanceValues.includes(yearSelection.valueAsSortable(yearSelection.value).toString())){
         let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
-        let newPerformanceData:AxisData = {perspective:[""], x:yearAsLabel, y: [Math.random()*100]}
+        let newPerformanceData:AxisData = {perspective:['Sensitivity', 'Specificity'], x:yearAsLabel, y: [Math.random()*100, Math.random()*100]}
         newDataPoints.push(newPerformanceData)
       }
     })
     // console.log(newDataPoints)
-    this.performance = {...this.performance, data:newDataPoints}
+    this.performance = {...this.performance, data:newDataPoints.concat(this.performance.data)}
     return this.performance
   }
 

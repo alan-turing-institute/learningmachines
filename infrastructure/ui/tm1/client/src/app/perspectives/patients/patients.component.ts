@@ -29,6 +29,8 @@ export class PatientsComponent implements OnInit {
       return element.purpose == "test"
     })
 
+    
+
     if (testSelection.length > 0){
       // get test dates
       let testYears:Array<number> = testSelection.map(function(element){
