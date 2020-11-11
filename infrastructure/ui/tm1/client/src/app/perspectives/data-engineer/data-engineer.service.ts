@@ -91,7 +91,7 @@ export class DataEngineerService {
     let yearCountData:Array<AxisData>=[]
     this.yearsSelection.map((year:YearSelection)=>{
       let aYearCaseCount:AxisData = {
-        perspective: [""],
+        perspective: ["Number of Cases"],
         x:year.valueAsSortable(year.value).toString(),
         y:[year.numberOfRows]
       }
@@ -160,7 +160,7 @@ export class DataEngineerService {
         return axisData.x
     })
 
-    let newDataPoints:Array<AxisData> = []
+    let newDataPoints:Array<AxisData> = this.performance.data
     yearsToShowPerformanceValues.map((yearSelection)=>{
       if (!yearsWithPerformanceValues.includes(yearSelection.valueAsSortable(yearSelection.value).toString())){
         let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
@@ -169,7 +169,7 @@ export class DataEngineerService {
       }
     })
     // console.log(newDataPoints)
-    this.performance = {...this.performance, data:newDataPoints.concat(this.performance.data)}
+    this.performance = {...this.performance, data:newDataPoints}
     return this.performance
   }
 
