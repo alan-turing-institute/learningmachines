@@ -1,6 +1,6 @@
 export type ChartType = "bar" | "line"
 export type SizeClass = "fixedSize" | "autoSize"
-export type OutcomeCategories = 'Alive' | 'Breast Cancer' | 'Other' | 'Disease Of Heart' 
+export type OutcomeCategories = 'Alive' | 'Breast Cancer' | 'Other' | 'Diseases of Heart' 
 export type PerformanceMeasures = 'Specificity' | 'Sensitivity' | 'Accuracy'
 export type DescriptiveMeasures = 'Number of Cases'
 export type NoLabel = ''

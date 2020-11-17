@@ -29,8 +29,6 @@ export class PatientsComponent implements OnInit {
       return element.purpose == "test"
     })
 
-    
-
     if (testSelection.length > 0){
       // get test dates
       let testYears:Array<number> = testSelection.map(function(element){
@@ -38,7 +36,22 @@ export class PatientsComponent implements OnInit {
       })
 
       // update the cause of death
-      this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
+      // this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
+      for (let indexYear: number=0; indexYear < testYears.length; indexYear++) {
+        let yearOfDiagnosis:number = testYears[indexYear]
+        let patientsDiagnosedAtYear:Patient[] = this.patientService.getCachedPatients([yearOfDiagnosis])
+        if (patientsDiagnosedAtYear.length > 0) {
+          this.selectedPatients = this.selectedPatients.concat(patientsDiagnosedAtYear)
+          console.log("Cached: %s",JSON.stringify(this.selectedPatients))
+        }
+        else {
+          this.patientService.getPatientsViaAPI(yearOfDiagnosis)
+          .subscribe((patients:Array<Patient>) => {
+            this.selectedPatients = this.selectedPatients.concat(patients)
+            console.log("APIed: %s",JSON.stringify(this.selectedPatients))
+          })
+        }
+      }
 
       // sort patients with yearOfDiagnosis
       this.selectedPatients.sort(function (p1, p2) {

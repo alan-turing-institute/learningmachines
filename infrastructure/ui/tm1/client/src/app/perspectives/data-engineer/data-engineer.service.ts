@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { YearSelection, dataPurpose } from './data';
 import { DataView, AxisData} from '../../vis/chartSpecification';
-
+import {caseBreakdownStatistics} from './descriptionStatisticsData'
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
@@ -14,10 +14,10 @@ export class DataEngineerService {
   yearsSelection:Array<YearSelection>
   descriptiveStatistics:Array<DataView>
   performance:DataView
-  rootUrl: string
+  rootUrl: URL
 
   constructor(private http: HttpClient) { 
-    this.rootUrl = "http://13.80.18.73:8080"
+    this.rootUrl = new URL("http://13.80.18.73:8080")
     this.yearsSelection = []
     this.descriptiveStatistics = []
     this.performance={
@@ -88,47 +88,45 @@ export class DataEngineerService {
 
   initDescriptiveStatisticsData(): void {
   
-    let yearCountData:Array<AxisData>=[]
-    this.yearsSelection.map((year:YearSelection)=>{
-      let aYearCaseCount:AxisData = {
-        perspective: ["Number of Cases"],
-        x:year.valueAsSortable(year.value).toString(),
-        y:[year.numberOfRows]
-      }
-      yearCountData.push(aYearCaseCount)
-    })
+    // let yearCountData:Array<AxisData>=[]
+    // this.yearsSelection.map((year:YearSelection)=>{
+    //   let aYearCaseCount:AxisData = {
+    //     perspective: ["Number of Cases"],
+    //     x:year.valueAsSortable(year.value).toString(),
+    //     y:[year.numberOfRows]
+    //   }
+    //   yearCountData.push(aYearCaseCount)
+    // })
 
-    let yearCountStatistics:DataView = { id: "yearCount",
-        sizeClass: "autoSize",
-        vis: "bar",
-        title: "Total Case Count (by Year)",
-        data: yearCountData
-    }
-    this.descriptiveStatistics.push(yearCountStatistics)
+    // let yearCountStatistics:DataView = { id: "yearCount",
+    //     sizeClass: "autoSize",
+    //     vis: "bar",
+    //     title: "Total Case Count (by Year)",
+    //     data: yearCountData
+    // }
+    // this.descriptiveStatistics.push(yearCountStatistics)
 
     // 1975Alive0.483944011975Breast Cancer0.3078427341975Other0.129271305
-    let breakdown1975:AxisData = {
-      perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
-      x:'1975',
-      y:[Math.round(0.483944011975*100), Math.round(0.3078427341975*100), Math.round(0.129271305*100), Math.round(0.078941951*100)]
-    }
+    // let breakdown1975:AxisData = {
+    //   perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
+    //   x:'1975',
+    //   y:[Math.round(0.483944011975*100), Math.round(0.3078427341975*100), Math.round(0.129271305*100), Math.round(0.078941951*100)]
+    // }
 
-    let breakdown1976:AxisData = {
-      perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
-      x:'1976',
-      y:[Math.round(0.472795891*100), Math.round(0.317433693*100), Math.round(0.128210504*100), Math.round(0.081559912*100)]
-    }
+    // let breakdown1976:AxisData = {
+    //   perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
+    //   x:'1976',
+    //   y:[Math.round(0.472795891*100), Math.round(0.317433693*100), Math.round(0.128210504*100), Math.round(0.081559912*100)]
+    // }
 
-    let caseBreakdownStatistics:DataView = { id: "proportionCases",
+    let caseBreakdownDataView:DataView = { id: "proportionCases",
         sizeClass: "autoSize",
         vis: "bar",
         title: "Proportion of Cases (by Year)",
-        data: [breakdown1975, breakdown1976]
+        data: caseBreakdownStatistics
     }
 
-    this.descriptiveStatistics.push(caseBreakdownStatistics)
-
-    console.log(this.descriptiveStatistics)
+    this.descriptiveStatistics.push(caseBreakdownDataView)
   }
 
   getYears():Array<YearSelection>{
