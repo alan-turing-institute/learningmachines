@@ -1,7 +1,7 @@
 .fixedSize {
  position: relative; 
- height:20vh;
- width:90vw;
+ /* height:20vh;
+ width:90vw; */
 }
 
 .autoSize {

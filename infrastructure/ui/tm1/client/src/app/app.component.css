@@ -1,16 +1,18 @@
 
 .learningMachinesBrand {
-  padding-top: 15px;
+  padding-top: 2vh;
 }
 
 .learningMachinesHeader {
-  height: 20vh;
+  max-height: 20vh;
 }
 
-.learningMachinesPerformance {
-  height: 30vh;
+.learningMachinesStepper {
+  max-height: 20vh;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 .learningMachinesData {
-  height: 50vh;
+  max-height: 60vh;
 }

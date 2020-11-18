@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterContentInit } from '@angular/core';
 import { DataView, ChartType } from '../../vis/chartSpecification';
 import { YearSelection } from '../../perspectives/data-engineer/data'
 import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
@@ -10,7 +10,7 @@ import { DataEngineerService} from '../../perspectives/data-engineer/data-engine
   styleUrls: ['./engineer.component.css']
 })
 
-export class EngineerComponent implements OnInit, OnChanges {
+export class EngineerComponent implements AfterContentInit, OnInit, OnChanges {
 
   constructor(private dataService: DataEngineerService) { }
   @Input() years: Array<YearSelection>
@@ -21,10 +21,16 @@ export class EngineerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges):void{
+    // console.log(changes)
+    this.updateDescriptiveStatistics()
+  }
+
+  ngAfterContentInit():void {
     this.updateDescriptiveStatistics()
   }
 
   updateDescriptiveStatistics() {
+    this.descriptiveStatistics=[]
     // get training selection
     let trainingSelection:Array<YearSelection> = this.years.filter(function(element){
       return element.purpose == "train"
@@ -41,5 +47,7 @@ export class EngineerComponent implements OnInit, OnChanges {
     else {
       this.descriptiveStatistics = []
     }
+
+    console.log(this.descriptiveStatistics)
   }
 }

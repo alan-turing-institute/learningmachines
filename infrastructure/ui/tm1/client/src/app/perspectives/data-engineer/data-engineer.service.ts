@@ -55,7 +55,7 @@ export class DataEngineerService {
       )
   }
 
-  setYearsManual():void{
+  setYearsManual():Array<YearSelection>{
     this.yearsSelection = []
     function getDate(year:number):Date{
       let newDate = new Date()
@@ -74,6 +74,8 @@ export class DataEngineerService {
         }
       })
     }
+
+    return this.yearsSelection
   }
 
   setPerformanceDataManual(): void {
@@ -87,23 +89,22 @@ export class DataEngineerService {
   }
 
   initDescriptiveStatisticsData(): void {
-  
-    // let yearCountData:Array<AxisData>=[]
-    // this.yearsSelection.map((year:YearSelection)=>{
-    //   let aYearCaseCount:AxisData = {
-    //     perspective: ["Number of Cases"],
-    //     x:year.valueAsSortable(year.value).toString(),
-    //     y:[year.numberOfRows]
-    //   }
-    //   yearCountData.push(aYearCaseCount)
-    // })
+    let yearCountData:Array<AxisData>=[]
+    this.yearsSelection.map((year:YearSelection)=>{
+      let aYearCaseCount:AxisData = {
+        perspective: ["Number of Cases"],
+        x:year.valueAsSortable(year.value).toString(),
+        y:[year.numberOfRows]
+      }
+      yearCountData.push(aYearCaseCount)
+    })
 
-    // let yearCountStatistics:DataView = { id: "yearCount",
-    //     sizeClass: "autoSize",
-    //     vis: "bar",
-    //     title: "Total Case Count (by Year)",
-    //     data: yearCountData
-    // }
+    let yearCountStatistics:DataView = { id: "yearCount",
+        sizeClass: "autoSize",
+        vis: "bar",
+        title: "Total Case Count (by Year)",
+        data: yearCountData
+    }
     // this.descriptiveStatistics.push(yearCountStatistics)
 
     // 1975Alive0.483944011975Breast Cancer0.3078427341975Other0.129271305
@@ -134,6 +135,7 @@ export class DataEngineerService {
   }
 
   toggleYearPurpose(selectedYear:Date, purpose: dataPurpose): void {
+    console.log("Toggle year: %s", JSON.stringify(selectedYear))
     this.yearsSelection = this.yearsSelection.map(function(element, index, array){
       if (element.value.getFullYear() == selectedYear.getFullYear()){
         if (element.purpose == 'unseen') {
@@ -147,6 +149,19 @@ export class DataEngineerService {
       }
       return element
     })
+  }
+
+  getYearPurpose(selectedYear:Date): dataPurpose {
+    let yearSelection: Array<YearSelection> = this.yearsSelection.filter(function(element){
+      if (element.value.getFullYear() == selectedYear.getFullYear()){
+        return element
+      }
+    })
+    
+    if (yearSelection.length == 1)
+      return yearSelection[0].purpose
+    else
+      return 'unseen'
   }
  
   getPerformanceData(): DataView {

@@ -8,6 +8,95 @@
 
   <div class="content-container">
     <div class="content-area">
+      <div class="clr-row learningMachinesStepper" >
+        <app-data-engineer 
+        [stepperMode]="mode"
+        [years]="years"
+        (yearsUpdateEvent)="updateYearSelection()" >
+      </app-data-engineer>
+      </div>  
+      <div class="clr-row learningMachinesData">
+        <div class="clr-col-lg-6 clr-col-md-6 clr-col-12">
+          <div class="card">
+            <div class="card-header">
+                1. Descriptive Statistics
+            </div>
+            <div class="card-block">
+              <div class="card-text">
+                <app-engineer 
+                  [years]="years">
+                </app-engineer>
+              </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link" (click)="trainAndAllowTestSelection()">Train</button>
+            </div>
+          </div>  
+        </div>
+        <div class="clr-col-lg-6 clr-col-md-6 clr-col-12">
+          <div class="card">
+            <div class="card-header">
+                2. Deployment
+            </div>
+            <div class="card-block">
+              <div class="card-text">
+                <clr-datagrid>
+                  <clr-dg-column>ID</clr-dg-column>
+                  <clr-dg-column>Cause of Death (COD)</clr-dg-column>
+                  <clr-dg-column>Predicted COD</clr-dg-column>
+                  <clr-dg-column>Predicted Certainty</clr-dg-column>
+              
+                  <!-- <clr-dg-row *ngFor="let user of users">
+                      <clr-dg-cell>{{user.id}}</clr-dg-cell>
+                      <clr-dg-cell>{{user.name}}</clr-dg-cell>
+                      <clr-dg-cell>{{user.creation | date}}</clr-dg-cell>
+                      <clr-dg-cell>{{user.color}}</clr-dg-cell>
+                  </clr-dg-row>
+              
+                  <clr-dg-footer>{{users.length}} users</clr-dg-footer> --> 
+              </clr-datagrid>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-link" (click)="testAndShowPerformance()">Collect Outcomes</button>
+            </div>
+          </div>  
+        </div>
+        <div class="clr-col-lg-6 clr-col-md-6 clr-col-12">
+          <div class="card">
+            <div class="card-header">
+                3. Performance Monitoring
+            </div>
+            <div class="card-block">
+              <div class="card-text">
+                <app-line-chart 
+                  [chartView]="performance">
+                </app-line-chart> 
+                <!-- <app-patients 
+                  [showPredictionsFlag]="showPredictions()" 
+                  [years]="years">
+                </app-patients> -->
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-link">Evaluate</button>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="main-container">
+  <header class="header-6 learningMachinesHeader">
+    <div class="branding learningMachinesBrand"><clr-icon shape="layers"></clr-icon>Learning Machines</div>
+    <div class="header-nav">
+      <a href="..." class="active nav-link"><span class="nav-text">SEER Research</span></a>  
+    </div>
+  </header>
+
+  <div class="content-container">
+    <div class="content-area">
       <div class="clr-row learningMachinesPerformance" >
         <div class="clr-col-12">
           <app-line-chart 
@@ -43,4 +132,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
