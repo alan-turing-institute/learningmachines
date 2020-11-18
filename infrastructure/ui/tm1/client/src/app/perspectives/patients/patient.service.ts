@@ -14,37 +14,37 @@ export class PatientService {
 
   constructor(private http: HttpClient) { 
     this.rootUrl = new URL("http://13.80.18.73:8080")
-    this.patients = this.setPatients()
-  }
-
-  setPatients():Array<Patient> {
     this.patients = []
-    // let years:Array<number>=[]
-    // for (let y = 1975; y < 2017; y++ ) {
-    //   years.push(y)
-    // }
-
-    // function getDate(year:number):Date{
-    //   let newDate = new Date()
-    //   newDate.setFullYear(year)
-    //   return newDate
-    // }
-
-    // for (let y = 0; y < years.length; y++){
-    //   let p:Patient = { 
-    //     id: Math.round(Math.random()*100).toString(), 
-    //     yearOfDiagnosis: getDate(years[y]),
-    //     personalInfo: [
-    //       {name: 'age', value:Math.round(Math.random()*10).toString()}
-    //     ],
-    //     medicalHistory: [],
-    //     treatment:[],
-    //     death: null
-    //   }
-    //   this.patients.push(p)
-    // }
-    return this.patients
   }
+
+  // setPatients():Array<Patient> {
+  //   this.patients = []
+  //   // let years:Array<number>=[]
+  //   // for (let y = 1975; y < 2017; y++ ) {
+  //   //   years.push(y)
+  //   // }
+
+  //   // function getDate(year:number):Date{
+  //   //   let newDate = new Date()
+  //   //   newDate.setFullYear(year)
+  //   //   return newDate
+  //   // }
+
+  //   // for (let y = 0; y < years.length; y++){
+  //   //   let p:Patient = { 
+  //   //     id: Math.round(Math.random()*100).toString(), 
+  //   //     yearOfDiagnosis: getDate(years[y]),
+  //   //     personalInfo: [
+  //   //       {name: 'age', value:Math.round(Math.random()*10).toString()}
+  //   //     ],
+  //   //     medicalHistory: [],
+  //   //     treatment:[],
+  //   //     death: null
+  //   //   }
+  //   //   this.patients.push(p)
+  //   // }
+  //   return this.patients
+  // }
 
   
   getCachedPatients(yearsOfDiagnosis:Array<number>):Patient[]{
@@ -55,7 +55,7 @@ export class PatientService {
     return patientsByYear
   }
 
-  getPatientsViaAPI(yearOfDiagnosis:number):Observable<Patient[]>{
+  getPatients(yearOfDiagnosis:number):Observable<Patient[]>{
     let numberOfRows:number = 10
     let url:URL=new URL("/getPatients/"
       .concat(yearOfDiagnosis.toString()

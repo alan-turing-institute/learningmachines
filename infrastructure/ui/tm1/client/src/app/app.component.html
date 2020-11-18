@@ -1,6 +1,6 @@
 <div class="main-container">
-  <header class="header-6">
-    <div class="branding learningMachines"><clr-icon shape="layers"></clr-icon>Learning Machines</div>
+  <header class="header-6 learningMachinesHeader">
+    <div class="branding learningMachinesBrand"><clr-icon shape="layers"></clr-icon>Learning Machines</div>
     <div class="header-nav">
       <a href="..." class="active nav-link"><span class="nav-text">SEER Research</span></a>  
     </div>
@@ -8,14 +8,14 @@
 
   <div class="content-container">
     <div class="content-area">
-      <div class="clr-row" >
+      <div class="clr-row learningMachinesPerformance" >
         <div class="clr-col-12">
           <app-line-chart 
             [chartView]="performance">
           </app-line-chart>
         </div>
       </div>  
-      <div class="clr-row">
+      <div class="clr-row learningMachinesData">
         <div class="clr-col-3">
           <app-stepper
             [years]="years"

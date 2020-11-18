@@ -1,4 +1,16 @@
 
-.learningMachines {
+.learningMachinesBrand {
   padding-top: 15px;
+}
+
+.learningMachinesHeader {
+  height: 20vh;
+}
+
+.learningMachinesPerformance {
+  height: 30vh;
+}
+
+.learningMachinesData {
+  height: 50vh;
 }

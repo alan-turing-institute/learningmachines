@@ -39,18 +39,12 @@ export class PatientsComponent implements OnInit {
       // this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
       for (let indexYear: number=0; indexYear < testYears.length; indexYear++) {
         let yearOfDiagnosis:number = testYears[indexYear]
-        let patientsDiagnosedAtYear:Patient[] = this.patientService.getCachedPatients([yearOfDiagnosis])
-        if (patientsDiagnosedAtYear.length > 0) {
-          this.selectedPatients = this.selectedPatients.concat(patientsDiagnosedAtYear)
-          console.log("Cached: %s",JSON.stringify(this.selectedPatients))
-        }
-        else {
-          this.patientService.getPatientsViaAPI(yearOfDiagnosis)
+        
+        this.patientService.getPatients(yearOfDiagnosis)
           .subscribe((patients:Array<Patient>) => {
-            this.selectedPatients = this.selectedPatients.concat(patients)
-            console.log("APIed: %s",JSON.stringify(this.selectedPatients))
-          })
-        }
+          this.selectedPatients = this.selectedPatients.concat(patients)
+          // console.log("APIed: %s",JSON.stringify(this.selectedPatients))
+        })
       }
 
       // sort patients with yearOfDiagnosis
