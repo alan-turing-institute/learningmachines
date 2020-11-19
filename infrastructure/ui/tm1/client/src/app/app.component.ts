@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private dataService: DataEngineerService) {
   }
 
+  spinnerVisible: Boolean
   mode: dataPurpose | 'evaluate'
   showPredictions():Boolean {return false}
   showView: 'Engineer' | 'Patient'
@@ -25,14 +26,14 @@ export class AppComponent implements OnInit {
   
   ngOnInit():void {
     this.mode = 'train'
-    // this.dataService.setYears()
-    //   .subscribe((data:Array<YearSelection>) => {
-    //     this.years = data
-    //     this.dataService.initDescriptiveStatisticsData()
-    //   })
+    this.dataService.setYears()
+      .subscribe((data:Array<YearSelection>) => {
+        this.years = data
+        this.dataService.initDescriptiveStatisticsData()
+      })
     
-    this.years = this.dataService.setYearsManual()
-    this.dataService.initDescriptiveStatisticsData()
+    // this.years = this.dataService.setYearsManual()
+    // this.dataService.initDescriptiveStatisticsData()
     this.performance = this.dataService.getPerformanceData()
   }
 

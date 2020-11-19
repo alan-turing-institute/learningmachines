@@ -17,34 +17,34 @@ export class PatientService {
     this.patients = []
   }
 
-  // setPatients():Array<Patient> {
-  //   this.patients = []
-  //   // let years:Array<number>=[]
-  //   // for (let y = 1975; y < 2017; y++ ) {
-  //   //   years.push(y)
-  //   // }
+  setPatients():Array<Patient> {
+    this.patients = []
+    let years:Array<number>=[]
+    for (let y = 1975; y < 2017; y++ ) {
+      years.push(y)
+    }
 
-  //   // function getDate(year:number):Date{
-  //   //   let newDate = new Date()
-  //   //   newDate.setFullYear(year)
-  //   //   return newDate
-  //   // }
+    function getDate(year:number):Date{
+      let newDate = new Date()
+      newDate.setFullYear(year)
+      return newDate
+    }
 
-  //   // for (let y = 0; y < years.length; y++){
-  //   //   let p:Patient = { 
-  //   //     id: Math.round(Math.random()*100).toString(), 
-  //   //     yearOfDiagnosis: getDate(years[y]),
-  //   //     personalInfo: [
-  //   //       {name: 'age', value:Math.round(Math.random()*10).toString()}
-  //   //     ],
-  //   //     medicalHistory: [],
-  //   //     treatment:[],
-  //   //     death: null
-  //   //   }
-  //   //   this.patients.push(p)
-  //   // }
-  //   return this.patients
-  // }
+    for (let y = 0; y < years.length; y++){
+      let p:Patient = { 
+        id: Math.round(Math.random()*100).toString(), 
+        yearOfDiagnosis: getDate(years[y]),
+        personalInfo: [
+          {name: 'age', value:Math.round(Math.random()*10).toString()}
+        ],
+        medicalHistory: [],
+        treatment:[],
+        death: null
+      }
+      this.patients.push(p)
+    }
+    return this.patients
+  }
 
   
   getCachedPatients(yearsOfDiagnosis:Array<number>):Patient[]{
@@ -97,7 +97,7 @@ export class PatientService {
         return p
       }
 
-      if (Math.random()<0.85) {
+      if (Math.random()<=1.0) {
         let causeOfDeath:causeOfDeathOptions = Math.random()>0.5?"class A":"class B"
         let yearOfDeath:Date = new Date(yearOfDiagnosis.getFullYear()+5)
         let predictedCauseOfDeath = generatePrediction()
@@ -125,7 +125,6 @@ export class PatientService {
       }
     })
 
-    // console.log(testPatientsOutcome)
     return this.getCachedPatients(selectedYears)
   }
 }

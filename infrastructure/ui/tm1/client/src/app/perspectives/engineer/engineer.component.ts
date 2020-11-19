@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, AfterContentInit } from '@angular/core';
 import { DataView, ChartType } from '../../vis/chartSpecification';
-import { YearSelection } from '../../perspectives/data-engineer/data'
+import { YearSelection, dataPurpose } from '../../perspectives/data-engineer/data'
 import { DataEngineerService} from '../../perspectives/data-engineer/data-engineer.service'
 
 
@@ -10,10 +10,11 @@ import { DataEngineerService} from '../../perspectives/data-engineer/data-engine
   styleUrls: ['./engineer.component.css']
 })
 
-export class EngineerComponent implements AfterContentInit, OnInit, OnChanges {
+export class EngineerComponent implements OnInit, OnChanges {
 
   constructor(private dataService: DataEngineerService) { }
   @Input() years: Array<YearSelection>
+  @Input() stepperMode: dataPurpose
   descriptiveStatistics: Array<DataView>
 
   ngOnInit(): void {
@@ -22,11 +23,16 @@ export class EngineerComponent implements AfterContentInit, OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges):void{
     // console.log(changes)
-    this.updateDescriptiveStatistics()
-  }
-
-  ngAfterContentInit():void {
-    this.updateDescriptiveStatistics()
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        switch (propName) {
+          case 'years': {
+            if ((this.stepperMode != undefined) && (this.stepperMode == 'train'))
+              this.updateDescriptiveStatistics()
+          }
+        }
+      }
+    }
   }
 
   updateDescriptiveStatistics() {
@@ -48,6 +54,6 @@ export class EngineerComponent implements AfterContentInit, OnInit, OnChanges {
       this.descriptiveStatistics = []
     }
 
-    console.log(this.descriptiveStatistics)
+    // console.log(this.descriptiveStatistics)
   }
 }

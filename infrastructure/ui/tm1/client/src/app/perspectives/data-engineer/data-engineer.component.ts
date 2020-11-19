@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, SimpleChange, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange, OnInit, SimpleChanges, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { YearSelection, dataPurpose } from './data'
 import { DataEngineerService} from './data-engineer.service'
 import { Output, EventEmitter } from '@angular/core';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-data-engineer',
@@ -9,16 +10,24 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./data-engineer.component.css']
 })
 
-export class DataEngineerComponent implements OnInit{
+export class DataEngineerComponent implements OnChanges{
   @Input() stepperMode: dataPurpose
   @Input() years:Array<YearSelection>
   @Output() yearsUpdateEvent = new EventEmitter<Boolean>();
   constructor(private dataService: DataEngineerService) { }
 
-  ngOnInit():void {
-    if (this.years.length > 0) {
-      let firstYear:YearSelection = this.years[0]
-      this.toggleYearPurpose(firstYear.value, 'train')
+  ngOnChanges(changes:SimpleChanges) {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        switch (propName) {
+          case 'years': {
+            if ((changes[propName].previousValue != undefined) 
+            && (changes[propName].previousValue).length == 0){    
+              this.toggleYearPurpose(this.years[0].value, 'train')
+            }
+          }
+        }
+      }
     }
   }
 

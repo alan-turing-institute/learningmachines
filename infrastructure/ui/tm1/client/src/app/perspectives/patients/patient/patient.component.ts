@@ -22,7 +22,7 @@ export class PatientComponent implements OnInit {
 
   displayDetails():void {
     // this.opened = true
-    console.log(this.showPredictionsFlag)
+    // console.log(this.showPredictionsFlag)
   }
 
 }

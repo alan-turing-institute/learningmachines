@@ -1,5 +1,23 @@
-<div class="card-columns">
+<!-- <div class="card-columns">
   <div *ngFor="let patient of selectedPatients">
     <app-patient *ngIf="patient.death" [patient]="patient" [showPredictionsFlag]="showPredictionsFlag"></app-patient>
   </div>
-</div>
+</div> -->
+
+<clr-datagrid>
+  <clr-dg-column>ID</clr-dg-column>
+  <clr-dg-column>Year Of Diagnosis</clr-dg-column>
+  <clr-dg-column>Cause of Death (COD)</clr-dg-column>
+  <clr-dg-column>Predicted COD</clr-dg-column>
+  <clr-dg-column>Predicted Certainty</clr-dg-column>
+
+  <clr-dg-row *ngFor="let patient of selectedPatients">
+      <clr-dg-cell>{{patient.id}}</clr-dg-cell>
+      <clr-dg-cell>{{patient.yearOfDiagnosis.getFullYear()}}</clr-dg-cell>
+      <clr-dg-cell>{{patient.death.causeOfDeath}}</clr-dg-cell>
+      <clr-dg-cell>{{patient.death.predictedCauseOfDeath.value}}</clr-dg-cell>
+      <clr-dg-cell>{{patient.death.predictedCauseOfDeath.confidence}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{selectedPatients.length}} patients</clr-dg-footer> 
+</clr-datagrid>

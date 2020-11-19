@@ -135,7 +135,7 @@ export class DataEngineerService {
   }
 
   toggleYearPurpose(selectedYear:Date, purpose: dataPurpose): void {
-    console.log("Toggle year: %s", JSON.stringify(selectedYear))
+    // console.log("Toggle year: %s", JSON.stringify(selectedYear))
     this.yearsSelection = this.yearsSelection.map(function(element, index, array){
       if (element.value.getFullYear() == selectedYear.getFullYear()){
         if (element.purpose == 'unseen') {

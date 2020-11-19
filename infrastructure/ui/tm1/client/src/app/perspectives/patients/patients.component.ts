@@ -15,7 +15,7 @@ export class PatientsComponent implements OnInit {
   @Input() showPredictionsFlag:Boolean
 
   ngOnInit(): void {
-    // this.patients = this.patientService.getPatients()
+    this.patientService.setPatients();
     this.selectedPatients = []
   }
 
@@ -36,16 +36,15 @@ export class PatientsComponent implements OnInit {
       })
 
       // update the cause of death
-      // this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
-      for (let indexYear: number=0; indexYear < testYears.length; indexYear++) {
-        let yearOfDiagnosis:number = testYears[indexYear]
+      this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
+      // for (let indexYear: number=0; indexYear < testYears.length; indexYear++) {
+      //   let yearOfDiagnosis:number = testYears[indexYear]
         
-        this.patientService.getPatients(yearOfDiagnosis)
-          .subscribe((patients:Array<Patient>) => {
-          this.selectedPatients = this.selectedPatients.concat(patients)
-          // console.log("APIed: %s",JSON.stringify(this.selectedPatients))
-        })
-      }
+      //   this.patientService.getPatients(yearOfDiagnosis)
+      //     .subscribe((patients:Array<Patient>) => {
+      //     this.selectedPatients = this.selectedPatients.concat(patients)
+      //   })
+      // }
 
       // sort patients with yearOfDiagnosis
       this.selectedPatients.sort(function (p1, p2) {
@@ -55,5 +54,7 @@ export class PatientsComponent implements OnInit {
     else {
       this.selectedPatients = []
     }
+
+    // console.log("Selected Patients: %s", this.selectedPatients)
   }
 }
