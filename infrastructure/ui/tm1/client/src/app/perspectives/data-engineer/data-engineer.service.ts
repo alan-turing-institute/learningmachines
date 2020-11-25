@@ -125,14 +125,17 @@ export class DataEngineerService {
     // console.log("Toggle year: %s", JSON.stringify(selectedYear))
     this.yearsSelection = this.yearsSelection.map(function(element, index, array){
       if (element.value.getFullYear() == selectedYear.getFullYear()){
+        // this sets unseen to test/train
         if (element.purpose == 'unseen') {
           element.purpose = purpose
           element.icon = 'success-standard'
         }
+        // this sets train/test to unseen
         else if (element.purpose == purpose) {
           element.purpose = 'unseen'
           element.icon = 'circle'
         }
+        // this sets test data to training data
         else if (element.purpose == 'test'){
           element.purpose = purpose
         }
