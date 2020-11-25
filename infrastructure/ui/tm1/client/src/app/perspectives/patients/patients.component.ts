@@ -36,7 +36,10 @@ export class PatientsComponent implements OnInit {
       })
 
       // update the cause of death
+      // this is for manual
       this.selectedPatients = this.patientService.updateCauseOfDeath(testYears)
+
+      // this is for getting data from API
       // for (let indexYear: number=0; indexYear < testYears.length; indexYear++) {
       //   let yearOfDiagnosis:number = testYears[indexYear]
         

@@ -63,7 +63,7 @@ export class DataEngineerService {
       return newDate
     }
 
-    for (let y = 1992; y <=2017; y++)
+    for (let y = 1975; y <=2017; y++)
     {
       this.yearsSelection.push({value: getDate(y), 
         purpose: 'unseen', 
@@ -105,20 +105,7 @@ export class DataEngineerService {
         title: "Total Case Count (by Year)",
         data: yearCountData
     }
-    // this.descriptiveStatistics.push(yearCountStatistics)
-
-    // 1975Alive0.483944011975Breast Cancer0.3078427341975Other0.129271305
-    // let breakdown1975:AxisData = {
-    //   perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
-    //   x:'1975',
-    //   y:[Math.round(0.483944011975*100), Math.round(0.3078427341975*100), Math.round(0.129271305*100), Math.round(0.078941951*100)]
-    // }
-
-    // let breakdown1976:AxisData = {
-    //   perspective: ['Alive', 'Breast Cancer', 'Other', 'Disease Of Heart'],
-    //   x:'1976',
-    //   y:[Math.round(0.472795891*100), Math.round(0.317433693*100), Math.round(0.128210504*100), Math.round(0.081559912*100)]
-    // }
+    this.descriptiveStatistics.push(yearCountStatistics)
 
     let caseBreakdownDataView:DataView = { id: "proportionCases",
         sizeClass: "autoSize",
@@ -145,6 +132,9 @@ export class DataEngineerService {
         else if (element.purpose == purpose) {
           element.purpose = 'unseen'
           element.icon = 'circle'
+        }
+        else if (element.purpose == 'test'){
+          element.purpose = purpose
         }
       }
       return element
@@ -173,14 +163,36 @@ export class DataEngineerService {
         return axisData.x
     })
 
-    let newDataPoints:Array<AxisData> = this.performance.data
-    yearsToShowPerformanceValues.map((yearSelection)=>{
-      if (!yearsWithPerformanceValues.includes(yearSelection.valueAsSortable(yearSelection.value).toString())){
-        let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
-        let newPerformanceData:AxisData = {perspective:['Sensitivity', 'Specificity'], x:yearAsLabel, y: [Math.random()*100, Math.random()*100]}
-        newDataPoints.push(newPerformanceData)
-      }
-    })
+    // let newDataPoints:Array<AxisData> = this.performance.data
+    // yearsToShowPerformanceValues.map((yearSelection)=>{
+    //   if (!yearsWithPerformanceValues.includes(yearSelection.valueAsSortable(yearSelection.value).toString())){
+    //     let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
+    //     let newPerformanceData:AxisData = {perspective:['Sensitivity', 'Specificity'], x:yearAsLabel, y: [Math.random()*100, Math.random()*100]}
+    //     newDataPoints.push(newPerformanceData)
+    //   }
+    // })
+
+    let newDataPoints:Array<AxisData>= [{
+      "perspective": ["V_1979"],
+      "x": "1980-1984",
+      "y": [80]
+    },
+    {
+      "perspective": ["V_1979", "V_1984"],
+      "x": "1985-1989",
+      "y": [70, 80]
+    },
+    {
+      "perspective": ["V_1979", "V_1984", "V_1989"],
+      "x": "1990-1994",
+      "y": [60, 70, 80]
+    },
+    {
+      "perspective": ["V_1979", "V_1984", "V_1989", "V_1994"],
+      "x": "1995-1999",
+      "y": [60, 60, 80, 90]
+    }
+    ]
     // console.log(newDataPoints)
     this.performance = {...this.performance, data:newDataPoints}
     return this.performance

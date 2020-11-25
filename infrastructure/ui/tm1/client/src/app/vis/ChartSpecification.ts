@@ -7,8 +7,9 @@ export type NoLabel = ''
 export var Pallette: Array<string>= ['#DEEAEE', '#B1CBBB', '#EEA29A', '#C94C4C']
 
 export interface AxisData {
-  perspective: Array<OutcomeCategories|PerformanceMeasures|NoLabel|DescriptiveMeasures> 
-  x:string,
+  // perspective: Array<OutcomeCategories|PerformanceMeasures|NoLabel|DescriptiveMeasures> 
+  perspective: Array<string>
+  x:string
   y:Array<number>
 }
 

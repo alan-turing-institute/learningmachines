@@ -54,6 +54,6 @@ export class EngineerComponent implements OnInit, OnChanges {
       this.descriptiveStatistics = []
     }
 
-    // console.log(this.descriptiveStatistics)
+    // console.log("Descriptive stats: %s", JSON.stringify(this.descriptiveStatistics))
   }
 }

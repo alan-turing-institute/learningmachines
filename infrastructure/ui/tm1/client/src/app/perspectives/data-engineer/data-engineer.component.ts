@@ -21,10 +21,16 @@ export class DataEngineerComponent implements OnChanges{
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'years': {
-            if ((changes[propName].previousValue != undefined) 
-            && (changes[propName].previousValue).length == 0){    
-              this.toggleYearPurpose(this.years[0].value, 'train')
-            }
+            // if ((changes[propName].previousValue != undefined) 
+            // && (changes[propName].previousValue).length == 0){    
+            //   this.toggleYearPurpose(this.years[0].value, 'train')
+            // }
+
+            // if ((changes[propName].currentValue != undefined) 
+            //   && (changes[propName].previousValue == undefined)){    
+            //   console.log("Update First Year to training: %s", changes[propName])
+            //   this.toggleYearPurpose(this.years[0].value, 'train')
+            // }
           }
         }
       }

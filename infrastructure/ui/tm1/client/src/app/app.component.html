@@ -8,118 +8,79 @@
 
   <div class="content-container">
     <div class="content-area">
-      <div class="clr-row learningMachinesStepper" >
+      <div class="learningMachinesCreate">
+        <button class="btn btn-primary" (click)="updateMode('train')">Create</button>
+      </div>
+      <div class="learningMachinesStepper">
         <app-data-engineer 
-        [stepperMode]="mode"
-        [years]="years"
-        (yearsUpdateEvent)="updateYearSelection()" >
+          [stepperMode]="mode"
+          [years]="years"
+          (yearsUpdateEvent)="updateYearSelection()">
       </app-data-engineer>
       </div>  
-      <div class="clr-row learningMachinesData">
-        <div class="clr-col-lg-6 clr-col-md-12 clr-col-12">
-          <div class="card">
-            <div class="card-header">
-                1. Descriptive Statistics
-            </div>
-            <div class="card-block">
-              <div class="card-text">
-                <app-engineer 
-                  [stepperMode]="mode"
-                  [years]="years">
-                </app-engineer>
+      <div class="learningMachinesData">
+        <div class="clr-row">
+          <div class="clr-col-lg-12 clr-col-12">
+            <div class="card">
+              <div class="card-header">
+                  1. Descriptive Statistics
               </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-sm btn-link" (click)="trainAndAllowTestSelection()">Train</button>
-                <!-- <span class="spinner spinner-inline">
-                  Loading...
-                </span> -->
-            </div>
-          </div>  
+              <div class="card-block">
+                <div class="card-text">
+                  <app-engineer 
+                    [stepperMode]="mode"
+                    [years]="years">
+                  </app-engineer>
+                </div>
+              </div>
+              <div class="card-footer">                
+                <button *ngIf="mode=='train'" class="btn btn-sm btn-link" (click)="updateMode('test')">Train</button>
+                <span style="color: green;">{{trainingProgress}}</span>
+              </div>
+            </div>  
+          </div>
         </div>
-        <div class="clr-col-lg-6 clr-col-md-12 clr-col-12">
-          <div class="card">
-            <div class="card-header">
-                2. Deployment
-            </div>
-            <div class="card-block">
-              <div class="card-text">
-                <app-patients 
-                  [showPredictionsFlag]="showPredictions()" 
-                  [years]="years">
-                </app-patients>
+        <div class="clr-row">
+          <div class="clr-col-lg-12 clr-col-12">
+            <div class="card">
+              <div class="card-header">
+                  2. Deployment
               </div>
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-sm btn-link" (click)="testAndShowPerformance()">Evaluate</button>
-            </div>
-          </div>  
+              <div class="card-block">
+                <div class="card-text">
+                  <app-patients 
+                    [showPredictionsFlag]="showPredictions()" 
+                    [years]="years">
+                  </app-patients>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-link" (click)="updateMode('evaluate')">Evaluate</button>
+              </div>
+            </div>  
+          </div>
         </div>
-        <div class="clr-col-lg-6 clr-col-md-12 clr-col-12">
-          <div class="card">
-            <div class="card-header">
-                3. Performance Monitoring
-            </div>
-            <div class="card-block">
-              <div class="card-text">
-                <app-line-chart 
-                  [chartView]="performance">
-                </app-line-chart> 
-                
+        <div class="clr-row">
+          <div class="clr-col-lg-12 clr-col-12">
+            <div class="card">
+              <div class="card-header">
+                  3. Performance Monitoring
               </div>
-            </div>
-            <div class="card-footer">
-              <button class="btn btn-sm btn-link">Retrain</button>
-            </div>
-          </div>  
+              <div class="card-block">
+                <div class="card-text">
+                  <app-line-chart 
+                    [chartView]="performance">
+                  </app-line-chart> 
+                  
+                </div>
+              </div>
+              <div class="card-footer">
+                <!-- <button class="btn btn-sm btn-link">Print</button> -->
+              </div>
+            </div>  
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <div class="main-container">
-  <header class="header-6 learningMachinesHeader">
-    <div class="branding learningMachinesBrand"><clr-icon shape="layers"></clr-icon>Learning Machines</div>
-    <div class="header-nav">
-      <a href="..." class="active nav-link"><span class="nav-text">SEER Research</span></a>  
-    </div>
-  </header>
-
-  <div class="content-container">
-    <div class="content-area">
-      <div class="clr-row learningMachinesPerformance" >
-        <div class="clr-col-12">
-          <app-line-chart 
-            [chartView]="performance">
-          </app-line-chart>
-        </div>
-      </div>  
-      <div class="clr-row learningMachinesData">
-        <div class="clr-col-3">
-          <app-stepper
-            [years]="years"
-            (yearsUpdateEvent)="updateYearSelection()" 
-            (predictionRequestEvent)="printPredictions($event)" >
-          </app-stepper>
-        </div>
-        <div class="clr-col-9">
-          <div class="clr-row">
-            <div class="clr-col-12">
-              <app-engineer 
-                [years]="years">
-              </app-engineer>
-            </div>
-          </div>
-          <div class="clr-row">
-            <div class="clr-col-12">
-              <app-patients 
-                [showPredictionsFlag]="showPredictions()" 
-                [years]="years">
-              </app-patients>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
