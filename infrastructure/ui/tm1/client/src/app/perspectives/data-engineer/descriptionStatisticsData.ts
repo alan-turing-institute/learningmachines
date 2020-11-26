@@ -1,5 +1,182 @@
 
 import {AxisData} from '../../vis/chartSpecification'
+import {Incidences} from './data'
+
+
+export const yearIncidences:Array<Incidences> = [
+   {
+      "year": 1975,
+      "numCases": 9716
+   },
+   {
+      "year": 1976,
+      "numCases": 9539
+   },
+   {
+      "year": 1977,
+      "numCases": 9568
+   },
+   {
+      "year": 1978,
+      "numCases": 9721
+   },
+   {
+      "year": 1979,
+      "numCases": 10083
+   },
+   {
+      "year": 1980,
+      "numCases": 10287
+   },
+   {
+      "year": 1981,
+      "numCases": 10846
+   },
+   {
+      "year": 1982,
+      "numCases": 11020
+   },
+   {
+      "year": 1983,
+      "numCases": 11704
+   },
+   {
+      "year": 1984,
+      "numCases": 12375
+   },
+   {
+      "year": 1985,
+      "numCases": 13460
+   },
+   {
+      "year": 1986,
+      "numCases": 13995
+   },
+   {
+      "year": 1987,
+      "numCases": 15116
+   },
+   {
+      "year": 1988,
+      "numCases": 15008
+   },
+   {
+      "year": 1989,
+      "numCases": 14748
+   },
+   {
+      "year": 1990,
+      "numCases": 15516
+   },
+   {
+      "year": 1991,
+      "numCases": 16008
+   },
+   {
+      "year": 1992,
+      "numCases": 16139
+   },
+   {
+      "year": 1993,
+      "numCases": 16077
+   },
+   {
+      "year": 1994,
+      "numCases": 16554
+   },
+   {
+      "year": 1995,
+      "numCases": 17072
+   },
+   {
+      "year": 1996,
+      "numCases": 17494
+   },
+   {
+      "year": 1997,
+      "numCases": 18396
+   },
+   {
+      "year": 1998,
+      "numCases": 19172
+   },
+   {
+      "year": 1999,
+      "numCases": 19457
+   },
+   {
+      "year": 2000,
+      "numCases": 19101
+   },
+   {
+      "year": 2001,
+      "numCases": 19729
+   },
+   {
+      "year": 2002,
+      "numCases": 19593
+   },
+   {
+      "year": 2003,
+      "numCases": 18642
+   },
+   {
+      "year": 2004,
+      "numCases": 19103
+   },
+   {
+      "year": 2005,
+      "numCases": 19172
+   },
+   {
+      "year": 2006,
+      "numCases": 19509
+   },
+   {
+      "year": 2007,
+      "numCases": 20118
+   },
+   {
+      "year": 2008,
+      "numCases": 20477
+   },
+   {
+      "year": 2009,
+      "numCases": 21287
+   },
+   {
+      "year": 2010,
+      "numCases": 21038
+   },
+   {
+      "year": 2011,
+      "numCases": 21957
+   },
+   {
+      "year": 2012,
+      "numCases": 22378
+   },
+   {
+      "year": 2013,
+      "numCases": 22766
+   },
+   {
+      "year": 2014,
+      "numCases": 23270
+   },
+   {
+      "year": 2015,
+      "numCases": 23733
+   },
+   {
+      "year": 2016,
+      "numCases": 23925
+   },
+   {
+      "year": 2017,
+      "numCases": 24447
+   }
+]
 
 export const caseBreakdownStatistics:Array<AxisData> = [
    {

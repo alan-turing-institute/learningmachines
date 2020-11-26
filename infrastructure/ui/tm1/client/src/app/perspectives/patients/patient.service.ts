@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Patient, Prediction, predictionOptions, causeOfDeathOptions, Death } from './patient/patient'; 
-
+import {patientRecords} from './patientsData'
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
@@ -18,38 +18,38 @@ export class PatientService {
   }
 
   setPatients():Array<Patient> {
-    this.patients = []
-    let years:Array<number>=[]
-    for (let y = 1975; y < 2017; y++ ) {
-      years.push(y)
-    }
+    this.patients = patientRecords
+    // let years:Array<number>=[]
+    // for (let y = 1975; y < 2017; y++ ) {
+    //   years.push(y)
+    // }
 
-    function getDate(year:number):Date{
-      let newDate = new Date()
-      newDate.setFullYear(year)
-      return newDate
-    }
+    // function getDate(year:number):Date{
+    //   let newDate = new Date()
+    //   newDate.setFullYear(year)
+    //   return newDate
+    // }
 
-    for (let y = 0; y < years.length; y++){
-      let p:Patient = { 
-        id: Math.round(Math.random()*100).toString(), 
-        yearOfDiagnosis: getDate(years[y]),
-        personalInfo: [
-          {name: 'age', value:Math.round(Math.random()*10).toString()}
-        ],
-        medicalHistory: [],
-        treatment:[],
-        death: null
-      }
-      this.patients.push(p)
-    }
+    // for (let y = 0; y < years.length; y++){
+    //   let p:Patient = { 
+    //     id: Math.round(Math.random()*100).toString(), 
+    //     yearOfDiagnosis: years[y],
+    //     personalInfo: [
+    //       {name: 'age', value:Math.round(Math.random()*10).toString()}
+    //     ],
+    //     medicalHistory: [],
+    //     // treatment:[],
+    //     death: null
+    //   }
+    //   this.patients.push(p)
+    // }
     return this.patients
   }
 
   
   getCachedPatients(yearsOfDiagnosis:Array<number>):Patient[]{
     let patientsByYear:Patient[] = this.patients.filter(function(p){
-      let yearOfDiagnosis: number = p.yearOfDiagnosis.getFullYear()
+      let yearOfDiagnosis: number = p.yearOfDiagnosis
       return (yearsOfDiagnosis.includes(yearOfDiagnosis))
     })
     return patientsByYear
@@ -73,9 +73,9 @@ export class PatientService {
             let patientOfYear:Patient = {
               id: (patient as any).id,
               personalInfo: (patient as any).personalInfo,
-              yearOfDiagnosis: yearDate,
+              yearOfDiagnosis: patient.year,
               medicalHistory:(patient as any).medicalHistory,
-              treatment:(patient as any).treatment,
+              // treatment:(patient as any).treatment,
               death:(patient as any).death,
             }
             this.patients.push(patientOfYear)
@@ -86,44 +86,44 @@ export class PatientService {
   }
 
   updateCauseOfDeath(selectedYears:Array<number>):Array<Patient> {
-    function getOutcome(yearOfDiagnosis:Date): Death | null {
-      function generatePrediction():Prediction {
-        let prediction:predictionOptions = Math.random()>0.5?"class A":"class B"
-        let p:Prediction = {value: prediction, 
-          confidence:Math.round(Math.random()*100),
-          intepreter: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-          date: new Date()
-          }
-        return p
-      }
+    // function getOutcome(yearOfDiagnosis:Date): Death | null {
+    //   function generatePrediction():Prediction {
+    //     let prediction:predictionOptions = Math.random()>0.5?"class A":"class B"
+    //     let p:Prediction = {value: prediction, 
+    //       confidence:Math.round(Math.random()*100),
+    //       intepreter: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    //       date: new Date()
+    //       }
+    //     return p
+    //   }
 
-      if (Math.random()<=1.0) {
-        let causeOfDeath:causeOfDeathOptions = Math.random()>0.5?"class A":"class B"
-        let yearOfDeath:Date = new Date(yearOfDiagnosis.getFullYear()+5)
-        let predictedCauseOfDeath = generatePrediction()
-        return {
-          causeOfDeath: causeOfDeath,
-          predictedCauseOfDeath: predictedCauseOfDeath,
-          date: yearOfDeath
-        }
-      }
-      else {
-        return null
-      }
-    } 
-    this.patients = this.patients.map(function(p) {
-      if (selectedYears.includes(p.yearOfDiagnosis.getFullYear())) {
-        if (p.death==null){
-          return {...p, death:getOutcome(p.yearOfDiagnosis)}
-        }
-        else {
-          return {...p}
-        }
-      }
-      else {
-        return {...p}
-      }
-    })
+    //   if (Math.random()<=1.0) {
+    //     let causeOfDeath:causeOfDeathOptions = Math.random()>0.5?"class A":"class B"
+    //     let yearOfDeath:Date = new Date(yearOfDiagnosis.getFullYear()+5)
+    //     let predictedCauseOfDeath = generatePrediction()
+    //     return {
+    //       causeOfDeath: causeOfDeath,
+    //       predictedCauseOfDeath: predictedCauseOfDeath,
+    //       date: yearOfDeath
+    //     }
+    //   }
+    //   else {
+    //     return null
+    //   }
+    // } 
+    // this.patients = this.patients.map(function(p) {
+    //   if (selectedYears.includes(p.yearOfDiagnosis.getFullYear())) {
+    //     if (p.death==null){
+    //       return {...p, death:getOutcome(p.yearOfDiagnosis)}
+    //     }
+    //     else {
+    //       return {...p}
+    //     }
+    //   }
+    //   else {
+    //     return {...p}
+    //   }
+    // })
 
     return this.getCachedPatients(selectedYears)
   }

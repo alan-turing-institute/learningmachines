@@ -11,6 +11,7 @@ import { YearSelection, dataPurpose } from '../data-engineer/data';
 export class PatientsComponent implements OnInit {
   constructor(private patientService: PatientService) { }
   selectedPatients : Array<Patient>
+  errorColor: string = "red"
   @Input() years:Array<YearSelection>
   @Input() showPredictionsFlag:Boolean
 
@@ -51,7 +52,7 @@ export class PatientsComponent implements OnInit {
 
       // sort patients with yearOfDiagnosis
       this.selectedPatients.sort(function (p1, p2) {
-        return p1.yearOfDiagnosis.getFullYear()-p2.yearOfDiagnosis.getFullYear()
+        return p1.yearOfDiagnosis-p2.yearOfDiagnosis
       })
     }
     else {

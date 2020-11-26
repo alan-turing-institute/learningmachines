@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { YearSelection, dataPurpose } from './data';
+import { YearSelection, dataPurpose, Incidences } from './data';
 import { DataView, AxisData} from '../../vis/chartSpecification';
-import {caseBreakdownStatistics} from './descriptionStatisticsData'
+import {caseBreakdownStatistics, yearIncidences} from './descriptionStatisticsData'
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
@@ -57,18 +57,19 @@ export class DataEngineerService {
 
   setYearsManual():Array<YearSelection>{
     this.yearsSelection = []
+
     function getDate(year:number):Date{
       let newDate = new Date()
       newDate.setFullYear(year)
       return newDate
     }
 
-    for (let y = 1975; y <=2017; y++)
-    {
-      this.yearsSelection.push({value: getDate(y), 
+    let incidences:Array<Incidences> = yearIncidences
+    for (let y = 0; y < incidences.length; y++) {
+      this.yearsSelection.push({value: getDate(incidences[y].year), 
         purpose: 'unseen', 
         icon: 'circle',
-        numberOfRows: Math.round(Math.random()*100),
+        numberOfRows: incidences[y].numCases,
         valueAsSortable: (value):number=> { 
           return value.getFullYear()
         }

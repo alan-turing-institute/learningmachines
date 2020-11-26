@@ -1,5 +1,5 @@
 type ChartType = "bar" | "line"
-export type causeOfDeathOptions = "class A" | "class B"
+export type causeOfDeathOptions = "Breast Cancer" | "Alive" | "Other" | "Diseases of Heart"
 export type predictionOptions = causeOfDeathOptions
 
 interface Treatment {
@@ -10,16 +10,17 @@ interface Treatment {
 }
 
 export interface Prediction {
+  model: string,
   value: predictionOptions;
   confidence: number;
-  intepreter: string;
-  date: Date | null;
+  interpreter: string;
+  survivalMonths: number;
 }
 
 export interface Death {
   causeOfDeath: causeOfDeathOptions;
-  predictedCauseOfDeath: Prediction ;
-  date: Date | null;
+  predictedCauseOfDeath: Array<Prediction> ;
+  survivalMonths: number;
 }
 
 interface MedicalHistory {
@@ -42,8 +43,8 @@ interface Laboratory {
 export interface Patient {
   id: string;
   personalInfo: Array<PersonalInfo>;
-  yearOfDiagnosis: Date;
+  yearOfDiagnosis: number;
   medicalHistory: Array<MedicalHistory>
-  treatment: Array<Treatment>
+  // treatment: Array<Treatment>
   death: Death | null
 }

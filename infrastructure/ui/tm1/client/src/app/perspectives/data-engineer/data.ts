@@ -8,3 +8,8 @@ export interface YearSelection {
   numberOfRows: number
   valueAsSortable(value):number
 }
+
+export interface Incidences {
+  "year":number,
+  "numCases":number
+}
