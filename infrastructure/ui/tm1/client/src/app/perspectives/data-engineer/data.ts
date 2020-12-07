@@ -1,4 +1,5 @@
 export type dataPurpose = 'test' | 'train' | 'unseen' 
+export type dataAccessMode = 'online' | 'offline'
 type iconShape = 'success-standard' | 'circle' | 'dot-circle'
 
 export interface YearSelection {

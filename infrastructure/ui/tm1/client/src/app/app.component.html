@@ -16,7 +16,7 @@
           [stepperMode]="mode"
           [years]="years"
           (yearsUpdateEvent)="updateYearSelection()">
-      </app-data-engineer>
+        </app-data-engineer>
       </div>  
       <div class="learningMachinesData">
         <div class="clr-row">
@@ -35,7 +35,7 @@
               </div>
               <div class="card-footer">                
                 <button *ngIf="mode=='train'" class="btn btn-sm btn-link" (click)="updateMode('test')">Train</button>
-                <span style="color: green;">{{trainingProgress}}</span>
+                <span style="color: green;">{{trainingProgressStatus}}</span>
               </div>
             </div>  
           </div>
@@ -49,7 +49,6 @@
               <div class="card-block">
                 <div class="card-text">
                   <app-patients 
-                    [showPredictionsFlag]="showPredictions()" 
                     [years]="years">
                   </app-patients>
                 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { YearSelection, dataPurpose, Incidences } from './data';
+import { YearSelection, dataPurpose, dataAccessMode, Incidences } from './data';
 import { DataView, AxisData} from '../../vis/chartSpecification';
-import {caseBreakdownStatistics, yearIncidences} from './descriptionStatisticsData'
+import {caseBreakdownStatistics, yearIncidences, performanceStatistics} from './descriptionStatisticsData'
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
@@ -15,9 +15,10 @@ export class DataEngineerService {
   descriptiveStatistics:Array<DataView>
   performance:DataView
   rootUrl: URL
+  
 
   constructor(private http: HttpClient) { 
-    this.rootUrl = new URL("http://13.80.18.73:8080")
+    this.rootUrl = new URL("http://13.80.18.73:80")
     this.yearsSelection = []
     this.descriptiveStatistics = []
     this.performance={
@@ -27,10 +28,20 @@ export class DataEngineerService {
       title: "Model Performance",
       data: []
     }
-    this.setPerformanceDataManual();
   }
 
-  setYears():Observable<YearSelection[]> {
+  getYears():Array<YearSelection>{
+    return this.yearsSelection
+  }
+
+  setYears(dataAccess:dataAccessMode):Observable<YearSelection[]>{
+    if (dataAccess=='online')
+      return this.setYearsAPI()
+    else  
+      return this.setYearsManual()
+  }
+
+  setYearsAPI():Observable<YearSelection[]> {
     let url:URL=new URL("/diagnosedPerYear/", this.rootUrl)
     return this.http.get<YearSelection[]>(url.toString())
       .pipe(
@@ -55,7 +66,7 @@ export class DataEngineerService {
       )
   }
 
-  setYearsManual():Array<YearSelection>{
+  setYearsManual():Observable<YearSelection[]>{
     this.yearsSelection = []
 
     function getDate(year:number):Date{
@@ -63,63 +74,63 @@ export class DataEngineerService {
       newDate.setFullYear(year)
       return newDate
     }
-
     let incidences:Array<Incidences> = yearIncidences
-    for (let y = 0; y < incidences.length; y++) {
-      this.yearsSelection.push({value: getDate(incidences[y].year), 
-        purpose: 'unseen', 
-        icon: 'circle',
-        numberOfRows: incidences[y].numCases,
-        valueAsSortable: (value):number=> { 
-          return value.getFullYear()
+    
+    let obsUsingConstructor = Observable.create( observer => {
+      for (let y = 0; y < incidences.length; y++) {
+        let yearSelection:YearSelection = { value: getDate(incidences[y].year), 
+          purpose: 'unseen', 
+          icon: 'circle',
+          numberOfRows: incidences[y].numCases,
+          valueAsSortable: (value):number=> { 
+            return value.getFullYear()
+          }
         }
-      })
-    }
-
-    return this.yearsSelection
-  }
-
-  setPerformanceDataManual(): void {
-    this.performance = {
-      id: "performanceVis", 
-      vis: "line",
-      sizeClass:"fixedSize", 
-      title: "Model Performance",
-      data: []
-    }
-  }
-
-  initDescriptiveStatisticsData(): void {
-    let yearCountData:Array<AxisData>=[]
-    this.yearsSelection.map((year:YearSelection)=>{
-      let aYearCaseCount:AxisData = {
-        perspective: ["Number of Cases"],
-        x:year.valueAsSortable(year.value).toString(),
-        y:[year.numberOfRows]
+        this.yearsSelection.push(yearSelection)
       }
-      yearCountData.push(aYearCaseCount)
+      observer.next(this.yearsSelection)
+      observer.complete()
     })
+    return obsUsingConstructor  
+  }
 
-    let yearCountStatistics:DataView = { id: "yearCount",
-        sizeClass: "autoSize",
-        vis: "bar",
-        title: "Total Case Count (by Year)",
-        data: yearCountData
+  setDescriptiveStatistics(dataAccess: dataAccessMode): Observable<DataView[]> {
+    if (dataAccess=='online')
+      return this.setDescriptiveStatisticsAPI()
+    else
+      return this.setDescriptiveStatisticsManual()
+  }
+
+  setDescriptiveStatisticsAPI():Observable<DataView[]> {
+    let caseBreakdownDataView:DataView = { id: "proportionCases",
+    sizeClass: "autoSize",
+    vis: "bar",
+    title: "Proportion of Cases (by Year)",
+    data: caseBreakdownStatistics
     }
-    this.descriptiveStatistics.push(yearCountStatistics)
+    this.descriptiveStatistics.push(caseBreakdownDataView)
 
+    let obsUsingConstructor:Observable<DataView[]> = Observable.create(observer =>{
+      observer.next(caseBreakdownDataView)
+      observer.complete()
+    })
+    return obsUsingConstructor
+  }
+
+  setDescriptiveStatisticsManual():Observable<DataView[]> {
     let caseBreakdownDataView:DataView = { id: "proportionCases",
         sizeClass: "autoSize",
         vis: "bar",
         title: "Proportion of Cases (by Year)",
         data: caseBreakdownStatistics
     }
-
     this.descriptiveStatistics.push(caseBreakdownDataView)
-  }
 
-  getYears():Array<YearSelection>{
-    return this.yearsSelection
+    let obsUsingConstructor:Observable<DataView[]> = Observable.create(observer =>{
+      observer.next(caseBreakdownDataView)
+      observer.complete()
+    })
+    return obsUsingConstructor
   }
 
   toggleYearPurpose(selectedYear:Date, purpose: dataPurpose): void {
@@ -158,7 +169,7 @@ export class DataEngineerService {
       return 'unseen'
   }
  
-  getPerformanceData(): DataView {
+  getPerformanceDataManual(): Observable<DataView> {
     let yearsToShowPerformanceValues:Array<YearSelection> = this.yearsSelection.filter((y)=>{
       return ((y.purpose == 'test') || (y.purpose == 'train'))
     })
@@ -167,39 +178,14 @@ export class DataEngineerService {
         return axisData.x
     })
 
-    // let newDataPoints:Array<AxisData> = this.performance.data
-    // yearsToShowPerformanceValues.map((yearSelection)=>{
-    //   if (!yearsWithPerformanceValues.includes(yearSelection.valueAsSortable(yearSelection.value).toString())){
-    //     let yearAsLabel:string = yearSelection.valueAsSortable(yearSelection.value).toString()
-    //     let newPerformanceData:AxisData = {perspective:['Sensitivity', 'Specificity'], x:yearAsLabel, y: [Math.random()*100, Math.random()*100]}
-    //     newDataPoints.push(newPerformanceData)
-    //   }
-    // })
-
-    let newDataPoints:Array<AxisData>= [{
-      "perspective": ["V_1979"],
-      "x": "1980-1984",
-      "y": [80]
-    },
-    {
-      "perspective": ["V_1979", "V_1984"],
-      "x": "1985-1989",
-      "y": [70, 80]
-    },
-    {
-      "perspective": ["V_1979", "V_1984", "V_1989"],
-      "x": "1990-1994",
-      "y": [60, 70, 80]
-    },
-    {
-      "perspective": ["V_1979", "V_1984", "V_1989", "V_1994"],
-      "x": "1995-1999",
-      "y": [60, 60, 80, 90]
-    }
-    ]
-    // console.log(newDataPoints)
-    this.performance = {...this.performance, data:newDataPoints}
-    return this.performance
+  
+    let obsUsingConstructor: Observable<DataView> = Observable.create(observer=>{
+      let newDataPoints:Array<AxisData>= performanceStatistics
+      this.performance = {...this.performance, data:newDataPoints}
+      observer.next(this.performance)
+      observer.complete()
+    })
+    return obsUsingConstructor
   }
 
   getDescriptiveStatistics():Array<DataView> {

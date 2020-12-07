@@ -13,7 +13,6 @@ export class PatientsComponent implements OnInit {
   selectedPatients : Array<Patient>
   errorColor: string = "red"
   @Input() years:Array<YearSelection>
-  @Input() showPredictionsFlag:Boolean
 
   ngOnInit(): void {
     this.patientService.setPatients();
